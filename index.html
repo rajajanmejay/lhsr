@@ -1860,3 +1860,121 @@ function showPage(name) {
   window.scrollTo(0, 0);
   document.getElementById('navLinks').classList.remove('open');
   if (name === 'gallery') bui
+
+<script>
+// ================= NAVIGATION =================
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const activeLink = document.querySelector(`[data-page="${page}"]`);
+  if (activeLink) activeLink.classList.add('active');
+
+  window.scrollTo(0, 0);
+}
+
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// ================= CSV PARSER =================
+function parseCSV(text) {
+  const rows = [];
+  let current = '';
+  let insideQuotes = false;
+  let row = [];
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+
+    if (char === '"') {
+      insideQuotes = !insideQuotes;
+    } else if (char === ',' && !insideQuotes) {
+      row.push(current.trim());
+      current = '';
+    } else if ((char === '\n' || char === '\r') && !insideQuotes) {
+      if (current || row.length) {
+        row.push(current.trim());
+        rows.push(row);
+        row = [];
+        current = '';
+      }
+    } else {
+      current += char;
+    }
+  }
+
+  if (current) {
+    row.push(current.trim());
+    rows.push(row);
+  }
+
+  return rows;
+}
+
+function createPersonCard(data) {
+  const [name, role, category, research, photo, linkedin] = data;
+
+  const card = document.createElement('div');
+  card.className = 'people-card';
+
+  card.innerHTML = `
+    <div class="people-card-photo">
+      <img src="${photo}" onerror="this.parentNode.innerHTML='${name ? name[0] : '?'}'">
+    </div>
+    <div class="people-card-name">${name || ''}</div>
+    <div class="people-card-role">${role || ''}</div>
+    <div class="people-card-research">${research || ''}</div>
+    ${linkedin ? `<a href="${linkedin}" target="_blank" class="people-card-linkedin">LinkedIn →</a>` : ''}
+  `;
+
+  return { card, category };
+}
+
+async function loadPeople() {
+  try {
+    const response = await fetch('./LHSR_Website_Consolidated.csv');
+    if (!response.ok) throw new Error("CSV not found");
+
+    const text = await response.text();
+    const rows = parseCSV(text);
+    const dataRows = rows.slice(1);
+
+    const grids = {
+      Faculty: document.getElementById('faculty-grid'),
+      Research: document.getElementById('research-members-grid'),
+      PhD: document.getElementById('phd-grid'),
+      MTech: document.getElementById('mtech-grid'),
+      Staff: document.getElementById('staff-grid'),
+      Alumni: document.getElementById('alumni-grid')
+    };
+
+    const counts = {
+      Faculty: 0, Research: 0, PhD: 0, MTech: 0, Staff: 0, Alumni: 0
+    };
+
+    dataRows.forEach(row => {
+      const { card, category } = createPersonCard(row);
+      if (!grids[category]) return;
+      grids[category].appendChild(card);
+      counts[category]++;
+    });
+
+    document.getElementById('faculty-count').textContent = counts.Faculty + ' members';
+    document.getElementById('research-count').textContent = counts.Research + ' members';
+    document.getElementById('phd-count').textContent = counts.PhD + ' students';
+    document.getElementById('mtech-count').textContent = counts.MTech + ' students';
+    document.getElementById('staff-count').textContent = counts.Staff + ' members';
+    document.getElementById('alumni-count').textContent = counts.Alumni + ' members';
+
+  } catch (err) {
+    console.error("People Load Failed:", err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadPeople();
+});
+</script>
