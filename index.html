@@ -1766,6 +1766,64 @@
       color: #c8d5dc;
     }
 
+    .footer-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: min(100%, 360px);
+    }
+
+    .footer-brand-mark {
+      width: 92px;
+      height: 34px;
+      padding: 7px 8px;
+      border-radius: 6px;
+      background: #070a0d;
+    }
+
+    .footer-brand-mark img,
+    .footer-institution-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-brand-name {
+      color: #f8fbfc;
+      font-family: 'Syne', Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .footer-brand-sub {
+      margin-top: 4px;
+      color: #8cecf7;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      line-height: 1.35;
+    }
+
+    .footer-institution-logos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 4px;
+    }
+
+    .footer-institution-logo {
+      width: 54px;
+      height: 36px;
+      border-radius: 6px;
+      background: #ffffff;
+      padding: 5px;
+    }
+
+    .footer-institution-logo:first-child {
+      width: 76px;
+    }
+
     @media (max-width: 1100px) {
       nav {
         padding: 0 20px;
@@ -1983,6 +2041,341 @@
         transition-duration: 0.01ms !important;
       }
     }
+
+    /* Requested content updates */
+    h1, h2, h3,
+    .hero-title,
+    .section-title,
+    .page-header h1,
+    .research-card-title,
+    .research-area-title,
+    .facility-name,
+    .people-section-title,
+    .publication-title,
+    .scholar-card-name,
+    .gallery-item-label,
+    .req-title,
+    .opp-title {
+      font-family: 'Syne', Arial, sans-serif;
+    }
+
+    body,
+    p,
+    .research-card-desc,
+    .research-area-desc,
+    .facility-subtitle,
+    .opp-desc,
+    .contact-item-val,
+    .publication-meta,
+    .publication-authors,
+    .publication-note,
+    .scholar-card-role,
+    .credits-body {
+      font-family: 'Inter', Arial, sans-serif;
+    }
+
+    .section-tag,
+    .page-header-meta,
+    .facility-tag,
+    .contact-item-label,
+    .form-label,
+    .people-count,
+    .research-card-num,
+    .stat-label,
+    .spec-key,
+    .spec-val,
+    .mach-badge,
+    .research-tag,
+    .gallery-tab,
+    .publication-year,
+    .publication-link,
+    .scholar-link,
+    .footer-links a,
+    .footer-copy,
+    .credits-title {
+      font-family: 'Space Mono', monospace;
+    }
+
+    .nav-logo {
+      order: 1;
+      min-width: 360px;
+      max-width: 430px;
+    }
+
+    .nav-links {
+      order: 2;
+      margin-left: auto;
+    }
+
+    .nav-logo-text {
+      font-size: 14px;
+      line-height: 1.15;
+      text-transform: none;
+    }
+
+    .nav-logo-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      line-height: 1.4;
+      color: #5c6672;
+    }
+
+    .nav-institution-logos {
+      order: 3;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: 18px;
+      margin-right: 0;
+      padding-left: 18px;
+      border-left: 1px solid rgba(20, 24, 29, 0.12);
+    }
+
+    .nav-hamburger {
+      order: 4;
+    }
+
+    .nav-institution-logos img {
+      display: block;
+      max-width: 88px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .nav-institution-logos img[src$="iisc-logo.png"] {
+      max-width: 54px;
+    }
+
+    .research-preview .research-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .research-preview .research-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .research-card-image {
+      height: 152px;
+      background: #d8dee4;
+      overflow: hidden;
+    }
+
+    .research-card-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: saturate(0.92) contrast(1.04);
+      transition: transform 0.35s ease;
+    }
+
+    .research-card:hover .research-card-image img {
+      transform: scale(1.05);
+    }
+
+    .research-card-num,
+    .research-card-title,
+    .research-card-desc {
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+
+    .research-card-num {
+      margin-top: 24px;
+    }
+
+    .research-card-desc {
+      margin-bottom: 28px;
+    }
+
+    .publications-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .scholar-panel,
+    .publication-list,
+    .credits-box {
+      background: #ffffff;
+      border: 1px solid rgba(20, 24, 29, 0.12);
+      border-radius: 8px;
+      box-shadow: 0 12px 34px rgba(16, 24, 32, 0.07);
+    }
+
+    .scholar-panel {
+      padding: 26px;
+    }
+
+    .scholar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .scholar-card {
+      padding: 18px;
+      border: 1px solid rgba(20, 24, 29, 0.12);
+      border-radius: 8px;
+      background: #f8fafb;
+    }
+
+    .scholar-card-name {
+      color: #14181d;
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .scholar-card-role {
+      margin: 8px 0 14px;
+      color: #5c6672;
+      font-size: 0.92rem;
+    }
+
+    .scholar-link,
+    .publication-link {
+      color: #05606f;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .scholar-link:hover,
+    .publication-link:hover {
+      color: #008fa8;
+      text-decoration: underline;
+    }
+
+    .publication-list {
+      overflow: hidden;
+    }
+
+    .publication-item {
+      display: grid;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: 20px;
+      padding: 24px 26px;
+      border-bottom: 1px solid rgba(20, 24, 29, 0.1);
+    }
+
+    .publication-item:last-child {
+      border-bottom: 0;
+    }
+
+    .publication-year {
+      color: #d53d3d;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .publication-title {
+      color: #14181d;
+      font-size: 1.12rem;
+      font-weight: 800;
+      line-height: 1.28;
+      margin-bottom: 8px;
+    }
+
+    .publication-authors {
+      color: #4d5864;
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+    }
+
+    .publication-meta,
+    .publication-note {
+      color: #5c6672;
+      font-size: 0.92rem;
+    }
+
+    .publication-meta {
+      margin-bottom: 10px;
+    }
+
+    .gallery-tabs {
+      flex-wrap: wrap;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4 / 3;
+    }
+
+    .credits-box {
+      margin-top: 24px;
+      padding: 24px;
+      background: #11161b;
+      color: #f8fbfc;
+    }
+
+    .credits-title {
+      color: #8cecf7;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .credits-body {
+      color: #d6e2e7;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1260px) {
+      .nav-institution-logos {
+        display: none;
+      }
+
+      .nav-logo {
+        max-width: 360px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-logo {
+        max-width: 300px;
+      }
+
+      .research-preview .research-grid,
+      .scholar-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .publications-intro {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-logo {
+        max-width: 250px;
+        min-width: 0;
+      }
+
+      .nav-logo-text {
+        font-size: 11px;
+      }
+
+      .research-preview .research-grid,
+      .scholar-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .publication-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 22px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1991,10 +2384,15 @@
   <a class="nav-logo" href="#" onclick="showPage('home')">
     <div class="nav-logo-mark"><img src="./lhsr-logo.png" alt="LHSR"></div>
     <div>
-      <div class="nav-logo-text">Hypersonic Lab</div>
-      <div class="nav-logo-sub">IISc Bengaluru</div>
+      <div class="nav-logo-text">Laboratory for Hypersonic and Shock Wave Research</div>
+      <div class="nav-logo-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
     </div>
   </a>
+
+  <div class="nav-institution-logos" aria-label="Institution logos">
+    <img src="./aero-logo.svg" alt="Department of Aerospace Engineering, IISc">
+    <img src="./iisc-logo.png" alt="Indian Institute of Science">
+  </div>
 
   <ul class="nav-links" id="navLinks">
     <li><a href="#" onclick="showPage('research')" data-page="research">Research</a></li>
@@ -2088,6 +2486,7 @@
     <h2 class="section-title">Core Research Areas</h2>
     <div class="research-grid">
       <div class="research-card" onclick="showPage('research')">
+        <div class="research-card-image"><img src="./images/HST2.jpg" alt="Hypersonic shock tunnel test section"></div>
         <div class="research-card-num">01 //</div>
         <div class="research-card-title">Hypersonic Aerodynamics</div>
         <div class="research-card-desc">
@@ -2096,6 +2495,7 @@
       </div>
       
       <div class="research-card" onclick="showPage('research')">
+        <div class="research-card-image"><img src="./images/5.jpg" alt="Hypersonic aeroelasticity research poster"></div>
         <div class="research-card-num">02 //</div>
         <div class="research-card-title">Hypersonic Aeroelasticity</div>
         <div class="research-card-desc">
@@ -2104,6 +2504,7 @@
       </div>
       
       <div class="research-card" onclick="showPage('research')">
+        <div class="research-card-image"><img src="./images/HST3.jpg" alt="High enthalpy free piston shock tunnel"></div>
         <div class="research-card-num">03 //</div>
         <div class="research-card-title">High-Enthalpy Flows</div>
         <div class="research-card-desc">
@@ -2112,6 +2513,7 @@
       </div>
       
       <div class="research-card" onclick="showPage('research')">
+        <div class="research-card-image"><img src="./images/HST1.jpg" alt="Shock wave tunnel hardware"></div>
         <div class="research-card-num">04 //</div>
         <div class="research-card-title">Shockwave Physics</div>
         <div class="research-card-desc">
@@ -2120,6 +2522,7 @@
       </div>
       
       <div class="research-card" onclick="showPage('research')">
+        <div class="research-card-image"><img src="./images/CST1.jpg" alt="Chemical shock tube for kinetics studies"></div>
         <div class="research-card-num">05 //</div>
         <div class="research-card-title">High Temperature Chemical Kinetics</div>
         <div class="research-card-desc">
@@ -2128,6 +2531,7 @@
       </div>
       
       <div class="research-card" onclick="showPage('research')">
+        <div class="research-card-image"><img src="./images/VST1.jpg" alt="Vertical shock tube for shock-wave applications"></div>
         <div class="research-card-num">06 //</div>
         <div class="research-card-title">Biological Engineering</div>
         <div class="research-card-desc">
@@ -2136,6 +2540,7 @@
       </div>
       
       <div class="research-card" onclick="showPage('research')">
+        <div class="research-card-image"><img src="./images/SU1.jpg" alt="Sputtering unit for material coatings"></div>
         <div class="research-card-num">07 //</div>
         <div class="research-card-title">Materials</div>
         <div class="research-card-desc">
@@ -2144,6 +2549,7 @@
       </div>
       
       <div class="research-card" onclick="showPage('research')">
+        <div class="research-card-image"><img src="./images/RT1.jpg" alt="Compact tunnel for blast and shock tests"></div>
         <div class="research-card-num">08 //</div>
         <div class="research-card-title">Blast-wave Physics</div>
         <div class="research-card-desc">
@@ -2152,6 +2558,7 @@
       </div>
       
       <div class="research-card" onclick="showPage('research')">
+        <div class="research-card-image"><img src="./images/FR1.jpg" alt="Flow reactor experimental setup"></div>
         <div class="research-card-num">09 //</div>
         <div class="research-card-title">Industrial Applications</div>
         <div class="research-card-desc">
@@ -2610,11 +3017,134 @@
     <p>Peer-reviewed publications, conference papers, and technical reports from the LHSR team.</p>
   </div>
   <div class="page-content">
-    <div class="pub-coming-soon">
-      <div class="big-num">∞</div>
-      <p style="margin-top:1.5rem;">Publication list coming soon</p>
-      <p style="margin-top:0.8rem;font-size:12px;opacity:0.5;">We are compiling our full list of publications. Check back soon or contact us directly.</p>
-      <a href="#" class="btn-primary" onclick="showPage('contact')" style="margin-top:2.5rem;display:inline-block;">Get In Touch</a>
+    <div class="publications-intro">
+      <div class="scholar-panel">
+        <div class="section-tag">2020 onwards</div>
+        <h2 class="section-title" style="font-size:2.35rem;margin-bottom:1rem;">Selected Recent Publications</h2>
+        <p class="publication-note">A curated 2020+ list from the Google Scholar/IRINS profiles of Prof. Gopalan Jagadeesh, Prof. Srisha Rao M V, and Dr. S. Saravanan. Journal and DOI links are included where available.</p>
+      </div>
+      <div class="scholar-panel">
+        <div class="section-tag">Scholar Links</div>
+        <div class="scholar-grid">
+          <div class="scholar-card">
+            <div class="scholar-card-name">Prof. Gopalan Jagadeesh</div>
+            <div class="scholar-card-role">Hypersonic aerodynamics and shock wave dynamics</div>
+            <a class="scholar-link" href="https://scholar.google.co.in/citations?user=eVRuYlgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+          </div>
+          <div class="scholar-card">
+            <div class="scholar-card-name">Prof. Srisha Rao M V</div>
+            <div class="scholar-card-role">High-speed gas dynamics, mixing, diagnostics</div>
+            <a class="scholar-link" href="https://scholar.google.com/citations?view_op=search_authors&mauthors=Srisha+Rao+M+V+IISc" target="_blank" rel="noopener">Google Scholar ↗</a>
+          </div>
+          <div class="scholar-card">
+            <div class="scholar-card-name">Dr. S. Saravanan</div>
+            <div class="scholar-card-role">Shock tunnel testing and experimental gas dynamics</div>
+            <a class="scholar-link" href="https://scholar.google.co.in/citations?user=cDLhMckAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="publication-list">
+      <article class="publication-item">
+        <div class="publication-year">2024</div>
+        <div>
+          <div class="publication-title">Surrogate model based multi-objective optimisation of supercritical CO₂ ejectors</div>
+          <div class="publication-authors">S. Paul, R. P. Srikar, Srisha Rao M V, P. Kumar</div>
+          <div class="publication-meta">International Journal of Refrigeration, 2024</div>
+          <a class="publication-link" href="https://www.sciencedirect.com/science/article/abs/pii/S0896844624003280" target="_blank" rel="noopener">View publication ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2023</div>
+        <div>
+          <div class="publication-title">A novel artificial neural network-based streamline tracing strategy applied to hypersonic waverider design</div>
+          <div class="publication-authors">K. P. Karthikeya Bharadwaj, Srisha Rao M V, G. Jagadeesh</div>
+          <div class="publication-meta">APL Machine Learning, 2023</div>
+          <a class="publication-link" href="https://doi.org/10.1063/5.0127034" target="_blank" rel="noopener">DOI ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2023</div>
+        <div>
+          <div class="publication-title">Low-frequency unsteadiness of recompression shock structures in the diffuser of supersonic ejectors</div>
+          <div class="publication-authors">P. Gupta, P. Kumar, Srisha Rao M V</div>
+          <div class="publication-meta">Physics of Fluids, 2023</div>
+          <a class="publication-link" href="https://doi.org/10.1063/5.0137051" target="_blank" rel="noopener">DOI ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2022</div>
+        <div>
+          <div class="publication-title">Shock-induced leading-edge separation in hypersonic flows</div>
+          <div class="publication-authors">L. Srinath, R. Sriram, P. Akhilesh, G. Jagadeesh</div>
+          <div class="publication-meta">Journal of Fluid Mechanics, 2022</div>
+          <a class="publication-link" href="https://doi.org/10.1017/jfm.2022.619" target="_blank" rel="noopener">DOI ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2022</div>
+        <div>
+          <div class="publication-title">Artificial neural network model for single-phase real gas ejectors</div>
+          <div class="publication-authors">P. Gupta, Srisha Rao M V, P. Kumar</div>
+          <div class="publication-meta">Applied Thermal Engineering, 2022</div>
+          <a class="publication-link" href="https://doi.org/10.1016/j.applthermaleng.2021.117615" target="_blank" rel="noopener">DOI ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2021</div>
+        <div>
+          <div class="publication-title">Length scale for the estimation of buzz frequency in the limit of high mechanical blockage in mixed-compression intakes</div>
+          <div class="publication-authors">M. K. K. Devaraj, P. Jutur, Srisha M V Rao, G. Jagadeesh, G. T. K. Anavardham</div>
+          <div class="publication-meta">Journal of Fluid Mechanics, 2021</div>
+          <a class="publication-link" href="https://doi.org/10.1017/jfm.2021.230" target="_blank" rel="noopener">DOI ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2021</div>
+        <div>
+          <div class="publication-title">Investigation of local unstart in a hypersonic scramjet intake at a Mach number of 6</div>
+          <div class="publication-authors">M. K. K. Devaraj, P. Jutur, Srisha M V Rao, G. Jagadeesh, G. T. K. Anavardham</div>
+          <div class="publication-meta">Aerospace Science and Technology, 2021</div>
+          <a class="publication-link" href="https://doi.org/10.1016/j.ast.2021.106789" target="_blank" rel="noopener">DOI ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2021</div>
+        <div>
+          <div class="publication-title">Effect of the axial cavity with an opposing high-pressure jet combination in a Mach 6 flow condition</div>
+          <div class="publication-authors">B. Sudarshan, S. M. Rao, G. Jagadeesh, S. Saravanan</div>
+          <div class="publication-meta">Acta Astronautica, 2021</div>
+          <a class="publication-link" href="https://doi.org/10.1016/j.actaastro.2020.09.021" target="_blank" rel="noopener">DOI ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2021</div>
+        <div>
+          <div class="publication-title">Insights into the shockwave attenuation in miniature shock tubes</div>
+          <div class="publication-authors">S. Janardhanraj, K. Abhishek, G. Jagadeesh</div>
+          <div class="publication-meta">Experimental Thermal and Fluid Science, 2021</div>
+          <a class="publication-link" href="https://cir.nii.ac.jp/crid/1360588384083606528" target="_blank" rel="noopener">View record ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2020</div>
+        <div>
+          <div class="publication-title">Experimental investigation of unstart dynamics driven by subsonic spillage in a hypersonic scramjet intake at Mach 6</div>
+          <div class="publication-authors">M. K. K. Devaraj, P. Jutur, Srisha M V Rao, G. Jagadeesh, G. T. K. Anavardham</div>
+          <div class="publication-meta">Physics of Fluids, 2020</div>
+          <a class="publication-link" href="https://doi.org/10.1063/1.5135096" target="_blank" rel="noopener">DOI ↗</a>
+        </div>
+      </article>
+      <article class="publication-item">
+        <div class="publication-year">2020</div>
+        <div>
+          <div class="publication-title">Impulse loading of plates using a diverging shock tube</div>
+          <div class="publication-authors">O. S. Isaac, G. Jagadeesh</div>
+          <div class="publication-meta">Experimental Mechanics, 2020</div>
+          <a class="publication-link" href="https://doi.org/10.1007/s11340-020-00576-7" target="_blank" rel="noopener">DOI ↗</a>
+        </div>
+      </article>
     </div>
   </div>
   <footer>
@@ -2636,8 +3166,10 @@
   <div class="page-content">
     <div class="gallery-tabs">
       <button class="gallery-tab active" onclick="filterGallery('all', this)">All</button>
-      <button class="gallery-tab" onclick="filterGallery('facilities', this)">Facilities</button>
-      <button class="gallery-tab" onclick="filterGallery('lab', this)">Lab</button>
+      <button class="gallery-tab" onclick="filterGallery('open-day', this)">Open Day</button>
+      <button class="gallery-tab" onclick="filterGallery('visitors', this)">Visitors</button>
+      <button class="gallery-tab" onclick="filterGallery('lab-facilities', this)">Lab & Facilities</button>
+      <button class="gallery-tab" onclick="filterGallery('research-work', this)">Research Work</button>
     </div>
     <div class="gallery-grid" id="gallery-grid"></div>
   </div>
@@ -2739,8 +3271,7 @@
         <div class="contact-item">
           <div class="contact-item-label">Email</div>
             <div class="contact-item-val">
-              <a href="mailto:jaggie@iisc.ac.in">Prof. Gopalan Jagadeesh ↗</a><br>
-              <a href="mailto:srisharao@iisc.ac.in">Prof. Srisha Rao M V ↗</a>
+              <a href="mailto:srisharao@iisc.ac.in">srisharao@iisc.ac.in ↗</a>
             </div>
         </div>
         <div class="contact-item">
@@ -2761,21 +3292,21 @@
         <div class="req-title" style="margin-bottom:2.5rem;">Send a Message</div>
         <div class="form-group">
           <label class="form-label">Your Name</label>
-          <input class="form-input" type="text" placeholder="Full name" />
+          <input class="form-input" id="contact-name" type="text" placeholder="Full name" />
         </div>
         <div class="form-group">
           <label class="form-label">Email Address</label>
-          <input class="form-input" type="email" placeholder="your@email.com" />
+          <input class="form-input" id="contact-email" type="email" placeholder="your@email.com" />
         </div>
         <div class="form-group">
           <label class="form-label">Subject</label>
-          <input class="form-input" type="text" placeholder="e.g. PhD Admission / Collaboration / Facility Access" />
+          <input class="form-input" id="contact-subject" type="text" placeholder="e.g. PhD Admission / Collaboration / Facility Access" />
         </div>
         <div class="form-group">
           <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Describe your enquiry in detail..."></textarea>
+          <textarea class="form-textarea" id="contact-message" placeholder="Describe your enquiry in detail..."></textarea>
         </div>
-        <button class="btn-primary" style="width:100%;" onclick="alert('Thank you! Your message has been noted. Please also email us directly for a prompt response.')">Send Message</button>
+        <button class="btn-primary" style="width:100%;" onclick="sendContactMail()">Send Message</button>
       </div>
     </div>
 
@@ -2799,6 +3330,14 @@
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('people')">People</a></li>
     </ul>
+    <div class="credits-box">
+      <div class="credits-title">Concept & Direction</div>
+      <div class="credits-body">
+        Dr. Srisha Rao M V<br>
+        Raja Janmejay<br>
+        LNV Pratap
+      </div>
+    </div>
     <div class="footer-copy">© 2025 LHSR, IISc Bengaluru</div>
   </footer>
 </div>
@@ -2965,21 +3504,22 @@ fetch(csvUrl)
 
 // ── Gallery Code ──
 const galleryItems = [
-  { src:'./images/L1.jpg', label:'Lab Building', cat:'lab' },
-  { src:'./images/L2.jpg', label:'Lab Interior', cat:'lab' },
-  { src:'./images/HST1.jpg', label:'Hypersonic Shock Tunnel 1', cat:'facilities' },
-  { src:'./images/HST2.jpg', label:'Hypersonic Shock Tunnel 2', cat:'facilities' },
-  { src:'./images/HST3.jpg', label:'Hypersonic Shock Tunnel 3', cat:'facilities' },
-  { src:'./images/HST4.jpg', label:'Hypersonic Shock Tunnel 4', cat:'facilities' },
-  { src:'./images/HST5.jpg', label:'Hypersonic Shock Tunnel 5', cat:'facilities' },
-  { src:'./images/CST1.jpg', label:'Chemical Shock Tunnel 1', cat:'facilities' },
-  { src:'./images/CST3.jpg', label:'Chemical Shock Tunnel 3', cat:'facilities' },
-  { src:'./images/VST1.jpg', label:'Vertical Shock Tube', cat:'facilities' },
-  { src:'./images/RT1.jpg', label:'Reddy Tunnel', cat:'facilities' },
-  { src:'./images/SU1.jpg', label:'Sputtering Unit', cat:'facilities' },
-  { src:'./images/FR1.jpg', label:'Flow Reactor', cat:'facilities' },
-  { src:'./images/CF1.jpg', label:'CO₂ Facility 1', cat:'facilities' },
-  { src:'./images/CF2.jpg', label:'CO₂ Facility 2', cat:'facilities' },
+  { src:'./images/L1.jpg', label:'Open Day at LHSR', cat:'open-day' },
+  { src:'./images/L2.jpg', label:'Visitors inside the laboratory hall', cat:'visitors' },
+  { src:'./images/5.jpg', label:'Research presentation and results', cat:'research-work' },
+  { src:'./images/HST1.jpg', label:'Hypersonic Shock Tunnel 1', cat:'lab-facilities' },
+  { src:'./images/HST2.jpg', label:'Hypersonic Shock Tunnel 2', cat:'lab-facilities' },
+  { src:'./images/HST3.jpg', label:'Hypersonic Shock Tunnel 3', cat:'lab-facilities' },
+  { src:'./images/HST4.jpg', label:'Hypersonic Shock Tunnel 4', cat:'lab-facilities' },
+  { src:'./images/HST5.jpg', label:'Hypersonic Shock Tunnel 5', cat:'lab-facilities' },
+  { src:'./images/CST1.jpg', label:'Chemical shock tube experiment', cat:'research-work' },
+  { src:'./images/CST3.jpg', label:'Chemical shock tube diagnostics', cat:'research-work' },
+  { src:'./images/VST1.jpg', label:'Vertical Shock Tube', cat:'lab-facilities' },
+  { src:'./images/RT1.jpg', label:'Reddy Tunnel experimental setup', cat:'research-work' },
+  { src:'./images/SU1.jpg', label:'Sputtering unit for coatings', cat:'lab-facilities' },
+  { src:'./images/FR1.jpg', label:'Flow reactor setup', cat:'research-work' },
+  { src:'./images/CF1.jpg', label:'CO₂ facility 1', cat:'lab-facilities' },
+  { src:'./images/CF2.jpg', label:'CO₂ facility 2', cat:'lab-facilities' },
 ];
 
 function buildGallery(filter = 'all') {
@@ -3000,6 +3540,44 @@ function filterGallery(cat, btn) {
   document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
   buildGallery(cat);
+}
+
+function sendContactMail() {
+  const name = document.getElementById('contact-name')?.value.trim() || '';
+  const email = document.getElementById('contact-email')?.value.trim() || '';
+  const subject = document.getElementById('contact-subject')?.value.trim() || 'LHSR enquiry';
+  const message = document.getElementById('contact-message')?.value.trim() || '';
+  const body = [
+    name ? `Name: ${name}` : '',
+    email ? `Email: ${email}` : '',
+    '',
+    message
+  ].filter(Boolean).join('\n');
+
+  window.location.href = `mailto:srisharao@iisc.ac.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function addFooterBrands() {
+  document.querySelectorAll('footer').forEach(footer => {
+    if (footer.querySelector('.footer-brand-row')) return;
+    footer.insertAdjacentHTML('afterbegin', `
+      <div class="footer-brand-row">
+        <div class="footer-brand-mark"><img src="./lhsr-logo.png" alt="LHSR"></div>
+        <div>
+          <div class="footer-brand-name">Laboratory for Hypersonic and Shock Wave Research</div>
+          <div class="footer-brand-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
+        </div>
+        <div class="footer-institution-logos" aria-label="Institution logos">
+          <div class="footer-institution-logo"><img src="./aero-logo.svg" alt="Department of Aerospace Engineering, IISc"></div>
+          <div class="footer-institution-logo"><img src="./iisc-logo.png" alt="Indian Institute of Science"></div>
+        </div>
+      </div>
+    `);
+    const directLogo = footer.querySelector(':scope > .footer-logo');
+    if (directLogo) directLogo.style.display = 'none';
+    const nestedLogo = footer.querySelector(':scope > div .footer-logo');
+    if (nestedLogo && nestedLogo.parentElement) nestedLogo.parentElement.style.display = 'none';
+  });
 }
 
 // ── Navigation Code ──
@@ -3023,6 +3601,7 @@ function toggleMenu() {
 document.addEventListener('DOMContentLoaded', function() {
   const homeLink = document.querySelector('.nav-links a[data-page="home"]');
   // No home link in nav, but highlight none by default — home is the logo
+  addFooterBrands();
   buildGallery('all');
 });
 </script>
