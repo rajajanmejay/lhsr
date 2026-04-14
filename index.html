@@ -365,16 +365,29 @@
       box-shadow: var(--glow);
       border-bottom-color: var(--blue);
     }
+    .research-card-img-wrap {
+      overflow: hidden;
+      height: 180px;
+      background: linear-gradient(135deg, #1a4a7a 0%, #0d3460 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
     .research-card-img {
-      width: 100%; height: 180px;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.5s ease;
-      background: #d6eaf8;
+      position: absolute; inset: 0;
     }
     .research-card:hover .research-card-img { transform: scale(1.04); }
-    .research-card-img-wrap { overflow: hidden; height: 180px; background: linear-gradient(135deg,#1a4a7a,#2d7abf); display:flex; align-items:center; justify-content:center; }
-    .research-card-img-placeholder { font-family:'Space Mono',monospace; font-size:2rem; color:rgba(255,255,255,0.4); }
+    .research-card-img-placeholder {
+      font-size: 2.5rem;
+      line-height: 1;
+      z-index: 1;
+      pointer-events: none;
+    }
     .research-card-body { padding: 2rem 2rem 2.5rem; }
     .research-card-num {
       font-family: 'Space Mono', monospace;
@@ -474,10 +487,11 @@
     }
     .people-card-photo-wrap img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: top center;
+      object-fit: contain;
+      object-position: center top;
       display: block;
       transition: transform 0.5s ease;
+      background: #c8dff0;
     }
     /* Faculty photos — contain to avoid cropping faces */
     .faculty-photo-wrap img {
@@ -835,52 +849,93 @@
     @media (max-width: 900px) { .research-visual-grid { grid-template-columns: repeat(2,1fr); } }
     @media (max-width: 600px) { .research-visual-grid { grid-template-columns: 1fr; } .rvc-images { height: 160px; } }
 
-    /* ── RESEARCH PAGE (OLD — kept for compat) ── */
-    .research-areas {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5px;
-      background: rgba(0,119,204,0.1);
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
-    .research-area-card {
-      background: #ffffff;
-      padding: 4rem;
-      transition: background 0.3s;
-    }
-    .research-area-card:hover { background: #f0f7ff; }
-    .research-area-card:first-child {
-      grid-column: 1 / -1;
-      background: #e8f4fd;
-    }
-    .research-icon {
-      font-size: 3rem;
-      margin-bottom: 2rem;
-    }
-    .research-area-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.8rem; font-weight: 800;
-      margin-bottom: 1.5rem;
-      color: #0a2540;
-    }
-    .research-area-desc {
-      color: var(--muted);
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
-    .research-tags {
-      display: flex; flex-wrap: wrap; gap: 10px;
-      margin-top: 2rem;
-    }
-    .research-tag {
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      background: rgba(0,119,204,0.05);
-      font-family: 'Space Mono', monospace;
-      font-size: 11px; letter-spacing: 0.1em;
-      color: var(--blue); text-transform: uppercase;
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* ── PUBLICATIONS PAGE ── */
+    /* ── BACK TO TOP ── */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
+      width: 46px; height: 46px;
+      background: var(--blue);
+      color: #fff;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 18px rgba(0,119,204,0.35);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(10px);
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .back-to-top:hover { background: var(--blue2); transform: translateY(-2px); }
+
+    /* ── GALLERY LIGHTBOX ── */
+    .lightbox-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(5,15,30,0.94);
+      align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox-overlay.open { display: flex; }
+    .lightbox-img-wrap {
+      position: relative;
+      max-width: 92vw; max-height: 82vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox-img-wrap img {
+      max-width: 92vw; max-height: 82vh;
+      object-fit: contain;
+      display: block;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.6);
+    }
+    .lightbox-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; letter-spacing: 0.18em;
+      color: #7dd3fc; text-transform: uppercase;
+      margin-top: 1.5rem; text-align: center;
+    }
+    .lightbox-counter {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: 0.12em;
+      color: #4a7090; margin-top: 0.5rem;
+    }
+    .lightbox-btn {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 1.5rem;
+      cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.2s;
+      z-index: 2001;
+    }
+    .lightbox-btn:hover { background: rgba(255,255,255,0.18); }
+    .lightbox-prev { left: 1.5rem; }
+    .lightbox-next { right: 1.5rem; }
+    .lightbox-close {
+      position: fixed; top: 1.5rem; right: 1.5rem;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 1.3rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2001; transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(220,50,50,0.4); }
+
+    /* ── PUBLICATIONS PAGE (OLD) ── */
+    .pub-coming-soon {
     .pub-scholar-links {
       background: #ffffff;
       border: 1px solid var(--border);
@@ -1247,6 +1302,8 @@
       }
       .nav-links.open a { color: #0a2540; }
       .nav-hamburger { display: flex; }
+      .nav-inst-logo { display: none; }
+      .nav-divider { display: none; }
       .about-grid, .contact-grid, .facility-item { grid-template-columns: 1fr; direction: ltr; }
       .research-areas { grid-template-columns: 1fr; }
       .research-areas .research-area-card:first-child { grid-column: 1; }
@@ -1254,6 +1311,9 @@
       .opp-grid { grid-template-columns: 1fr; }
       .research-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 2.5rem; }
+      .about-image-pair { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+      .pub-scholar-links { flex-direction: column; gap: 1rem; }
     }
 
     @media (max-width: 600px) {
@@ -1372,8 +1432,12 @@
         <a href="#" class="btn-outline" onclick="showPage('research')" style="margin-top:1.5rem; display:inline-block;">Explore Research →</a>
       </div>
       <div class="about-image">
-        <img src="./images/L1.jpg" alt="LHSR Building" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect fill=%22%23d6eaf8%22 width=%22600%22 height=%22400%22/><text x=%22300%22 y=%22200%22 fill=%22%234a6080%22 text-anchor=%22middle%22 font-family=%22monospace%22 font-size=%2212%22>LABORATORY BUILDING</text></svg>'" />
-        <img src="./images/L2.jpg" alt="LHSR Inside View" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect fill=%22%23d6eaf8%22 width=%22600%22 height=%22400%22/><text x=%22300%22 y=%22200%22 fill=%22%234a6080%22 text-anchor=%22middle%22 font-family=%22monospace%22 font-size=%2212%22>LABORATORY BUILDING</text></svg>'" />
+        <div class="about-image-pair">
+          <img src="./images/L1.jpg" alt="LHSR Building Exterior"
+               onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%23d6eaf8%22 width=%22400%22 height=%22300%22/><text x=%22200%22 y=%22155%22 fill=%22%234a6080%22 text-anchor=%22middle%22 font-family=%22monospace%22 font-size=%2211%22>Lab Exterior</text></svg>'" />
+          <img src="./images/L2.jpg" alt="LHSR Interior"
+               onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%23c8dff0%22 width=%22400%22 height=%22300%22/><text x=%22200%22 y=%22155%22 fill=%22%234a6080%22 text-anchor=%22middle%22 font-family=%22monospace%22 font-size=%2211%22>Lab Interior</text></svg>'" />
+        </div>
         <div class="about-image-caption">// Laboratory for Hypersonic and Shock Wave Research — IISc, Bengaluru</div>
       </div>
     </div>
@@ -1385,7 +1449,7 @@
     <div class="research-grid">
       <div class="research-card" onclick="showPage('research')">
         <div class="research-card-img-wrap">
-          <img class="research-card-img" src="./images/research-aerodynamics.jpg" alt="Hypersonic Aerodynamics" onerror="this.style.display='none'" />
+          <img class="research-card-img" src="./images/research-aerodynamics.jpg" alt="Hypersonic Aerodynamics" onerror="this.style.display='none';const p=this.parentNode.querySelector('.research-card-img-placeholder');if(p)p.style.display=''" />
           <span class="research-card-img-placeholder" style="display:none">🚀</span>
         </div>
         <div class="research-card-body">
@@ -1397,7 +1461,7 @@
       
       <div class="research-card" onclick="showPage('research')">
         <div class="research-card-img-wrap">
-          <img class="research-card-img" src="./images/research-aeroelasticity.jpg" alt="Aeroelasticity" onerror="this.style.display='none'" />
+          <img class="research-card-img" src="./images/research-aeroelasticity.jpg" alt="Aeroelasticity" onerror="this.style.display='none';const p=this.parentNode.querySelector('.research-card-img-placeholder');if(p)p.style.display=''" />
           <span class="research-card-img-placeholder" style="display:none">🔩</span>
         </div>
         <div class="research-card-body">
@@ -1409,7 +1473,7 @@
       
       <div class="research-card" onclick="showPage('research')">
         <div class="research-card-img-wrap">
-          <img class="research-card-img" src="./images/research-enthalpy.jpg" alt="High-Enthalpy Flows" onerror="this.style.display='none'" />
+          <img class="research-card-img" src="./images/research-enthalpy.jpg" alt="High-Enthalpy Flows" onerror="this.style.display='none';const p=this.parentNode.querySelector('.research-card-img-placeholder');if(p)p.style.display=''" />
           <span class="research-card-img-placeholder" style="display:none">🔥</span>
         </div>
         <div class="research-card-body">
@@ -1421,7 +1485,7 @@
       
       <div class="research-card" onclick="showPage('research')">
         <div class="research-card-img-wrap">
-          <img class="research-card-img" src="./images/research-shockwave.jpg" alt="Shockwave Physics" onerror="this.style.display='none'" />
+          <img class="research-card-img" src="./images/research-shockwave.jpg" alt="Shockwave Physics" onerror="this.style.display='none';const p=this.parentNode.querySelector('.research-card-img-placeholder');if(p)p.style.display=''" />
           <span class="research-card-img-placeholder" style="display:none">💥</span>
         </div>
         <div class="research-card-body">
@@ -1433,7 +1497,7 @@
       
       <div class="research-card" onclick="showPage('research')">
         <div class="research-card-img-wrap">
-          <img class="research-card-img" src="./images/research-kinetics.jpg" alt="Chemical Kinetics" onerror="this.style.display='none'" />
+          <img class="research-card-img" src="./images/research-kinetics.jpg" alt="Chemical Kinetics" onerror="this.style.display='none';const p=this.parentNode.querySelector('.research-card-img-placeholder');if(p)p.style.display=''" />
           <span class="research-card-img-placeholder" style="display:none">🔬</span>
         </div>
         <div class="research-card-body">
@@ -1445,7 +1509,7 @@
       
       <div class="research-card" onclick="showPage('research')">
         <div class="research-card-img-wrap">
-          <img class="research-card-img" src="./images/research-bio.jpg" alt="Biological Engineering" onerror="this.style.display='none'" />
+          <img class="research-card-img" src="./images/research-bio.jpg" alt="Biological Engineering" onerror="this.style.display='none';const p=this.parentNode.querySelector('.research-card-img-placeholder');if(p)p.style.display=''" />
           <span class="research-card-img-placeholder" style="display:none">🧬</span>
         </div>
         <div class="research-card-body">
@@ -1457,7 +1521,7 @@
       
       <div class="research-card" onclick="showPage('research')">
         <div class="research-card-img-wrap">
-          <img class="research-card-img" src="./images/research-materials.jpg" alt="Materials" onerror="this.style.display='none'" />
+          <img class="research-card-img" src="./images/research-materials.jpg" alt="Materials" onerror="this.style.display='none';const p=this.parentNode.querySelector('.research-card-img-placeholder');if(p)p.style.display=''" />
           <span class="research-card-img-placeholder" style="display:none">🧱</span>
         </div>
         <div class="research-card-body">
@@ -1469,7 +1533,7 @@
       
       <div class="research-card" onclick="showPage('research')">
         <div class="research-card-img-wrap">
-          <img class="research-card-img" src="./images/research-blast.jpg" alt="Blast-wave Physics" onerror="this.style.display='none'" />
+          <img class="research-card-img" src="./images/research-blast.jpg" alt="Blast-wave Physics" onerror="this.style.display='none';const p=this.parentNode.querySelector('.research-card-img-placeholder');if(p)p.style.display=''" />
           <span class="research-card-img-placeholder" style="display:none">💨</span>
         </div>
         <div class="research-card-body">
@@ -1481,7 +1545,7 @@
       
       <div class="research-card" onclick="showPage('research')">
         <div class="research-card-img-wrap">
-          <img class="research-card-img" src="./images/research-industrial.jpg" alt="Industrial Applications" onerror="this.style.display='none'" />
+          <img class="research-card-img" src="./images/research-industrial.jpg" alt="Industrial Applications" onerror="this.style.display='none';const p=this.parentNode.querySelector('.research-card-img-placeholder');if(p)p.style.display=''" />
           <span class="research-card-img-placeholder" style="display:none">⚙️</span>
         </div>
         <div class="research-card-body">
@@ -1491,7 +1555,6 @@
         </div>
       </div>
 </div>
-    </div>
   </section>
 
   <footer>
@@ -1692,7 +1755,7 @@
 
     <div class="facility-item">
       <div class="facility-info">
-        <div class="facility-tag">Hypersonic Shock Tunnel // HST-2</div>
+        <div class="facility-tag">Hypersonic Shock Tunnel // HST-2 <span class="facility-status-badge facility-status-active">Operational</span></div>
         <div class="facility-name">Hypersonic Shock Tunnel 2</div>
         <div class="facility-subtitle"></div>
         <div class="facility-specs">
@@ -1714,7 +1777,7 @@
 
     <div class="facility-item">
       <div class="facility-info">
-        <div class="facility-tag">Hypersonic Shock Tunnel // HST-3</div>
+        <div class="facility-tag">Hypersonic Shock Tunnel // HST-3 <span class="facility-status-badge facility-status-active">Operational</span></div>
         <div class="facility-name">Hypersonic Shock Tunnel 3</div>
         <div class="facility-subtitle">Free Piston Shock Tube</div>
         <div class="facility-specs">
@@ -1737,7 +1800,7 @@
 
     <div class="facility-item">
       <div class="facility-info">
-        <div class="facility-tag">Hypersonic Shock Tunnel // HST-4</div>
+        <div class="facility-tag">Hypersonic Shock Tunnel // HST-4 <span class="facility-status-badge facility-status-active">Operational</span></div>
         <div class="facility-name">Hypersonic Shock Tunnel 4</div>
         <div class="facility-subtitle">Large-Scale Test Section</div>
         <div class="facility-specs">
@@ -1759,7 +1822,7 @@
 
     <div class="facility-item">
       <div class="facility-info">
-        <div class="facility-tag">Hypersonic Shock Tunnel // HST-5</div>
+        <div class="facility-tag">Hypersonic Shock Tunnel // HST-5 <span class="facility-status-badge facility-status-active">Operational</span></div>
         <div class="facility-name">Hypersonic Shock Tunnel 5</div>
         <div class="facility-subtitle">Combustion Driven</div>
         <div class="facility-specs">
@@ -2001,9 +2064,9 @@
     <div class="pub-scholar-links">
       <div class="pub-scholar-label">View Full Profiles on Google Scholar</div>
       <div class="pub-scholar-buttons">
-        <a href="https://scholar.google.com/citations?user=gopalan_jagadeesh_iisc" target="_blank" class="pub-scholar-btn">Prof. Gopalan Jagadeesh ↗</a>
-        <a href="https://scholar.google.com/citations?user=srisharao_iisc" target="_blank" class="pub-scholar-btn">Prof. Srisha Rao M V ↗</a>
-        <a href="https://scholar.google.co.in/citations?user=saravanan_iisc" target="_blank" class="pub-scholar-btn">Dr. Saravanan ↗</a>
+        <a href="https://scholar.google.com/scholar?q=Gopalan+Jagadeesh+IISc+hypersonic" target="_blank" class="pub-scholar-btn">Prof. Gopalan Jagadeesh ↗</a>
+        <a href="https://scholar.google.com/scholar?q=Srisha+Rao+M+V+IISc+hypersonic+shock+tunnel" target="_blank" class="pub-scholar-btn">Dr. Srisha Rao M V ↗</a>
+        <a href="https://scholar.google.com/scholar?q=Saravanan+IISc+hypersonic+aerodynamics" target="_blank" class="pub-scholar-btn">Dr. Saravanan ↗</a>
       </div>
     </div>
 
@@ -2369,7 +2432,7 @@ fetch(csvUrl)
 
     // Grab all grid containers
     const facultyGrid   = document.getElementById('faculty-grid');
-    const associatedfacultyGrid   = document.getElementById('associatedfaculty-grid');
+    const assocFacultyGrid = document.getElementById('assocFacultyContainer');
     const phdGrid       = document.getElementById('phd-grid');
     const mtechGrid     = document.getElementById('mtech-grid');
     const researchGrid  = document.getElementById('research-members-grid');
@@ -2377,12 +2440,13 @@ fetch(csvUrl)
     const alumniGrid    = document.getElementById('alumni-grid');
 
     // Clear grids before populating to prevent duplicates on re-load
-    if(facultyGrid)  facultyGrid.innerHTML  = '';
-    if(phdGrid)      phdGrid.innerHTML      = '';
-    if(mtechGrid)    mtechGrid.innerHTML    = '';
-    if(researchGrid) researchGrid.innerHTML = '';
-    if(staffGrid)    staffGrid.innerHTML    = '';
-    if(alumniGrid)   alumniGrid.innerHTML   = '';
+    if(facultyGrid)      facultyGrid.innerHTML      = '';
+    if(assocFacultyGrid) assocFacultyGrid.innerHTML = '';
+    if(phdGrid)          phdGrid.innerHTML          = '';
+    if(mtechGrid)        mtechGrid.innerHTML        = '';
+    if(researchGrid)     researchGrid.innerHTML     = '';
+    if(staffGrid)        staffGrid.innerHTML        = '';
+    if(alumniGrid)       alumniGrid.innerHTML       = '';
 
     let counts = { faculty: 0,associatedfaculty: 0, phd: 0, mtech: 0, research: 0, staff: 0, alumni: 0 };
 
@@ -2575,13 +2639,13 @@ function buildGallery(filter = 'all') {
   const items = filter === 'all' ? galleryItems : galleryItems.filter(g => g.cat === filter);
   const grid = document.getElementById('gallery-grid');
   if(grid) {
-      grid.innerHTML = items.map(g => `
-        <div class="gallery-item">
-          <img src="${g.src}" alt="${g.label}" onerror="this.parentNode.style.background='var(--navy3)';this.style.display='none'" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <span class="gallery-item-label">${g.label}</span>
-          </div>
-        </div>`).join('');
+    grid.innerHTML = items.map((g, i) => `
+      <div class="gallery-item" onclick="openLightbox(${i})" style="cursor:zoom-in">
+        <img src="${g.src}" alt="${g.label}" onerror="this.parentNode.style.background='var(--navy3)';this.style.display='none'" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">${g.label}</span>
+        </div>
+      </div>`).join('');
   }
 }
 
@@ -2631,6 +2695,7 @@ function showPage(name) {
   window.scrollTo(0, 0);
   document.getElementById('navLinks').classList.remove('open');
   if (name === 'gallery') buildGallery('all');
+  setTimeout(initReveal, 60);
 }
 
 function toggleMenu() {
@@ -2640,10 +2705,115 @@ function toggleMenu() {
 
 // Auto-highlight active nav link on load
 document.addEventListener('DOMContentLoaded', function() {
-  const homeLink = document.querySelector('.nav-links a[data-page="home"]');
-  // No home link in nav, but highlight none by default — home is the logo
   buildGallery('all');
+  initReveal();
 });
 </script>
+
+<!-- ── LIGHTBOX OVERLAY ── -->
+<div class="lightbox-overlay" id="lightbox" onclick="lbClickOutside(event)">
+  <button class="lightbox-close" onclick="closeLightbox()" title="Close">✕</button>
+  <button class="lightbox-btn lightbox-prev" onclick="lbNav(-1)" title="Previous">‹</button>
+  <div class="lightbox-img-wrap">
+    <img id="lb-img" src="" alt="" />
+  </div>
+  <div class="lightbox-label" id="lb-label"></div>
+  <div class="lightbox-counter" id="lb-counter"></div>
+  <button class="lightbox-btn lightbox-next" onclick="lbNav(1)" title="Next">›</button>
+</div>
+
+<!-- ── BACK TO TOP ── -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<script>
+// ── GALLERY LIGHTBOX ──
+let lbItems = [];
+let lbIndex = 0;
+
+function openLightbox(i) {
+  // Sync lbItems with whatever is currently rendered
+  const grid = document.getElementById('gallery-grid');
+  if (grid) {
+    lbItems = Array.from(grid.querySelectorAll('.gallery-item img')).map(img => ({
+      src: img.src, label: img.alt
+    }));
+  }
+  lbIndex = i;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbClickOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+function lbNav(dir) {
+  lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+  renderLightbox();
+}
+function renderLightbox() {
+  const item = lbItems[lbIndex];
+  if (!item) return;
+  const img = document.getElementById('lb-img');
+  img.src = item.src; img.alt = item.label;
+  document.getElementById('lb-label').textContent = item.label;
+  document.getElementById('lb-counter').textContent = `${lbIndex + 1} / ${lbItems.length}`;
+}
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (!lb || !lb.classList.contains('open')) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') lbNav(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   lbNav(-1);
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// ── BACK TO TOP ──
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backToTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+// ── SCROLL REVEAL ──
+const _revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      _revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+function initReveal() {
+  const selectors = [
+    '.research-card', '.research-visual-card', '.facility-item',
+    '.people-section', '.pub-entry', '.opp-card',
+    '.stat-item', '.about-grid', '.contact-grid',
+    '.pub-scholar-links', '.requirements-box'
+  ];
+  document.querySelectorAll(selectors.join(',')).forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = `${(i % 5) * 0.075}s`;
+    _revealObs.observe(el);
+  });
+}
+
+// ── RVC SINGLE-IMAGE FALLBACK ──
+// When a second rvc image fails, expand the first to fill the container
+document.addEventListener('error', function(e) {
+  if (e.target.tagName !== 'IMG') return;
+  const wrap = e.target.closest('.rvc-images');
+  if (!wrap) return;
+  e.target.style.display = 'none';
+  const visible = wrap.querySelectorAll('img:not([style*="display:none"])');
+  if (visible.length === 1) {
+    visible[0].style.cssText += '; grid-column: 1 / -1; position:static; width:100%; height:200px; object-fit:cover;';
+    wrap.style.gridTemplateColumns = '1fr';
+  }
+}, true);
+</script>
+
 </body>
 </html>
