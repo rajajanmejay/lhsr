@@ -1627,7 +1627,15 @@
       <div class="faculty-grid" id="faculty-grid">
         </div>
     </div>
-
+    
+    <div class="people-section">
+      <div class="people-section-header">
+        <div class="people-section-title">Associated Faculty</div>
+        <div class="people-count" id="assocFacultyCount">00 members</div>
+      </div>
+      <div class="faculty-grid" id="assocFacultyContainer"></div>
+    </div>
+    
     <div class="people-section">
       <div class="people-section-header">
         <div class="people-section-title">Research Members</div>
@@ -1901,6 +1909,7 @@ fetch(csvUrl)
 
     // Grab all grid containers
     const facultyGrid   = document.getElementById('faculty-grid');
+    const associatedfacultyGrid   = document.getElementById('associatedfaculty-grid');
     const phdGrid       = document.getElementById('phd-grid');
     const mtechGrid     = document.getElementById('mtech-grid');
     const researchGrid  = document.getElementById('research-members-grid');
@@ -1915,7 +1924,7 @@ fetch(csvUrl)
     if(staffGrid)    staffGrid.innerHTML    = '';
     if(alumniGrid)   alumniGrid.innerHTML   = '';
 
-    let counts = { faculty: 0, phd: 0, mtech: 0, research: 0, staff: 0, alumni: 0 };
+    let counts = { faculty: 0,associatedfaculty: 0, phd: 0, mtech: 0, research: 0, staff: 0, alumni: 0 };
 
     data.forEach(person => {
       if (!person.Name || !person.Name.trim()) return; // Skip empty rows
