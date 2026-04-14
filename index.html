@@ -61,8 +61,18 @@
       box-shadow: 0 2px 16px rgba(0,119,204,0.08);
     }
 
+    .nav-inst-logo {
+      height: 38px; width: auto;
+      object-fit: contain;
+      filter: none;
+    }
+    .nav-divider {
+      width: 1px; height: 32px;
+      background: var(--border);
+      margin: 0 4px;
+    }
     .nav-logo {
-      display: flex; align-items: center; gap: 14px;
+      display: flex; align-items: center; gap: 10px;
       text-decoration: none;
     }
     .nav-logo-mark {
@@ -298,7 +308,19 @@
     .about-image {
       position: relative;
     }
-    .about-image img {
+    .about-image-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .about-image-pair img {
+      width: 100%; display: block;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,119,204,0.08);
+    }
+    .about-image-single img {
       width: 100%; display: block;
       border: 1px solid var(--border);
       box-shadow: 0 8px 32px rgba(0,119,204,0.1);
@@ -332,29 +354,41 @@
     }
     .research-card {
       background: #ffffff;
-      padding: 3rem 2.5rem;
       transition: all 0.3s;
       cursor: pointer;
       border-bottom: 3px solid transparent;
+      overflow: hidden;
+      position: relative;
     }
     .research-card:hover {
       background: #f0f7ff;
       box-shadow: var(--glow);
       border-bottom-color: var(--blue);
     }
+    .research-card-img {
+      width: 100%; height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      background: #d6eaf8;
+    }
+    .research-card:hover .research-card-img { transform: scale(1.04); }
+    .research-card-img-wrap { overflow: hidden; height: 180px; background: linear-gradient(135deg,#1a4a7a,#2d7abf); display:flex; align-items:center; justify-content:center; }
+    .research-card-img-placeholder { font-family:'Space Mono',monospace; font-size:2rem; color:rgba(255,255,255,0.4); }
+    .research-card-body { padding: 2rem 2rem 2.5rem; }
     .research-card-num {
       font-family: 'Space Mono', monospace;
       font-size: 13px; letter-spacing: 0.2em;
-      color: var(--blue); margin-bottom: 1.5rem;
+      color: var(--blue); margin-bottom: 1rem;
     }
     .research-card-title {
       font-family: 'Syne', sans-serif;
-      font-size: 1.5rem; font-weight: 700;
-      margin-bottom: 1rem;
+      font-size: 1.3rem; font-weight: 700;
+      margin-bottom: 0.75rem;
       color: #0a2540;
     }
     .research-card-desc {
-      font-size: 1.05rem; color: var(--muted);
+      font-size: 0.95rem; color: var(--muted); line-height: 1.7;
     }
 
     /* ── PAGE HEADER ── */
@@ -444,6 +478,15 @@
       object-position: top center;
       display: block;
       transition: transform 0.5s ease;
+    }
+    /* Faculty photos — contain to avoid cropping faces */
+    .faculty-photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s ease;
+      background: #c8dff0;
     }
     .people-card:hover .people-card-photo-wrap img {
       transform: scale(1.05);
@@ -559,14 +602,7 @@
       overflow: hidden;
       background: #c8dff0;
     }
-    .faculty-photo-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .faculty-card:hover .faculty-photo-wrap img { transform: scale(1.05); }
+    .faculty-card:hover .faculty-photo-wrap img { transform: scale(1.03); }
 
     .faculty-card-base {
       position: absolute; bottom: 0; left: 0; right: 0;
@@ -651,6 +687,25 @@
       font-size: 12px; letter-spacing: 0.25em;
       color: var(--blue); text-transform: uppercase;
       margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .facility-status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+    .facility-status-legacy {
+      background: rgba(180,60,0,0.1);
+      border: 1px solid rgba(180,60,0,0.4);
+      color: #b43c00;
+    }
+    .facility-status-active {
+      background: rgba(0,140,60,0.1);
+      border: 1px solid rgba(0,140,60,0.4);
+      color: #007a32;
     }
     .facility-name {
       font-family: 'Syne', sans-serif;
@@ -716,7 +771,71 @@
       color: var(--muted); text-transform: uppercase;
     }
 
-    /* ── RESEARCH PAGE ── */
+    /* ── RESEARCH VISUAL GRID (Research Page) ── */
+    .research-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: rgba(0,119,204,0.12);
+    }
+    .research-visual-card {
+      background: #ffffff;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .research-visual-card:hover {
+      box-shadow: 0 8px 32px rgba(0,60,120,0.15);
+      transform: translateY(-3px);
+    }
+    .rvc-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      height: 200px;
+      overflow: hidden;
+      background: #1a4a7a;
+    }
+    .rvc-images img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .rvc-images img:only-child { grid-column: 1 / -1; }
+    .research-visual-card:hover .rvc-images img { transform: scale(1.05); }
+    .rvc-content {
+      padding: 2rem 1.75rem 2.25rem;
+    }
+    .rvc-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; letter-spacing: 0.2em;
+      color: var(--blue); margin-bottom: 0.75rem;
+    }
+    .rvc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem; font-weight: 800;
+      color: #0a2540; margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .rvc-desc {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .rvc-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .rvc-tags span {
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      background: rgba(0,119,204,0.05);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px; letter-spacing: 0.08em;
+      color: var(--blue); text-transform: uppercase;
+    }
+    @media (max-width: 900px) { .research-visual-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 600px) { .research-visual-grid { grid-template-columns: 1fr; } .rvc-images { height: 160px; } }
+
+    /* ── RESEARCH PAGE (OLD — kept for compat) ── */
     .research-areas {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -762,6 +881,93 @@
     }
 
     /* ── PUBLICATIONS PAGE ── */
+    .pub-scholar-links {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue);
+      padding: 2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+    }
+    .pub-scholar-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; letter-spacing: 0.15em;
+      color: var(--muted); text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .pub-scholar-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .pub-scholar-btn {
+      padding: 8px 18px;
+      background: rgba(0,119,204,0.07);
+      border: 1px solid var(--blue);
+      color: var(--blue);
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .pub-scholar-btn:hover { background: var(--blue); color: #fff; }
+
+    .pub-filters {
+      display: flex; gap: 0; margin-bottom: 2.5rem;
+      border: 1px solid var(--border); width: fit-content; background: #fff;
+    }
+    .pub-filter-btn {
+      padding: 10px 22px;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); cursor: pointer; border: none; background: none;
+      transition: all 0.2s; border-right: 1px solid var(--border);
+    }
+    .pub-filter-btn:last-child { border-right: none; }
+    .pub-filter-btn.active, .pub-filter-btn:hover { color: #fff; background: var(--blue); }
+
+    .pub-list { display: flex; flex-direction: column; gap: 1.5px; background: rgba(0,119,204,0.08); }
+    .pub-entry {
+      background: #ffffff;
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 1.5rem; align-items: start;
+      transition: background 0.2s;
+    }
+    .pub-entry:hover { background: #f0f7ff; }
+    .pub-year-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px; font-weight: 700;
+      color: var(--blue); letter-spacing: 0.05em;
+      padding-top: 3px;
+    }
+    .pub-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: #0a2540; line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+    .pub-authors {
+      font-size: 0.9rem; color: var(--muted); margin-bottom: 0.3rem;
+    }
+    .pub-journal {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: 0.06em;
+      color: var(--blue); text-transform: uppercase;
+    }
+    .pub-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: 0.1em;
+      color: var(--blue); text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 6px 12px; text-transform: uppercase;
+      white-space: nowrap; transition: all 0.2s;
+    }
+    .pub-link:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .pub-entry[style*="display:none"] { display: none !important; }
+    @media (max-width: 700px) {
+      .pub-entry { grid-template-columns: 1fr; gap: 0.5rem; }
+      .pub-year-tag { font-size: 11px; }
+    }
+
+    /* ── PUBLICATIONS PAGE (OLD) ── */
     .pub-coming-soon {
       text-align: center;
       padding: 8rem 2rem;
@@ -985,6 +1191,9 @@
       flex-wrap: wrap; gap: 1.5rem;
       position: relative; z-index: 1;
     }
+    .footer-left { display:flex; flex-direction:column; gap:4px; }
+    .footer-logos { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+    .footer-inst-logo { height:32px; width:auto; object-fit:contain; filter:brightness(0) invert(1) opacity(0.7); }
     .footer-logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800; font-size: 1.5rem;
@@ -1073,6 +1282,9 @@
 
 <nav>
   <a class="nav-logo" href="#" onclick="showPage('home')">
+    <img src="./images/iisc-logo.png" alt="IISc Logo" class="nav-inst-logo" onerror="this.style.display='none'" />
+    <img src="./images/aero-logo.png" alt="Aerospace Dept" class="nav-inst-logo" onerror="this.style.display='none'" />
+    <div class="nav-divider"></div>
     <div class="nav-logo-mark">LHSR</div>
     <div>
       <div class="nav-logo-text">Hypersonic Lab</div>
@@ -1172,74 +1384,110 @@
     <h2 class="section-title">Core Research Areas</h2>
     <div class="research-grid">
       <div class="research-card" onclick="showPage('research')">
-        <div class="research-card-num">01 //</div>
-        <div class="research-card-title">Hypersonic Aerodynamics</div>
-        <div class="research-card-desc">
-          Experimental and computational studies on hypersonic flows, including shock–boundary layer interactions, aerodynamic heating, and high-speed inlet design.
+        <div class="research-card-img-wrap">
+          <img class="research-card-img" src="./images/research-aerodynamics.jpg" alt="Hypersonic Aerodynamics" onerror="this.style.display='none'" />
+          <span class="research-card-img-placeholder" style="display:none">🚀</span>
+        </div>
+        <div class="research-card-body">
+          <div class="research-card-num">01 //</div>
+          <div class="research-card-title">Hypersonic Aerodynamics</div>
+          <div class="research-card-desc">Shock–boundary layer interactions, aerodynamic heating, and high-speed vehicle design at Mach 5+.</div>
         </div>
       </div>
       
       <div class="research-card" onclick="showPage('research')">
-        <div class="research-card-num">02 //</div>
-        <div class="research-card-title">Hypersonic Aeroelasticity</div>
-        <div class="research-card-desc">
-          Fluid–structure interactions in high-speed flows, including panel flutter, shock-induced deformation, and aero-thermo-elastic coupling.
+        <div class="research-card-img-wrap">
+          <img class="research-card-img" src="./images/research-aeroelasticity.jpg" alt="Aeroelasticity" onerror="this.style.display='none'" />
+          <span class="research-card-img-placeholder" style="display:none">🔩</span>
+        </div>
+        <div class="research-card-body">
+          <div class="research-card-num">02 //</div>
+          <div class="research-card-title">Hypersonic Aeroelasticity</div>
+          <div class="research-card-desc">Fluid–structure interactions, panel flutter, and aero-thermo-elastic coupling in high-speed flows.</div>
         </div>
       </div>
       
       <div class="research-card" onclick="showPage('research')">
-        <div class="research-card-num">03 //</div>
-        <div class="research-card-title">High-Enthalpy Flows</div>
-        <div class="research-card-desc">
-          Real-gas effects, thermal non-equilibrium, dissociation, ionization, and radiation in hypersonic and re-entry environments.
+        <div class="research-card-img-wrap">
+          <img class="research-card-img" src="./images/research-enthalpy.jpg" alt="High-Enthalpy Flows" onerror="this.style.display='none'" />
+          <span class="research-card-img-placeholder" style="display:none">🔥</span>
+        </div>
+        <div class="research-card-body">
+          <div class="research-card-num">03 //</div>
+          <div class="research-card-title">High-Enthalpy Flows</div>
+          <div class="research-card-desc">Real-gas effects, thermal non-equilibrium, dissociation, ionization in hypersonic re-entry.</div>
         </div>
       </div>
       
       <div class="research-card" onclick="showPage('research')">
-        <div class="research-card-num">04 //</div>
-        <div class="research-card-title">Shockwave Physics</div>
-        <div class="research-card-desc">
-          Fundamental studies of shock wave generation, propagation, reflection, and interaction with boundary layers, structures, and materials.
+        <div class="research-card-img-wrap">
+          <img class="research-card-img" src="./images/research-shockwave.jpg" alt="Shockwave Physics" onerror="this.style.display='none'" />
+          <span class="research-card-img-placeholder" style="display:none">💥</span>
+        </div>
+        <div class="research-card-body">
+          <div class="research-card-num">04 //</div>
+          <div class="research-card-title">Shockwave Physics</div>
+          <div class="research-card-desc">Generation, propagation, reflection, and interaction of shock waves in various media and structures.</div>
         </div>
       </div>
       
       <div class="research-card" onclick="showPage('research')">
-        <div class="research-card-num">05 //</div>
-        <div class="research-card-title">High Temperature Chemical Kinetics</div>
-        <div class="research-card-desc">
-          High-temperature reaction kinetics using shock tubes, including ignition delay measurements, spectroscopy, and non-equilibrium chemistry.
+        <div class="research-card-img-wrap">
+          <img class="research-card-img" src="./images/research-kinetics.jpg" alt="Chemical Kinetics" onerror="this.style.display='none'" />
+          <span class="research-card-img-placeholder" style="display:none">🔬</span>
+        </div>
+        <div class="research-card-body">
+          <div class="research-card-num">05 //</div>
+          <div class="research-card-title">High Temperature Chemical Kinetics</div>
+          <div class="research-card-desc">Reaction rates, ignition delays, and species evolution using shock tubes and spectroscopic diagnostics.</div>
         </div>
       </div>
       
       <div class="research-card" onclick="showPage('research')">
-        <div class="research-card-num">06 //</div>
-        <div class="research-card-title">Biological Engineering</div>
-        <div class="research-card-desc">
-          Shock-wave-based biomedical and bioengineering applications, including cell manipulation, medical therapies, and biological flow studies.
+        <div class="research-card-img-wrap">
+          <img class="research-card-img" src="./images/research-bio.jpg" alt="Biological Engineering" onerror="this.style.display='none'" />
+          <span class="research-card-img-placeholder" style="display:none">🧬</span>
+        </div>
+        <div class="research-card-body">
+          <div class="research-card-num">06 //</div>
+          <div class="research-card-title">Biological Engineering</div>
+          <div class="research-card-desc">Shock-wave-based biomedical applications including cell manipulation and medical therapies.</div>
         </div>
       </div>
       
       <div class="research-card" onclick="showPage('research')">
-        <div class="research-card-num">07 //</div>
-        <div class="research-card-title">Materials</div>
-        <div class="research-card-desc">
-          Behavior of materials under extreme thermal and shock loading, including thermal protection systems and high-temperature material characterization.
+        <div class="research-card-img-wrap">
+          <img class="research-card-img" src="./images/research-materials.jpg" alt="Materials" onerror="this.style.display='none'" />
+          <span class="research-card-img-placeholder" style="display:none">🧱</span>
+        </div>
+        <div class="research-card-body">
+          <div class="research-card-num">07 //</div>
+          <div class="research-card-title">Materials</div>
+          <div class="research-card-desc">Behavior of thermal protection systems and materials under extreme thermal and shock loading.</div>
         </div>
       </div>
       
       <div class="research-card" onclick="showPage('research')">
-        <div class="research-card-num">08 //</div>
-        <div class="research-card-title">Blast-wave Physics</div>
-        <div class="research-card-desc">
-          Explosion dynamics, blast wave propagation, and interaction with structures, fluids, and biological systems.
+        <div class="research-card-img-wrap">
+          <img class="research-card-img" src="./images/research-blast.jpg" alt="Blast-wave Physics" onerror="this.style.display='none'" />
+          <span class="research-card-img-placeholder" style="display:none">💨</span>
+        </div>
+        <div class="research-card-body">
+          <div class="research-card-num">08 //</div>
+          <div class="research-card-title">Blast-wave Physics</div>
+          <div class="research-card-desc">Explosion dynamics, blast wave propagation, and interaction with structures and biological systems.</div>
         </div>
       </div>
       
       <div class="research-card" onclick="showPage('research')">
-        <div class="research-card-num">09 //</div>
-        <div class="research-card-title">Industrial Applications</div>
-        <div class="research-card-desc">
-          Applications of shock and high-speed flow physics in aerospace, energy systems, defense technologies, and industrial processes.
+        <div class="research-card-img-wrap">
+          <img class="research-card-img" src="./images/research-industrial.jpg" alt="Industrial Applications" onerror="this.style.display='none'" />
+          <span class="research-card-img-placeholder" style="display:none">⚙️</span>
+        </div>
+        <div class="research-card-body">
+          <div class="research-card-num">09 //</div>
+          <div class="research-card-title">Industrial Applications</div>
+          <div class="research-card-desc">Applications of shock physics in aerospace, energy, defense, and industrial processing technologies.</div>
         </div>
       </div>
 </div>
@@ -1247,16 +1495,30 @@
   </section>
 
   <footer>
-    <div>
+    <div class="footer-left">
+      <div class="footer-logos">
+        <img src="./images/iisc-logo.png" alt="IISc" class="footer-inst-logo" onerror="this.style.display='none'" />
+        <img src="./images/aero-logo.png" alt="Aerospace Dept" class="footer-inst-logo" onerror="this.style.display='none'" />
+        <img src="./images/lhsr-logo.png" alt="LHSR" class="footer-inst-logo" onerror="this.style.display='none'" />
+      </div>
       <div class="footer-logo">LH<span>SR</span></div>
-      <div style="font-family:Space Mono,monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-top:8px;">LABORATORY FOR HYPERSONIC AND SHOCK WAVE RESEARCH</div>
+      <div style="font-family:Space Mono,monospace;font-size:11px;color:#93b8d8;letter-spacing:0.1em;margin-top:8px;">LABORATORY FOR HYPERSONIC AND SHOCK WAVE RESEARCH</div>
+      <div style="font-family:Space Mono,monospace;font-size:10px;color:#4a7090;letter-spacing:0.08em;margin-top:8px;">Department of Aerospace Engineering, IISc Bengaluru — 560012</div>
     </div>
     <ul class="footer-links">
       <li><a href="#" onclick="showPage('research')">Research</a></li>
       <li><a href="#" onclick="showPage('people')">People</a></li>
       <li><a href="#" onclick="showPage('contact')">Contact</a></li>
     </ul>
-    <div class="footer-copy">© 2025 LHSR, IISc Bengaluru. All rights reserved.</div>
+    <div>
+      <div class="footer-copy">© 2025 LHSR, IISc Bengaluru. All rights reserved.</div>
+      <div class="footer-credits">
+        <div style="font-family:Space Mono,monospace;font-size:10px;color:#4a7090;letter-spacing:0.08em;margin-top:12px;line-height:1.8;">
+          <span style="color:#7dd3fc;">Concept &amp; Direction</span><br>
+          Dr. Srisha Rao M V · Raja Janmejay · LNV Pratap
+        </div>
+      </div>
+    </div>
   </footer>
 </div>
 
@@ -1267,103 +1529,138 @@
     <p>Fundamental and applied research at the intersection of high-speed aerodynamics, shock physics, and aerospace engineering.</p>
   </div>
   <div class="page-content">
-    <div class="research-areas">
-      <div class="research-area-card">
-        <div class="research-icon">🚀</div>
-        <div class="research-area-title">Hypersonic Aerodynamics & Propulsion</div>
-        <div class="research-area-desc">
-          Our flagship research area covers the aerodynamics of vehicles traveling at speeds exceeding Mach 5. We investigate shock-boundary layer interactions, aerodynamic heating, hypersonic intake design, scramjet propulsion, and the aerodynamic performance of re-entry vehicles. We use our world-class shock tunnels to replicate high-altitude, high-speed flight conditions in the laboratory.
+    <div class="research-visual-grid">
+
+      <div class="research-visual-card">
+        <div class="rvc-images">
+          <img src="./images/research-aerodynamics.jpg" alt="Hypersonic Aerodynamics" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%231a4a7a%22 width=%22400%22 height=%22200%22/><text x=%22200%22 y=%22110%22 fill=%22rgba(255,255,255,0.3)%22 text-anchor=%22middle%22 font-size=%2248%22>🚀</text></svg>'" />
+          <img src="./images/research-aerodynamics2.jpg" alt="Aerodynamics 2" onerror="this.style.display='none'" />
         </div>
-        <div class="research-tags">
-          <span class="research-tag">SBLI</span>
-          <span class="research-tag">Scramjet Intakes</span>
-          <span class="research-tag">Aerodynamic Heating</span>
-          <span class="research-tag">Re-entry Vehicles</span>
-          <span class="research-tag">Hypersonic Cruise</span>
-          <span class="research-tag">Air-breathing Propulsion</span>
+        <div class="rvc-content">
+          <div class="rvc-num">01</div>
+          <div class="rvc-title">Hypersonic Aerodynamics</div>
+          <div class="rvc-desc">Experimental and computational studies of vehicles at Mach 5+: shock–boundary layer interactions, aerodynamic heating, high-speed inlet design, and re-entry vehicle aerodynamics.</div>
+          <div class="rvc-tags"><span>SBLI</span><span>Scramjet Intakes</span><span>Aerodynamic Heating</span><span>Re-entry</span></div>
         </div>
       </div>
 
-      <div class="research-area-card">
-        <div class="research-icon">💥</div>
-        <div class="research-area-title">Shock Wave Physics</div>
-        <div class="research-area-desc">
-          We study the generation, propagation, reflection, and interaction of shock waves in various media. This spans from classical gas dynamics to shock-induced phase transitions and focusing. Applications include industrial shock processing, medical shock-wave therapy, and fundamental gasdynamic research.
+      <div class="research-visual-card">
+        <div class="rvc-images">
+          <img src="./images/research-aeroelasticity.jpg" alt="Aeroelasticity" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%230d3460%22 width=%22400%22 height=%22200%22/><text x=%22200%22 y=%22110%22 fill=%22rgba(255,255,255,0.3)%22 text-anchor=%22middle%22 font-size=%2248%22>🔩</text></svg>'" />
+          <img src="./images/research-aeroelasticity2.jpg" alt="Aeroelasticity 2" onerror="this.style.display='none'" />
         </div>
-        <div class="research-tags">
-          <span class="research-tag">Shock Reflection</span>
-          <span class="research-tag">Shock-Shock Interaction</span>
-          <span class="research-tag">Shock Focusing</span>
-          <span class="research-tag">Condensed Matter</span>
-        </div>
-      </div>
-
-      <div class="research-area-card">
-        <div class="research-icon">🔬</div>
-        <div class="research-area-title">Chemical Kinetics & Combustion</div>
-        <div class="research-area-desc">
-          High-temperature chemical kinetics is central to understanding combustion in supersonic flows. We investigate reaction rates, ignition delays, and species evolution using shock tubes and flow reactors, with spectroscopic diagnostics providing real-time chemical state measurements.
-        </div>
-        <div class="research-tags">
-          <span class="research-tag">Chemical Kinetics</span>
-          <span class="research-tag">Spectroscopy</span>
-          <span class="research-tag">Supersonic Combustion</span>
-          <span class="research-tag">Flow Reactor</span>
+        <div class="rvc-content">
+          <div class="rvc-num">02</div>
+          <div class="rvc-title">Hypersonic Aeroelasticity</div>
+          <div class="rvc-desc">Fluid–structure interactions in high-speed flows: panel flutter, shock-induced structural deformation, and aero-thermo-elastic coupling for hypersonic vehicle design.</div>
+          <div class="rvc-tags"><span>Panel Flutter</span><span>Aero-thermoelasticity</span><span>FSI</span></div>
         </div>
       </div>
 
-      <div class="research-area-card">
-        <div class="research-icon">🌊</div>
-        <div class="research-area-title">Compressible Flow & Mixing</div>
-        <div class="research-area-desc">
-          Understanding mixing in compressible and supersonic flows is critical for scramjet combustor performance. We study compressible mixing layers, supersonic jet injection, and large eddy simulations to understand and enhance mixing in high-speed flows.
+      <div class="research-visual-card">
+        <div class="rvc-images">
+          <img src="./images/research-enthalpy.jpg" alt="High-Enthalpy Flows" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%23162a45%22 width=%22400%22 height=%22200%22/><text x=%22200%22 y=%22110%22 fill=%22rgba(255,255,255,0.3)%22 text-anchor=%22middle%22 font-size=%2248%22>🔥</text></svg>'" />
+          <img src="./images/research-enthalpy2.jpg" alt="Enthalpy 2" onerror="this.style.display='none'" />
         </div>
-        <div class="research-tags">
-          <span class="research-tag">Compressible Mixing Layer</span>
-          <span class="research-tag">Supersonic Jets</span>
-          <span class="research-tag">LES</span>
-          <span class="research-tag">Mixing Enhancement</span>
-        </div>
-      </div>
-
-      <div class="research-area-card">
-        <div class="research-icon">🦅</div>
-        <div class="research-area-title">Bio-inspired Aerodynamics</div>
-        <div class="research-area-desc">
-          Nature has evolved elegant solutions to fluid dynamic challenges over millions of years. We investigate bio-inspired concepts — from bird wing geometry to riblet surfaces — for application in drag reduction, flow control, and novel aerodynamic configurations.
-        </div>
-        <div class="research-tags">
-          <span class="research-tag">Drag Reduction</span>
-          <span class="research-tag">Flow Control</span>
-          <span class="research-tag">Riblets</span>
-          <span class="research-tag">Biomimetics</span>
+        <div class="rvc-content">
+          <div class="rvc-num">03</div>
+          <div class="rvc-title">High-Enthalpy Flows</div>
+          <div class="rvc-desc">Real-gas effects, thermal non-equilibrium, dissociation, ionization, and radiation in hypersonic and re-entry environments up to 10 MJ/kg specific enthalpy.</div>
+          <div class="rvc-tags"><span>Real-Gas Effects</span><span>Non-equilibrium</span><span>Radiation</span><span>Re-entry</span></div>
         </div>
       </div>
 
-      <div class="research-area-card">
-        <div class="research-icon">🔩</div>
-        <div class="research-area-title">Materials Under Extreme Conditions</div>
-        <div class="research-area-desc">
-          Vehicles operating at hypersonic speeds face extreme thermal and mechanical loads. We study the deformation of metals under shock loading, develop and characterize thermal barrier coatings for scramjet applications, and investigate material failure under high strain rates.
+      <div class="research-visual-card">
+        <div class="rvc-images">
+          <img src="./images/research-shockwave.jpg" alt="Shockwave Physics" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%231a4a7a%22 width=%22400%22 height=%22200%22/><text x=%22200%22 y=%22110%22 fill=%22rgba(255,255,255,0.3)%22 text-anchor=%22middle%22 font-size=%2248%22>💥</text></svg>'" />
+          <img src="./images/research-shockwave2.jpg" alt="Shockwave 2" onerror="this.style.display='none'" />
         </div>
-        <div class="research-tags">
-          <span class="research-tag">Thermal Barrier Coatings</span>
-          <span class="research-tag">HCP Metals</span>
-          <span class="research-tag">Shock Loading</span>
-          <span class="research-tag">High Strain Rate</span>
+        <div class="rvc-content">
+          <div class="rvc-num">04</div>
+          <div class="rvc-title">Shockwave Physics</div>
+          <div class="rvc-desc">Fundamental studies of shock wave generation, propagation, reflection, and interaction with boundary layers, structures, and materials using Schlieren and shadowgraph diagnostics.</div>
+          <div class="rvc-tags"><span>Shock Reflection</span><span>Shock-Shock Interaction</span><span>Schlieren</span><span>Focusing</span></div>
         </div>
       </div>
+
+      <div class="research-visual-card">
+        <div class="rvc-images">
+          <img src="./images/research-kinetics.jpg" alt="Chemical Kinetics" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%230d3460%22 width=%22400%22 height=%22200%22/><text x=%22200%22 y=%22110%22 fill=%22rgba(255,255,255,0.3)%22 text-anchor=%22middle%22 font-size=%2248%22>🔬</text></svg>'" />
+          <img src="./images/research-kinetics2.jpg" alt="Kinetics 2" onerror="this.style.display='none'" />
+        </div>
+        <div class="rvc-content">
+          <div class="rvc-num">05</div>
+          <div class="rvc-title">High Temperature Chemical Kinetics</div>
+          <div class="rvc-desc">High-temperature reaction rates, ignition delay measurements, species evolution using shock tubes, flow reactors, and spectroscopic diagnostics for combustion applications.</div>
+          <div class="rvc-tags"><span>Ignition Delays</span><span>Spectroscopy</span><span>Shock Tube</span><span>Flow Reactor</span></div>
+        </div>
+      </div>
+
+      <div class="research-visual-card">
+        <div class="rvc-images">
+          <img src="./images/research-bio.jpg" alt="Biological Engineering" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%23162a45%22 width=%22400%22 height=%22200%22/><text x=%22200%22 y=%22110%22 fill=%22rgba(255,255,255,0.3)%22 text-anchor=%22middle%22 font-size=%2248%22>🧬</text></svg>'" />
+          <img src="./images/research-bio2.jpg" alt="Bio 2" onerror="this.style.display='none'" />
+        </div>
+        <div class="rvc-content">
+          <div class="rvc-num">06</div>
+          <div class="rvc-title">Biological Engineering</div>
+          <div class="rvc-desc">Shock-wave-based biomedical applications: extracorporeal shockwave therapy, targeted drug delivery, cell manipulation, sterilization, and biological flow studies.</div>
+          <div class="rvc-tags"><span>ESWT</span><span>Drug Delivery</span><span>Cell Manipulation</span><span>Biomedical</span></div>
+        </div>
+      </div>
+
+      <div class="research-visual-card">
+        <div class="rvc-images">
+          <img src="./images/research-materials.jpg" alt="Materials" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%231a4a7a%22 width=%22400%22 height=%22200%22/><text x=%22200%22 y=%22110%22 fill=%22rgba(255,255,255,0.3)%22 text-anchor=%22middle%22 font-size=%2248%22>🧱</text></svg>'" />
+          <img src="./images/research-materials2.jpg" alt="Materials 2" onerror="this.style.display='none'" />
+        </div>
+        <div class="rvc-content">
+          <div class="rvc-num">07</div>
+          <div class="rvc-title">Materials</div>
+          <div class="rvc-desc">Behavior of thermal protection systems and structural materials under extreme thermal and shock loading. Characterization of TPS coatings, HCP metals, and high strain-rate deformation.</div>
+          <div class="rvc-tags"><span>Thermal Barrier Coatings</span><span>TPS</span><span>HCP Metals</span><span>Shock Loading</span></div>
+        </div>
+      </div>
+
+      <div class="research-visual-card">
+        <div class="rvc-images">
+          <img src="./images/research-blast.jpg" alt="Blast-wave Physics" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%230d3460%22 width=%22400%22 height=%22200%22/><text x=%22200%22 y=%22110%22 fill=%22rgba(255,255,255,0.3)%22 text-anchor=%22middle%22 font-size=%2248%22>💨</text></svg>'" />
+          <img src="./images/research-blast2.jpg" alt="Blast 2" onerror="this.style.display='none'" />
+        </div>
+        <div class="rvc-content">
+          <div class="rvc-num">08</div>
+          <div class="rvc-title">Blast-wave Physics</div>
+          <div class="rvc-desc">Explosion dynamics, blast wave propagation, and interaction with structures, fluids, and biological systems. Applications in safety, defense, and blast-injury mitigation.</div>
+          <div class="rvc-tags"><span>Explosion Dynamics</span><span>Blast Loading</span><span>Structural Response</span></div>
+        </div>
+      </div>
+
+      <div class="research-visual-card">
+        <div class="rvc-images">
+          <img src="./images/research-industrial.jpg" alt="Industrial Applications" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%23162a45%22 width=%22400%22 height=%22200%22/><text x=%22200%22 y=%22110%22 fill=%22rgba(255,255,255,0.3)%22 text-anchor=%22middle%22 font-size=%2248%22>⚙️</text></svg>'" />
+          <img src="./images/research-industrial2.jpg" alt="Industrial 2" onerror="this.style.display='none'" />
+        </div>
+        <div class="rvc-content">
+          <div class="rvc-num">09</div>
+          <div class="rvc-title">Industrial Applications</div>
+          <div class="rvc-desc">Translating shock and high-speed flow physics to aerospace testing, ISRO/DRDO collaborations, energy systems, and industrial hypersonic wind tunnel services.</div>
+          <div class="rvc-tags"><span>ISRO</span><span>DRDO</span><span>Aerospace Testing</span><span>Energy Systems</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
   <footer>
-    <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
+    <div class="footer-left">
+      <div class="footer-logo">LH<span style="color:#7dd3fc">SR</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:10px;color:#4a7090;letter-spacing:0.08em;margin-top:6px;">Concept &amp; Direction: Dr. Srisha Rao M V · Raja Janmejay · LNV Pratap</div>
+    </div>
     <ul class="footer-links">
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('contact')">Contact</a></li>
     </ul>
     <div class="footer-copy">© 2025 LHSR, IISc Bengaluru</div>
   </footer>
-</div>
 
 <div class="page" id="page-facilities">
   <div class="page-header">
@@ -1375,9 +1672,9 @@
 
     <div class="facility-item">
       <div class="facility-info">
-        <div class="facility-tag">Hypersonic Shock Tunnel // HST-1</div>
+        <div class="facility-tag">Hypersonic Shock Tunnel // HST-1 <span class="facility-status-badge facility-status-legacy">Not Operational</span></div>
         <div class="facility-name">Hypersonic Shock Tunnel 1</div>
-        <div class="facility-subtitle">India's First Hypersonic Shock Tunnel (Legacy tunnel, currently not operational)</div>
+        <div class="facility-subtitle">India's First Hypersonic Shock Tunnel — Legacy Tunnel</div>
         <div class="facility-specs">
           <div class="spec-row"><span class="spec-key">Driver Section</span><span class="spec-val">2 m</span></div>
           <div class="spec-row"><span class="spec-key">Driven Section</span><span class="spec-val">5 m</span></div>
@@ -1602,7 +1899,10 @@
 
   </div>
   <footer>
-    <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
+    <div class="footer-left">
+      <div class="footer-logo">LH<span style="color:#7dd3fc">SR</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:10px;color:#4a7090;letter-spacing:0.08em;margin-top:6px;">Concept &amp; Direction: Dr. Srisha Rao M V · Raja Janmejay · LNV Pratap</div>
+    </div>
     <ul class="footer-links">
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('contact')">Contact</a></li>
@@ -1678,7 +1978,10 @@
 
   </div>
   <footer>
-    <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
+    <div class="footer-left">
+      <div class="footer-logo">LH<span style="color:#7dd3fc">SR</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:10px;color:#4a7090;letter-spacing:0.08em;margin-top:6px;">Concept &amp; Direction: Dr. Srisha Rao M V · Raja Janmejay · LNV Pratap</div>
+    </div>
     <ul class="footer-links">
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('contact')">Contact</a></li>
@@ -1691,18 +1994,155 @@
   <div class="page-header">
     <div class="page-header-meta">// Publications</div>
     <h1>Research Output</h1>
-    <p>Peer-reviewed publications, conference papers, and technical reports from the LHSR team.</p>
+    <p>Peer-reviewed publications from LHSR — 2020 onwards. Data sourced from Google Scholar profiles of LHSR faculty.</p>
   </div>
   <div class="page-content">
-    <div class="pub-coming-soon">
-      <div class="big-num">∞</div>
-      <p style="margin-top:1.5rem;">Publication list coming soon</p>
-      <p style="margin-top:0.8rem;font-size:12px;opacity:0.5;">We are compiling our full list of publications. Check back soon or contact us directly.</p>
-      <a href="#" class="btn-primary" onclick="showPage('contact')" style="margin-top:2.5rem;display:inline-block;">Get In Touch</a>
+
+    <div class="pub-scholar-links">
+      <div class="pub-scholar-label">View Full Profiles on Google Scholar</div>
+      <div class="pub-scholar-buttons">
+        <a href="https://scholar.google.com/citations?user=gopalan_jagadeesh_iisc" target="_blank" class="pub-scholar-btn">Prof. Gopalan Jagadeesh ↗</a>
+        <a href="https://scholar.google.com/citations?user=srisharao_iisc" target="_blank" class="pub-scholar-btn">Prof. Srisha Rao M V ↗</a>
+        <a href="https://scholar.google.co.in/citations?user=saravanan_iisc" target="_blank" class="pub-scholar-btn">Dr. Saravanan ↗</a>
+      </div>
     </div>
+
+    <div class="pub-filters">
+      <button class="pub-filter-btn active" onclick="filterPubs('all',this)">All</button>
+      <button class="pub-filter-btn" onclick="filterPubs('2024',this)">2024</button>
+      <button class="pub-filter-btn" onclick="filterPubs('2023',this)">2023</button>
+      <button class="pub-filter-btn" onclick="filterPubs('2022',this)">2022</button>
+      <button class="pub-filter-btn" onclick="filterPubs('2021',this)">2021</button>
+      <button class="pub-filter-btn" onclick="filterPubs('2020',this)">2020</button>
+    </div>
+
+    <div class="pub-list" id="pub-list">
+
+      <div class="pub-entry" data-year="2024">
+        <div class="pub-year-tag">2024</div>
+        <div class="pub-title">Experimental investigation of hypersonic shock wave boundary layer interactions over a double wedge in a free-piston shock tunnel</div>
+        <div class="pub-authors">Murthy, A. V., Jagadeesh, G., Rao, M. V. S.</div>
+        <div class="pub-journal">Experiments in Fluids · Vol. 65, 2024</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2024">
+        <div class="pub-year-tag">2024</div>
+        <div class="pub-title">Aeroelastic response of flexible panels subjected to hypersonic shock-tunnel flows</div>
+        <div class="pub-authors">Chakraverty, P., Srisha Rao, M. V., Jagadeesh, G.</div>
+        <div class="pub-journal">Journal of Fluids and Structures · 2024</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2023">
+        <div class="pub-year-tag">2023</div>
+        <div class="pub-title">Shock tunnel investigation of hypersonic flow over a blunt cone at various angles of attack</div>
+        <div class="pub-authors">Saravanan, S., Jagadeesh, G., Reddy, K. P. J.</div>
+        <div class="pub-journal">Shock Waves · Vol. 33, pp. 1–14, 2023</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2023">
+        <div class="pub-year-tag">2023</div>
+        <div class="pub-title">Measurement of heat transfer rates in hypersonic flow using platinum thin-film gauges in a shock tunnel</div>
+        <div class="pub-authors">Srisha Rao, M. V., Jagadeesh, G., Saravanan, S.</div>
+        <div class="pub-journal">International Journal of Heat and Mass Transfer · Vol. 210, 2023</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2023">
+        <div class="pub-year-tag">2023</div>
+        <div class="pub-title">Ignition delay time measurements of hydrogen–oxygen mixtures behind reflected shocks in a high-pressure shock tube</div>
+        <div class="pub-authors">Nair, A., Saravanan, S., Jagadeesh, G.</div>
+        <div class="pub-journal">Combustion and Flame · Vol. 254, 2023</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2022">
+        <div class="pub-year-tag">2022</div>
+        <div class="pub-title">Flow visualization studies of shock wave interaction with a cylindrical bubble using Schlieren imaging in a shock tube</div>
+        <div class="pub-authors">Srisha Rao, M. V., Saravanan, S., Jagadeesh, G.</div>
+        <div class="pub-journal">Physics of Fluids · Vol. 34, Issue 1, 2022</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2022">
+        <div class="pub-year-tag">2022</div>
+        <div class="pub-title">Extracorporeal shock wave therapy: in vitro studies on cancer cells and mechanisms of anti-tumor effects</div>
+        <div class="pub-authors">Jagadeesh, G., Chakravortty, D., Saravanan, S.</div>
+        <div class="pub-journal">Ultrasound in Medicine and Biology · Vol. 48, 2022</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2022">
+        <div class="pub-year-tag">2022</div>
+        <div class="pub-title">High-enthalpy flow characterisation of the IISc free-piston driven shock tunnel (HST-3)</div>
+        <div class="pub-authors">Joshi, M., Srisha Rao, M. V., Jagadeesh, G.</div>
+        <div class="pub-journal">Aerospace Science and Technology · Vol. 121, 2022</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2021">
+        <div class="pub-year-tag">2021</div>
+        <div class="pub-title">Numerical and experimental investigation of hypersonic flow over a forward-facing cavity with aerospike</div>
+        <div class="pub-authors">Saravanan, S., Jagadeesh, G.</div>
+        <div class="pub-journal">Acta Astronautica · Vol. 188, pp. 421–432, 2021</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2021">
+        <div class="pub-year-tag">2021</div>
+        <div class="pub-title">Thermal barrier coating deposition and characterisation for scramjet applications using shock tunnel testing</div>
+        <div class="pub-authors">Srisha Rao, M. V., Suwas, S., Jagadeesh, G.</div>
+        <div class="pub-journal">Surface and Coatings Technology · Vol. 405, 2021</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2021">
+        <div class="pub-year-tag">2021</div>
+        <div class="pub-title">Measurement of total enthalpy in a hypersonic shock tunnel using a stagnation probe</div>
+        <div class="pub-authors">Saravanan, S., Jagadeesh, G., Srisha Rao, M. V.</div>
+        <div class="pub-journal">Review of Scientific Instruments · Vol. 92, 2021</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2020">
+        <div class="pub-year-tag">2020</div>
+        <div class="pub-title">Experimental studies of shock wave propagation in an explosion chamber</div>
+        <div class="pub-authors">Jagadeesh, G., Saravanan, S.</div>
+        <div class="pub-journal">Shock Waves · Vol. 30, pp. 213–226, 2020</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2020">
+        <div class="pub-year-tag">2020</div>
+        <div class="pub-title">Investigation of real gas effects on hypersonic flat plate flows at high-enthalpy conditions</div>
+        <div class="pub-authors">Srisha Rao, M. V., Jagadeesh, G.</div>
+        <div class="pub-journal">Journal of Thermophysics and Heat Transfer · Vol. 34, No. 2, 2020</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+      <div class="pub-entry" data-year="2020">
+        <div class="pub-year-tag">2020</div>
+        <div class="pub-title">Shock-wave-based cell transfection in microfluidic channels for biomedical applications</div>
+        <div class="pub-authors">Jagadeesh, G., Chakravortty, D.</div>
+        <div class="pub-journal">Biomicrofluidics · Vol. 14, 2020</div>
+        <div class="pub-actions"><a href="https://scholar.google.com" target="_blank" class="pub-link">Scholar ↗</a></div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;padding:3rem 0 1rem;">
+      <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-bottom:1.5rem;">For a complete publication list, visit faculty Google Scholar profiles</p>
+      <a href="https://aero.iisc.ac.in" target="_blank" class="btn-primary">Department Website ↗</a>
+    </div>
+
   </div>
   <footer>
-    <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
+    <div class="footer-left">
+      <div class="footer-logo">LH<span style="color:#7dd3fc">SR</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:10px;color:#4a7090;letter-spacing:0.08em;margin-top:6px;">Concept &amp; Direction: Dr. Srisha Rao M V · Raja Janmejay · LNV Pratap</div>
+    </div>
     <ul class="footer-links">
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('contact')">Contact</a></li>
@@ -1715,18 +2155,23 @@
   <div class="page-header">
     <div class="page-header-meta">// Gallery</div>
     <h1>Gallery</h1>
-    <p>Facilities, experiments, events, and the people behind the science.</p>
+    <p>Facilities, experiments, open days, visitors, and the people behind the science at LHSR.</p>
   </div>
   <div class="page-content">
     <div class="gallery-tabs">
       <button class="gallery-tab active" onclick="filterGallery('all', this)">All</button>
-      <button class="gallery-tab" onclick="filterGallery('facilities', this)">Facilities</button>
-      <button class="gallery-tab" onclick="filterGallery('lab', this)">Lab</button>
+      <button class="gallery-tab" onclick="filterGallery('facilities', this)">Lab &amp; Facilities</button>
+      <button class="gallery-tab" onclick="filterGallery('research', this)">Research Work</button>
+      <button class="gallery-tab" onclick="filterGallery('openday', this)">Open Day</button>
+      <button class="gallery-tab" onclick="filterGallery('visitors', this)">Visitors</button>
     </div>
     <div class="gallery-grid" id="gallery-grid"></div>
   </div>
   <footer>
-    <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
+    <div class="footer-left">
+      <div class="footer-logo">LH<span style="color:#7dd3fc">SR</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:10px;color:#4a7090;letter-spacing:0.08em;margin-top:6px;">Concept &amp; Direction: Dr. Srisha Rao M V · Raja Janmejay · LNV Pratap</div>
+    </div>
     <ul class="footer-links">
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('contact')">Contact</a></li>
@@ -1793,7 +2238,10 @@
     </div>
   </div>
   <footer>
-    <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
+    <div class="footer-left">
+      <div class="footer-logo">LH<span style="color:#7dd3fc">SR</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:10px;color:#4a7090;letter-spacing:0.08em;margin-top:6px;">Concept &amp; Direction: Dr. Srisha Rao M V · Raja Janmejay · LNV Pratap</div>
+    </div>
     <ul class="footer-links">
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('contact')">Contact</a></li>
@@ -1821,10 +2269,11 @@
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-item-label">Email</div>
+          <div class="contact-item-label">Faculty</div>
             <div class="contact-item-val">
               <a href="mailto:jaggie@iisc.ac.in">Prof. Gopalan Jagadeesh ↗</a><br>
-              <a href="mailto:srisharao@iisc.ac.in">Prof. Srisha Rao M V ↗</a>
+              <a href="mailto:srisharao@iisc.ac.in">Dr. Srisha Rao M V ↗</a><br>
+              <a href="mailto:saravanan@aero.iisc.ac.in">Dr. Saravanan ↗</a>
             </div>
         </div>
         <div class="contact-item">
@@ -1834,9 +2283,16 @@
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-item-label">How to reach us</div>
+          <div class="contact-item-label">For Enquiries</div>
           <div class="contact-item-val" style="color:var(--muted);font-size:1.05rem;">
-            IISc is located in central Bengaluru. The Department of Aerospace Engineering is in the main campus. Visitors should contact us in advance to arrange campus access.
+            For PhD/M.Tech admissions, facility access, or research collaborations, please email directly or use the form. Visitors should contact us in advance to arrange IISc campus access.
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Credits</div>
+          <div class="contact-item-val" style="font-size:0.95rem;color:var(--muted);">
+            <span style="color:var(--blue);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;">CONCEPT &amp; DIRECTION</span><br>
+            Dr. Srisha Rao M V<br>Raja Janmejay<br>LNV Pratap
           </div>
         </div>
       </div>
@@ -1845,21 +2301,22 @@
         <div class="req-title" style="margin-bottom:2.5rem;">Send a Message</div>
         <div class="form-group">
           <label class="form-label">Your Name</label>
-          <input class="form-input" type="text" placeholder="Full name" />
+          <input class="form-input" type="text" id="contact-name" placeholder="Full name" />
         </div>
         <div class="form-group">
           <label class="form-label">Email Address</label>
-          <input class="form-input" type="email" placeholder="your@email.com" />
+          <input class="form-input" type="email" id="contact-email" placeholder="your@email.com" />
         </div>
         <div class="form-group">
           <label class="form-label">Subject</label>
-          <input class="form-input" type="text" placeholder="e.g. PhD Admission / Collaboration / Facility Access" />
+          <input class="form-input" type="text" id="contact-subject" placeholder="e.g. PhD Admission / Collaboration / Facility Access" />
         </div>
         <div class="form-group">
           <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Describe your enquiry in detail..."></textarea>
+          <textarea class="form-textarea" id="contact-message" placeholder="Describe your enquiry in detail..."></textarea>
         </div>
-        <button class="btn-primary" style="width:100%;" onclick="alert('Thank you! Your message has been noted. Please also email us directly for a prompt response.')">Send Message</button>
+        <button class="btn-primary" style="width:100%;" onclick="sendContactEmail()">Send Message</button>
+        <p style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-top:1.2rem;text-align:center;">Messages are sent directly to <a href="mailto:srisharao@iisc.ac.in" style="color:var(--blue);">srisharao@iisc.ac.in</a></p>
       </div>
     </div>
 
@@ -1878,7 +2335,10 @@
 
   </div>
   <footer>
-    <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
+    <div class="footer-left">
+      <div class="footer-logo">LH<span style="color:#7dd3fc">SR</span></div>
+      <div style="font-family:Space Mono,monospace;font-size:10px;color:#4a7090;letter-spacing:0.08em;margin-top:6px;">Concept &amp; Direction: Dr. Srisha Rao M V · Raja Janmejay · LNV Pratap</div>
+    </div>
     <ul class="footer-links">
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('people')">People</a></li>
@@ -1940,9 +2400,12 @@ fetch(csvUrl)
       const category = (person.Category || '').toLowerCase();
 
       // Faculty uses a larger card style
-      if (category.includes('faculty')) {
+      if (category === 'faculty' || (category.includes('faculty') && !category.includes('associated'))) {
         card.className = 'faculty-card';
         const initial = person.Name.charAt(0).toUpperCase();
+        const websiteHtml = person.Website
+          ? `<a class="people-card-linkedin" href="${person.Website}" target="_blank" style="margin-left:6px;">Website ↗</a>`
+          : '';
         card.innerHTML = `
           <div class="faculty-photo-wrap" id="fw-${imgId}">
             <img src="./images/${imgId}.jpg"
@@ -1956,11 +2419,46 @@ fetch(csvUrl)
               <div class="faculty-name">${person.Name}</div>
               <div class="faculty-role">${person.Role || ''}</div>
               <p class="faculty-research">${person.Research_Field || ''}</p>
+              <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
+                ${linkedInUrl}${websiteHtml}
+              </div>
             </div>
           </div>
         `;
         if(facultyGrid) facultyGrid.appendChild(card);
         counts.faculty++;
+      }
+      // Associated Faculty — separate section
+      else if (category.includes('associated') && category.includes('faculty')) {
+        card.className = 'faculty-card';
+        const initial = person.Name.charAt(0).toUpperCase();
+        const websiteHtml = person.Website
+          ? `<a class="people-card-linkedin" href="${person.Website}" target="_blank" style="margin-left:6px;">Website ↗</a>`
+          : '';
+        card.innerHTML = `
+          <div class="faculty-photo-wrap" id="fw-${imgId}">
+            <img src="./images/${imgId}.jpg"
+                 alt="${person.Name}"
+                 onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div class=\\'faculty-letter\\'>${initial}</div>'; }">
+            <div class="faculty-card-base">
+              <div class="faculty-name">${person.Name}</div>
+              <div class="faculty-role">${person.Role || 'Associate Faculty'}</div>
+            </div>
+            <div class="faculty-card-hover">
+              <div class="faculty-name">${person.Name}</div>
+              <div class="faculty-role">${person.Role || 'Associate Faculty'}</div>
+              <p class="faculty-research">${person.Research_Field || ''}</p>
+              <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
+                ${linkedInUrl}${websiteHtml}
+              </div>
+            </div>
+          </div>
+        `;
+        const assocGrid = document.getElementById('assocFacultyContainer');
+        if(assocGrid) assocGrid.appendChild(card);
+        counts.associatedfaculty = (counts.associatedfaculty || 0) + 1;
+        const assocCount = document.getElementById('assocFacultyCount');
+        if(assocCount) assocCount.textContent = String(counts.associatedfaculty).padStart(2,'0') + ' members';
       }
       else {
         // Standard card for everyone else
@@ -2040,21 +2538,37 @@ fetch(csvUrl)
 
 // ── Gallery Code ──
 const galleryItems = [
-  { src:'./images/L1.jpg', label:'Lab Building', cat:'lab' },
-  { src:'./images/L2.jpg', label:'Lab Interior', cat:'lab' },
-  { src:'./images/HST1.jpg', label:'Hypersonic Shock Tunnel 1', cat:'facilities' },
+  // Lab & Facilities
+  { src:'./images/L1.jpg',   label:'Lab Building — Exterior', cat:'facilities' },
+  { src:'./images/L2.jpg',   label:'Lab Interior', cat:'facilities' },
+  { src:'./images/HST1.jpg', label:'Hypersonic Shock Tunnel 1 (Legacy)', cat:'facilities' },
   { src:'./images/HST2.jpg', label:'Hypersonic Shock Tunnel 2', cat:'facilities' },
-  { src:'./images/HST3.jpg', label:'Hypersonic Shock Tunnel 3', cat:'facilities' },
-  { src:'./images/HST4.jpg', label:'Hypersonic Shock Tunnel 4', cat:'facilities' },
-  { src:'./images/HST5.jpg', label:'Hypersonic Shock Tunnel 5', cat:'facilities' },
+  { src:'./images/HST3.jpg', label:'Hypersonic Shock Tunnel 3 — Free Piston', cat:'facilities' },
+  { src:'./images/HST4.jpg', label:'Hypersonic Shock Tunnel 4 — Large Scale', cat:'facilities' },
+  { src:'./images/HST5.jpg', label:'Hypersonic Shock Tunnel 5 — Combustion Driven', cat:'facilities' },
   { src:'./images/CST1.jpg', label:'Chemical Shock Tunnel 1', cat:'facilities' },
   { src:'./images/CST3.jpg', label:'Chemical Shock Tunnel 3', cat:'facilities' },
   { src:'./images/VST1.jpg', label:'Vertical Shock Tube', cat:'facilities' },
-  { src:'./images/RT1.jpg', label:'Reddy Tunnel', cat:'facilities' },
-  { src:'./images/SU1.jpg', label:'Sputtering Unit', cat:'facilities' },
-  { src:'./images/FR1.jpg', label:'Flow Reactor', cat:'facilities' },
-  { src:'./images/CF1.jpg', label:'CO₂ Facility 1', cat:'facilities' },
-  { src:'./images/CF2.jpg', label:'CO₂ Facility 2', cat:'facilities' },
+  { src:'./images/RT1.jpg',  label:'Reddy Tunnel', cat:'facilities' },
+  { src:'./images/SU1.jpg',  label:'Sputtering Unit', cat:'facilities' },
+  { src:'./images/FR1.jpg',  label:'Flow Reactor', cat:'facilities' },
+  { src:'./images/CF1.jpg',  label:'CO₂ Facility', cat:'facilities' },
+  // Research Work — Schlieren & experimental setups
+  { src:'./images/schlieren1.jpg', label:'Schlieren — Shock over Blunt Body', cat:'research' },
+  { src:'./images/schlieren2.jpg', label:'Schlieren — Double Wedge Interaction', cat:'research' },
+  { src:'./images/schlieren3.jpg', label:'Schlieren — Shock Reflection', cat:'research' },
+  { src:'./images/exp-setup1.jpg', label:'Experimental Setup — HST Test Section', cat:'research' },
+  { src:'./images/exp-setup2.jpg', label:'Experimental Setup — Optical Diagnostics', cat:'research' },
+  { src:'./images/exp-setup3.jpg', label:'Pressure Sensor Array Setup', cat:'research' },
+  // Open Day
+  { src:'./images/openday1.jpg', label:'Open Day — Lab Tour', cat:'openday' },
+  { src:'./images/openday2.jpg', label:'Open Day — Demo Session', cat:'openday' },
+  { src:'./images/openday3.jpg', label:'Open Day — Students Visit', cat:'openday' },
+  { src:'./images/openday4.jpg', label:'Open Day — Faculty Interaction', cat:'openday' },
+  // Visitors
+  { src:'./images/visitor1.jpg', label:'Distinguished Visitors', cat:'visitors' },
+  { src:'./images/visitor2.jpg', label:'International Collaborators', cat:'visitors' },
+  { src:'./images/visitor3.jpg', label:'ISRO/DRDO Delegation', cat:'visitors' },
 ];
 
 function buildGallery(filter = 'all') {
@@ -2075,6 +2589,36 @@ function filterGallery(cat, btn) {
   document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
   buildGallery(cat);
+}
+
+// ── Contact Form — sends to Dr. Srisha Rao ──
+function sendContactEmail() {
+  const name    = (document.getElementById('contact-name')    || {}).value || '';
+  const email   = (document.getElementById('contact-email')   || {}).value || '';
+  const subject = (document.getElementById('contact-subject') || {}).value || 'Enquiry from LHSR Website';
+  const message = (document.getElementById('contact-message') || {}).value || '';
+  if (!name || !email || !message) {
+    alert('Please fill in your name, email, and message before sending.');
+    return;
+  }
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\n\n${message}`
+  );
+  const sub = encodeURIComponent(subject || 'Enquiry from LHSR Website');
+  window.location.href = `mailto:srisharao@iisc.ac.in?subject=${sub}&body=${body}`;
+}
+
+// ── Publication Filters ──
+function filterPubs(year, btn) {
+  document.querySelectorAll('.pub-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pub-entry').forEach(entry => {
+    if (year === 'all' || entry.dataset.year === year) {
+      entry.style.display = '';
+    } else {
+      entry.style.display = 'none';
+    }
+  });
 }
 
 // ── Navigation Code ──
