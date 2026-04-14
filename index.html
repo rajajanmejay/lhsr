@@ -2676,6 +2676,74 @@
       background: rgba(255, 255, 255, 0.06);
       border-color: rgba(125, 211, 252, 0.18);
     }
+
+    /* Fit long scholar names and enlarge footer institution logos */
+    .scholar-card {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .scholar-card-name,
+    .scholar-card-role,
+    .scholar-link {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .scholar-card-name {
+      font-size: 0.96rem;
+      line-height: 1.18;
+    }
+
+    .scholar-card-role {
+      font-size: 0.9rem;
+      line-height: 1.58;
+    }
+
+    .scholar-link {
+      display: inline-block;
+      line-height: 1.5;
+    }
+
+    footer {
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-brand-row {
+      flex: 1 1 720px;
+    }
+
+    .footer-institution-logos {
+      margin-left: auto;
+      gap: 12px;
+    }
+
+    .footer-institution-logo {
+      width: 78px;
+      height: 52px;
+      padding: 7px;
+    }
+
+    .footer-institution-logo:first-child {
+      width: 110px;
+    }
+
+    .footer-institution-logo img {
+      object-fit: contain;
+    }
+
+    @media (max-width: 900px) {
+      .footer-brand-row {
+        flex-wrap: wrap;
+      }
+
+      .footer-institution-logos {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 <body>
