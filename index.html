@@ -3045,6 +3045,197 @@
       </div>
     </div>
   </div>
+  <div class="scholar-panel" style="margin-top: 4rem;">
+      <div class="section-tag">Interactive Visualization</div>
+      <h2 class="section-title" style="font-size: 2.35rem; margin-bottom: 1rem;">Hypersonic Oblique Shock Simulator</h2>
+      <p class="publication-note">
+        Adjust the upstream Mach number ($M_1$) and wedge deflection angle ($\theta$) to visualize the resulting oblique shock wave ($\beta$) and calculate downstream thermodynamic properties.
+      </p>
+
+      <div style="display: grid; grid-template-columns: minmax(280px, 1fr) 2fr; gap: 3rem; margin-top: 2.5rem; align-items: start;">
+        
+        <div style="background: #f8fafb; padding: 24px; border: 1px solid rgba(20, 24, 29, 0.12); border-radius: 8px;">
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label class="form-label" style="display: flex; justify-content: space-between;">
+              <span>Mach Number ($M_1$)</span>
+              <span id="mach-val" style="color: var(--blue); font-weight: 800;">3.0</span>
+            </label>
+            <input type="range" id="sim-mach" min="1.2" max="10.0" step="0.1" value="3.0" style="width: 100%; cursor: pointer;">
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 2.5rem;">
+            <label class="form-label" style="display: flex; justify-content: space-between;">
+              <span>Wedge Angle ($\theta$)</span>
+              <span id="theta-val" style="color: var(--blue); font-weight: 800;">15°</span>
+            </label>
+            <input type="range" id="sim-theta" min="1" max="45" step="1" value="15" style="width: 100%; cursor: pointer;">
+          </div>
+
+          <div class="facility-specs" style="background: #ffffff; border: 1px solid var(--border); padding: 16px; border-radius: 6px;">
+            <div class="spec-row" style="padding: 8px 0;">
+              <span class="spec-key">Shock Angle ($\beta$)</span>
+              <span class="spec-val" id="res-beta">0.00°</span>
+            </div>
+            <div class="spec-row" style="padding: 8px 0;">
+              <span class="spec-key">Pressure Ratio ($P_2/P_1$)</span>
+              <span class="spec-val" id="res-p2p1">0.00</span>
+            </div>
+            <div class="spec-row" style="padding: 8px 0; border-bottom: none;">
+              <span class="spec-key">Temp Ratio ($T_2/T_1$)</span>
+              <span class="spec-val" id="res-t2t1">0.00</span>
+            </div>
+          </div>
+          
+          <div id="sim-alert" style="display: none; margin-top: 1rem; padding: 12px; background: rgba(213, 61, 61, 0.1); border: 1px solid var(--gold); border-radius: 4px; color: var(--gold); font-family: 'Space Mono', monospace; font-size: 12px; font-weight: bold; text-align: center;">
+            DETACHED SHOCK REGIME
+          </div>
+        </div>
+
+        <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #0a2540; border-radius: 8px; overflow: hidden; box-shadow: inset 0 4px 24px rgba(0,0,0,0.4);">
+          <canvas id="shockCanvas" style="display: block; width: 100%; height: 100%;"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Oblique Shock Math & Canvas Rendering
+      document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('shockCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const sliderMach = document.getElementById('sim-mach');
+        const sliderTheta = document.getElementById('sim-theta');
+        const valMach = document.getElementById('mach-val');
+        const valTheta = document.getElementById('theta-val');
+        const outBeta = document.getElementById('res-beta');
+        const outP2 = document.getElementById('res-p2p1');
+        const outT2 = document.getElementById('res-t2t1');
+        const alertBox = document.getElementById('sim-alert');
+
+        function resizeCanvas() {
+          const rect = canvas.parentElement.getBoundingClientRect();
+          canvas.width = rect.width;
+          canvas.height = rect.height;
+          drawSimulation();
+        }
+        window.addEventListener('resize', resizeCanvas);
+
+        function calculateObliqueShock(M1, thetaDeg) {
+          const gamma = 1.4;
+          const theta = thetaDeg * Math.PI / 180;
+          let beta = Math.asin(1 / M1); 
+          const betaMax = Math.PI / 2;
+          const steps = 1000;
+          const dBeta = (betaMax - Math.asin(1/M1)) / steps;
+          
+          let maxTheta = 0;
+          let bestBeta = beta;
+          let minDiff = Infinity;
+
+          for (let b = beta; b <= betaMax; b += dBeta) {
+            const num = Math.pow(M1 * Math.sin(b), 2) - 1;
+            const den = M1 * M1 * (gamma + Math.cos(2 * b)) + 2;
+            const t = Math.atan(2 * (1 / Math.tan(b)) * (num / den));
+            if (t > maxTheta) maxTheta = t;
+            if (Math.abs(t - theta) < minDiff && b < (Math.PI/2 - 0.05)) { 
+              minDiff = Math.abs(t - theta);
+              bestBeta = b;
+            }
+          }
+
+          if (theta > maxTheta) return null; // Detached Shock
+
+          const Mn1 = M1 * Math.sin(bestBeta);
+          const p2p1 = 1 + (2 * gamma / (gamma + 1)) * (Mn1 * Mn1 - 1);
+          const t2t1 = p2p1 * (2 + (gamma - 1) * Mn1 * Mn1) / ((gamma + 1) * Mn1 * Mn1);
+          
+          return { beta: bestBeta, p2p1, t2t1 };
+        }
+
+        function drawSimulation() {
+          const M1 = parseFloat(sliderMach.value);
+          const thetaDeg = parseFloat(sliderTheta.value);
+          valMach.textContent = M1.toFixed(1);
+          valTheta.textContent = thetaDeg + '°';
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const results = calculateObliqueShock(M1, thetaDeg);
+
+          // Geometry Setup
+          const originX = canvas.width * 0.25;
+          const originY = canvas.height * 0.65;
+          const wedgeLength = canvas.width * 0.6;
+
+          // Draw Freestream Flow (Arrows)
+          ctx.strokeStyle = 'rgba(125, 211, 252, 0.3)';
+          ctx.lineWidth = 2;
+          for(let i=0; i<3; i++) {
+            const yOffset = originY - 40 - (i * 40);
+            ctx.beginPath();
+            ctx.moveTo(20, yOffset);
+            ctx.lineTo(originX - 30, yOffset);
+            ctx.lineTo(originX - 40, yOffset - 5);
+            ctx.moveTo(originX - 30, yOffset);
+            ctx.lineTo(originX - 40, yOffset + 5);
+            ctx.stroke();
+          }
+
+          if (results) {
+            alertBox.style.display = 'none';
+            outBeta.textContent = (results.beta * 180 / Math.PI).toFixed(2) + '°';
+            outP2.textContent = results.p2p1.toFixed(2);
+            outT2.textContent = results.t2t1.toFixed(2);
+
+            // Draw Shockwave
+            const shockX = originX + canvas.height * Math.cos(results.beta);
+            const shockY = originY - canvas.height * Math.sin(results.beta);
+            
+            ctx.beginPath();
+            ctx.moveTo(originX, originY);
+            ctx.lineTo(shockX, shockY);
+            ctx.strokeStyle = '#7dd3fc'; // Cyan shock line
+            ctx.lineWidth = 4;
+            ctx.setLineDash([10, 5]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          } else {
+            alertBox.style.display = 'block';
+            outBeta.textContent = 'N/A'; outP2.textContent = 'N/A'; outT2.textContent = 'N/A';
+            
+            // Draw Detached Bow Shock (Approximation)
+            ctx.beginPath();
+            ctx.moveTo(originX + 50, 0);
+            ctx.quadraticCurveTo(originX - 40, originY, originX + 50, canvas.height);
+            ctx.strokeStyle = '#d53d3d'; // Red detached shock
+            ctx.lineWidth = 4;
+            ctx.stroke();
+          }
+
+          // Draw Wedge
+          const thetaRad = thetaDeg * Math.PI / 180;
+          const endX = originX + wedgeLength * Math.cos(thetaRad);
+          const endY = originY - wedgeLength * Math.sin(thetaRad);
+
+          ctx.beginPath();
+          ctx.moveTo(originX, originY);
+          ctx.lineTo(endX, endY);
+          ctx.lineTo(canvas.width, canvas.height);
+          ctx.lineTo(originX, canvas.height);
+          ctx.closePath();
+          ctx.fillStyle = '#14181d'; // Dark wedge color
+          ctx.fill();
+          ctx.strokeStyle = '#008fa8'; // Blue wedge border
+          ctx.lineWidth = 3;
+          ctx.stroke();
+        }
+
+        sliderMach.addEventListener('input', drawSimulation);
+        sliderTheta.addEventListener('input', drawSimulation);
+        
+        // Initial setup
+        setTimeout(resizeCanvas, 100); 
+      });
+    </script>
   <footer>
     <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
     <ul class="footer-links">
@@ -3682,7 +3873,7 @@
         <div class="contact-item-label" style="margin-bottom:1.5rem;">Location on Map</div>
         <iframe
           class="map-iframe"
-          src="http://googleusercontent.com/maps.google.com/7"
+          src="https://maps.google.com/maps?q=Laboratory+for+Hypersonic+and+Shock+Wave+Research+Department+of+Aerospace+Engineering,+Indian+Institute+of+Science,+Bengaluru&output=embed"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">
