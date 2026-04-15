@@ -1276,7 +1276,7 @@
     .btn-primary,
     .btn-outline,
     .gallery-tab,
-    .people-card-linkedin {
+    .people-card- {
       border-radius: 6px;
       font-family: 'Inter', Arial, sans-serif;
       font-size: 14px;
@@ -3768,6 +3768,10 @@ fetch(csvUrl)
       if (category.includes('faculty')) {
         card.className = 'faculty-card';
         const initial = person.Name.charAt(0).toUpperCase();
+        // Add the LinkedIn HTML generator here
+        const linkedInHtml = linkedInProfile
+          ? `<a class="people-card-linkedin" href="${linkedInProfile}" target="_blank" rel="noopener" style="margin-top: 8px;">LinkedIn ↗</a>`
+          : '';        
         card.innerHTML = `
           <div class="faculty-photo-wrap" id="fw-${imgId}">
             <img src="./images/${imgId}.jpg"
@@ -3781,6 +3785,7 @@ fetch(csvUrl)
               <div class="faculty-name">${person.Name}</div>
               <div class="faculty-role">${person.Role || ''}</div>
               <p class="faculty-research">${person.Research_Field || ''}</p>
+              ${linkedInHtml}
             </div>
           </div>
         `;
