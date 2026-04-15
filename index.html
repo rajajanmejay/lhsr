@@ -2756,7 +2756,60 @@
       .research-preview .research-areas {
         grid-template-columns: 1fr !important;
       }
-    }    
+    } 
+    /* ── HORIZONTAL RESEARCH CARDS ── */
+    .research-preview .research-areas {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 2.5rem !important;
+      background: transparent !important;
+    }
+    
+    .research-area-card {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center;
+      gap: 3rem;
+      padding: 0 !important; /* Remove old padding */
+      background: #ffffff !important;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden; /* Keeps image inside borders */
+    }
+    
+    .research-area-card:first-child { background: #ffffff !important; }
+    
+    .research-area-content {
+      flex: 1;
+      padding: 3rem 0 3rem 3rem;
+    }
+    
+    .research-area-image {
+      flex: 0 0 45%; /* Image takes up 45% of the card width */
+      align-self: stretch; /* Stretches image to full card height */
+      background: #e8f4fd;
+    }
+    
+    .research-area-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    /* Stack them vertically on mobile screens */
+    @media (max-width: 900px) {
+      .research-area-card {
+        flex-direction: column-reverse !important;
+      }
+      .research-area-content {
+        padding: 2rem !important;
+      }
+      .research-area-image {
+        width: 100%;
+        min-height: 250px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2993,69 +3046,124 @@
         <div class="research-area-desc">
           We study the generation, propagation, reflection, and interaction of shock waves in various media. This spans from classical gas dynamics to shock-induced phase transitions and focusing. Applications include industrial shock processing, medical shock-wave therapy, and fundamental gasdynamic research.
         </div>
-        <div class="research-tags">
-          <span class="research-tag">Shock Reflection</span>
-          <span class="research-tag">Shock-Shock Interaction</span>
-          <span class="research-tag">Shock Focusing</span>
-          <span class="research-tag">Condensed Matter</span>
+<div class="research-areas">
+
+      <div class="research-area-card">
+        <div class="research-area-content">
+          <div class="research-icon">🚀</div>
+          <div class="research-area-title">Hypersonic Aerodynamics & Propulsion</div>
+          <div class="research-area-desc">
+            Our flagship research area covers the aerodynamics of vehicles traveling at speeds exceeding Mach 5. We investigate shock-boundary layer interactions, aerodynamic heating, hypersonic intake design, scramjet propulsion, and the aerodynamic performance of re-entry vehicles. We use our world-class shock tunnels to replicate high-altitude, high-speed flight conditions in the laboratory.
+          </div>
+          <div class="research-tags">
+            <span class="research-tag">SBLI</span>
+            <span class="research-tag">Scramjet Intakes</span>
+            <span class="research-tag">Aerodynamic Heating</span>
+            <span class="research-tag">Re-entry Vehicles</span>
+            <span class="research-tag">Hypersonic Cruise</span>
+            <span class="research-tag">Air-breathing Propulsion</span>
+          </div>
+        </div>
+        <div class="research-area-image">
+          <img src="./images/HST2.jpg" alt="Hypersonic Aerodynamics & Propulsion">
         </div>
       </div>
 
       <div class="research-area-card">
-        <div class="research-icon">🔬</div>
-        <div class="research-area-title">Chemical Kinetics & Combustion</div>
-        <div class="research-area-desc">
-          High-temperature chemical kinetics is central to understanding combustion in supersonic flows. We investigate reaction rates, ignition delays, and species evolution using shock tubes and flow reactors, with spectroscopic diagnostics providing real-time chemical state measurements.
+        <div class="research-area-content">
+          <div class="research-icon">💥</div>
+          <div class="research-area-title">Shock Wave Physics</div>
+          <div class="research-area-desc">
+            We study the generation, propagation, reflection, and interaction of shock waves in various media. This spans from classical gas dynamics to shock-induced phase transitions and focusing. Applications include industrial shock processing, medical shock-wave therapy, and fundamental gasdynamic research.
+          </div>
+          <div class="research-tags">
+            <span class="research-tag">Shock Reflection</span>
+            <span class="research-tag">Shock-Shock Interaction</span>
+            <span class="research-tag">Shock Focusing</span>
+            <span class="research-tag">Condensed Matter</span>
+          </div>
         </div>
-        <div class="research-tags">
-          <span class="research-tag">Chemical Kinetics</span>
-          <span class="research-tag">Spectroscopy</span>
-          <span class="research-tag">Supersonic Combustion</span>
-          <span class="research-tag">Flow Reactor</span>
-        </div>
-      </div>
-
-      <div class="research-area-card">
-        <div class="research-icon">🌊</div>
-        <div class="research-area-title">Compressible Flow & Mixing</div>
-        <div class="research-area-desc">
-          Understanding mixing in compressible and supersonic flows is critical for scramjet combustor performance. We study compressible mixing layers, supersonic jet injection, and large eddy simulations to understand and enhance mixing in high-speed flows.
-        </div>
-        <div class="research-tags">
-          <span class="research-tag">Compressible Mixing Layer</span>
-          <span class="research-tag">Supersonic Jets</span>
-          <span class="research-tag">LES</span>
-          <span class="research-tag">Mixing Enhancement</span>
+        <div class="research-area-image">
+          <img src="./images/HST1.jpg" alt="Shock Wave Physics">
         </div>
       </div>
 
       <div class="research-area-card">
-        <div class="research-icon">🦅</div>
-        <div class="research-area-title">Bio-inspired Aerodynamics</div>
-        <div class="research-area-desc">
-          Nature has evolved elegant solutions to fluid dynamic challenges over millions of years. We investigate bio-inspired concepts — from bird wing geometry to riblet surfaces — for application in drag reduction, flow control, and novel aerodynamic configurations.
+        <div class="research-area-content">
+          <div class="research-icon">🔬</div>
+          <div class="research-area-title">Chemical Kinetics & Combustion</div>
+          <div class="research-area-desc">
+            High-temperature chemical kinetics is central to understanding combustion in supersonic flows. We investigate reaction rates, ignition delays, and species evolution using shock tubes and flow reactors, with spectroscopic diagnostics providing real-time chemical state measurements.
+          </div>
+          <div class="research-tags">
+            <span class="research-tag">Chemical Kinetics</span>
+            <span class="research-tag">Spectroscopy</span>
+            <span class="research-tag">Supersonic Combustion</span>
+            <span class="research-tag">Flow Reactor</span>
+          </div>
         </div>
-        <div class="research-tags">
-          <span class="research-tag">Drag Reduction</span>
-          <span class="research-tag">Flow Control</span>
-          <span class="research-tag">Riblets</span>
-          <span class="research-tag">Biomimetics</span>
+        <div class="research-area-image">
+          <img src="./images/CST1.jpg" alt="Chemical Kinetics & Combustion">
         </div>
       </div>
 
       <div class="research-area-card">
-        <div class="research-icon">🔩</div>
-        <div class="research-area-title">Materials Under Extreme Conditions</div>
-        <div class="research-area-desc">
-          Vehicles operating at hypersonic speeds face extreme thermal and mechanical loads. We study the deformation of metals under shock loading, develop and characterize thermal barrier coatings for scramjet applications, and investigate material failure under high strain rates.
+        <div class="research-area-content">
+          <div class="research-icon">🌊</div>
+          <div class="research-area-title">Compressible Flow & Mixing</div>
+          <div class="research-area-desc">
+            Understanding mixing in compressible and supersonic flows is critical for scramjet combustor performance. We study compressible mixing layers, supersonic jet injection, and large eddy simulations to understand and enhance mixing in high-speed flows.
+          </div>
+          <div class="research-tags">
+            <span class="research-tag">Compressible Mixing Layer</span>
+            <span class="research-tag">Supersonic Jets</span>
+            <span class="research-tag">LES</span>
+            <span class="research-tag">Mixing Enhancement</span>
+          </div>
         </div>
-        <div class="research-tags">
-          <span class="research-tag">Thermal Barrier Coatings</span>
-          <span class="research-tag">HCP Metals</span>
-          <span class="research-tag">Shock Loading</span>
-          <span class="research-tag">High Strain Rate</span>
+        <div class="research-area-image">
+          <img src="./images/HST4.jpg" alt="Compressible Flow & Mixing">
         </div>
       </div>
+
+      <div class="research-area-card">
+        <div class="research-area-content">
+          <div class="research-icon">🦅</div>
+          <div class="research-area-title">Bio-inspired Aerodynamics</div>
+          <div class="research-area-desc">
+            Nature has evolved elegant solutions to fluid dynamic challenges over millions of years. We investigate bio-inspired concepts — from bird wing geometry to riblet surfaces — for application in drag reduction, flow control, and novel aerodynamic configurations.
+          </div>
+          <div class="research-tags">
+            <span class="research-tag">Drag Reduction</span>
+            <span class="research-tag">Flow Control</span>
+            <span class="research-tag">Riblets</span>
+            <span class="research-tag">Biomimetics</span>
+          </div>
+        </div>
+        <div class="research-area-image">
+          <img src="./images/5.jpg" alt="Bio-inspired Aerodynamics">
+        </div>
+      </div>
+
+      <div class="research-area-card">
+        <div class="research-area-content">
+          <div class="research-icon">🔩</div>
+          <div class="research-area-title">Materials Under Extreme Conditions</div>
+          <div class="research-area-desc">
+            Vehicles operating at hypersonic speeds face extreme thermal and mechanical loads. We study the deformation of metals under shock loading, develop and characterize thermal barrier coatings for scramjet applications, and investigate material failure under high strain rates.
+          </div>
+          <div class="research-tags">
+            <span class="research-tag">Thermal Barrier Coatings</span>
+            <span class="research-tag">HCP Metals</span>
+            <span class="research-tag">Shock Loading</span>
+            <span class="research-tag">High Strain Rate</span>
+          </div>
+        </div>
+        <div class="research-area-image">
+          <img src="./images/SU1.jpg" alt="Materials Under Extreme Conditions">
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="scholar-panel" style="margin-top: 4rem;">
