@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
+    /* ── BASE THEME & VARIABLES ── */
     :root {
       --navy: #f5f7f9;
       --navy2: #ffffff;
@@ -27,11 +28,17 @@
     }
 
     *, *::before, *::after { 
-      box-sizing: border-box; margin: 0; padding: 0; 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
       letter-spacing: 0 !important;
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 92px; }
+    html { 
+      scroll-behavior: smooth; 
+      font-size: 16px; 
+      scroll-padding-top: 92px; 
+    }
 
     body {
       background: var(--navy);
@@ -42,7 +49,7 @@
       overflow-x: hidden;
     }
 
-    /* Image Quality Enforcements */
+    /* ── HIGH QUALITY IMAGE RENDERING ── */
     img {
       image-rendering: -webkit-optimize-contrast;
       image-rendering: high-quality;
@@ -56,6 +63,14 @@
                         linear-gradient(90deg, rgba(20, 24, 29, 0.035) 1px, transparent 1px);
       background-size: 56px 56px;
       pointer-events: none; z-index: 0; opacity: 0.7;
+    }
+
+    h1, h2, h3, .hero-title, .section-title, .page-header h1, .research-card-title, .research-area-title, .facility-name, .people-section-title, .publication-title, .scholar-card-name, .gallery-item-label, .req-title, .opp-title {
+      font-family: 'Syne', Arial, sans-serif;
+    }
+
+    .section-tag, .page-header-meta, .facility-tag, .contact-item-label, .form-label, .people-count, .research-card-num, .stat-label, .spec-key, .spec-val, .mach-badge, .research-tag, .gallery-tab, .publication-year, .publication-link, .scholar-link, .footer-links a, .footer-copy, .credits-title {
+      font-family: 'Space Mono', monospace; font-weight: 800; text-transform: none;
     }
 
     /* ── NAV ── */
@@ -123,13 +138,6 @@
     .page { display: none; min-height: 100vh; position: relative; z-index: 1; }
     .page.active { display: block; }
 
-    h1, h2, h3, .hero-title, .section-title, .page-header h1, .research-card-title, .research-area-title, .facility-name, .people-section-title, .publication-title, .scholar-card-name, .gallery-item-label, .req-title, .opp-title {
-      font-family: 'Syne', Arial, sans-serif;
-    }
-    .section-tag, .page-header-meta, .facility-tag, .contact-item-label, .form-label, .people-count, .research-card-num, .stat-label, .spec-key, .spec-val, .mach-badge, .research-tag, .gallery-tab, .publication-year, .publication-link, .scholar-link, .footer-links a, .footer-copy, .credits-title {
-      font-family: 'Space Mono', monospace; font-weight: 800; text-transform: none;
-    }
-
     /* ── HERO ── */
     .hero {
       min-height: 88vh; display: flex; flex-direction: column; justify-content: center;
@@ -191,7 +199,7 @@
     .about-image img:nth-child(2) { grid-column: 2; width: 82%; aspect-ratio: 4 / 3; margin-top: -86px; margin-left: auto; border: 6px solid var(--navy); }
     .about-image-caption { grid-column: 1 / 3; color: var(--muted); font-family: 'Inter', Arial, sans-serif; font-size: 13px; margin-top: 16px; }
 
-    /* ── RESEARCH AREAS HOME ── */
+    /* ── RESEARCH PREVIEW (HOME) ── */
     .research-preview { padding-top: 70px; padding-bottom: 92px; }
     .research-preview .research-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 34px; }
     
@@ -353,6 +361,12 @@
     .credits-title { color: #8cecf7; font-size: 12px; margin-bottom: 10px; }
     .credits-body { color: #d6e2e7; line-height: 1.7; font-size: 0.9rem; }
 
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
       nav { padding: 0 20px; }
@@ -378,6 +392,10 @@
       .publications-intro { grid-template-columns: 1fr; }
       .footer-brand-row { flex-wrap: wrap; }
       .footer-institution-logos { width: 100%; margin-left: 0; }
+      
+      #page-research .research-area-card { flex-direction: column-reverse !important; }
+      #page-research .research-area-content { padding: 2rem !important; }
+      #page-research .research-area-image { width: 100%; min-height: 250px; }
     }
     @media (max-width: 600px) {
       nav { padding: 0 14px; }
@@ -1351,7 +1369,10 @@ window.addEventListener('popstate', (e) => {
 
 // Detect direct link visits (e.g. user types /Research)
 function parseUrlToPage() {
-  const path = window.location.pathname.split('/').pop().toLowerCase();
+  let path = window.location.pathname.split('/').filter(Boolean).pop();
+  if (!path) path = 'home';
+  path = path.toLowerCase();
+
   const validPages = ['home', 'research', 'facilities', 'people', 'publications', 'gallery', 'opportunities', 'contact'];
   
   if (validPages.includes(path)) {
@@ -1360,11 +1381,11 @@ function parseUrlToPage() {
     // Graceful fallback for old hash links
     const hash = window.location.hash.replace('#', '').toLowerCase();
     if (validPages.includes(hash)) showPage(hash, false);
+    else showPage('home', false);
   } else {
     showPage('home', false);
   }
 }
-
 
 // --- CSV Fetching for People Tab ---
 const cacheBuster = new Date().getTime();
