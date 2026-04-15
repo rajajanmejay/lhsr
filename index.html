@@ -2744,6 +2744,19 @@
         margin-left: 0;
       }
     }
+    /* Fix for Research Cards squishing on wide screens */
+    .research-preview .research-areas {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .research-area-title {
+      word-break: break-word;
+      hyphens: auto;
+    }
+    @media (max-width: 900px) {
+      .research-preview .research-areas {
+        grid-template-columns: 1fr !important;
+      }
+    }    
   </style>
 </head>
 <body>
@@ -3052,9 +3065,9 @@
         Adjust the upstream Mach number ($M_1$) and wedge deflection angle ($\theta$) to visualize the resulting oblique shock wave ($\beta$) and calculate downstream thermodynamic properties.
       </p>
 
-      <div style="display: grid; grid-template-columns: minmax(280px, 1fr) 2fr; gap: 3rem; margin-top: 2.5rem; align-items: start;">
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2.5rem; align-items: stretch;">
         
-        <div style="background: #f8fafb; padding: 24px; border: 1px solid rgba(20, 24, 29, 0.12); border-radius: 8px;">
+        <div style="flex: 1 1 300px; max-width: 400px; background: #f8fafb; padding: 24px; border: 1px solid rgba(20, 24, 29, 0.12); border-radius: 8px;">
           <div class="form-group" style="margin-bottom: 1.5rem;">
             <label class="form-label" style="display: flex; justify-content: space-between;">
               <span>Mach Number ($M_1$)</span>
@@ -3086,16 +3099,15 @@
             </div>
           </div>
           
-          <div id="sim-alert" style="display: none; margin-top: 1rem; padding: 12px; background: rgba(213, 61, 61, 0.1); border: 1px solid var(--gold); border-radius: 4px; color: var(--gold); font-family: 'Space Mono', monospace; font-size: 12px; font-weight: bold; text-align: center;">
+          <div id="sim-alert" style="display: none; margin-top: 1.5rem; padding: 12px; background: rgba(213, 61, 61, 0.1); border: 1px solid var(--gold); border-radius: 4px; color: var(--gold); font-family: 'Space Mono', monospace; font-size: 12px; font-weight: bold; text-align: center;">
             DETACHED SHOCK REGIME
           </div>
         </div>
 
-        <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #0a2540; border-radius: 8px; overflow: hidden; box-shadow: inset 0 4px 24px rgba(0,0,0,0.4);">
+        <div style="flex: 2 1 500px; position: relative; min-height: 400px; background: #0a2540; border-radius: 8px; overflow: hidden; box-shadow: inset 0 4px 24px rgba(0,0,0,0.4);">
           <canvas id="shockCanvas" style="display: block; width: 100%; height: 100%;"></canvas>
         </div>
       </div>
-    </div>
 
     <script>
       // Oblique Shock Math & Canvas Rendering
