@@ -3768,10 +3768,34 @@ fetch(csvUrl)
       if (category.includes('faculty')) {
         card.className = 'faculty-card';
         const initial = person.Name.charAt(0).toUpperCase();
-        // Add the LinkedIn HTML generator here
+        
+        // 1. Extract and normalize all three links
+        const websiteUrl = person.Website_Link ? normalizeExternalUrl(person.Website_Link) : '';
+        const googleScholar = person.Google_Scholar ? normalizeExternalUrl(person.Google_Scholar) : '';
+        // linkedInProfile is already extracted earlier in the loop
+
+        // 2. Generate the HTML buttons for each link
         const linkedInHtml = linkedInProfile
-          ? `<a class="people-card-linkedin" href="${linkedInProfile}" target="_blank" rel="noopener" style="margin-top: 8px;">LinkedIn ↗</a>`
-          : '';        
+          ? `<a class="people-card-linkedin" href="${linkedInProfile}" target="_blank" rel="noopener">LinkedIn ↗</a>`
+          : '';
+          
+        const scholarHtml = googleScholar
+          ? `<a class="people-card-linkedin" href="${googleScholar}" target="_blank" rel="noopener">Scholar ↗</a>`
+          : '';
+
+        const websiteHtml = websiteUrl
+          ? `<a class="people-card-linkedin" href="${websiteUrl}" target="_blank" rel="noopener">Website ↗</a>`
+          : '';
+
+        // 3. Group them in a neat row, only if at least one link exists
+        const linksContainer = (linkedInHtml || scholarHtml || websiteHtml)
+          ? `<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+               ${linkedInHtml}
+               ${scholarHtml}
+               ${websiteHtml}
+             </div>`
+          : '';
+
         card.innerHTML = `
           <div class="faculty-photo-wrap" id="fw-${imgId}">
             <img src="./images/${imgId}.jpg"
@@ -3785,10 +3809,11 @@ fetch(csvUrl)
               <div class="faculty-name">${person.Name}</div>
               <div class="faculty-role">${person.Role || ''}</div>
               <p class="faculty-research">${person.Research_Field || ''}</p>
-              ${linkedInHtml}
+              ${linksContainer} 
             </div>
           </div>
         `;
+        
         if (category.includes('associated') || category.includes('adjunct')) {
           if(assocFacultyGrid) assocFacultyGrid.appendChild(card);
           counts.assocFaculty++;
