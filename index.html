@@ -3682,7 +3682,7 @@
         <div class="contact-item-label" style="margin-bottom:1.5rem;">Location on Map</div>
         <iframe
           class="map-iframe"
-          src="https://maps.google.com/maps?q=Department+of+Aerospace+Engineering,+Indian+Institute+of+Science,+Bengaluru&output=embed"
+          src="http://googleusercontent.com/maps.google.com/7"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">
@@ -3987,8 +3987,20 @@ function showPage(name) {
   window.scrollTo(0, 0);
   document.getElementById('navLinks').classList.remove('open');
   if (name === 'gallery') buildGallery('all');
+
+  // Update the URL without reloading
+  history.pushState(null, null, '#' + name); 
 }
 
+// Add this to your DOMContentLoaded event
+window.addEventListener('load', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById('page-' + hash)) {
+    showPage(hash);
+  } else {
+    showPage('home'); // Default
+  }
+});
 function toggleMenu() {
   const nav = document.getElementById('navLinks');
   nav.classList.toggle('open');
