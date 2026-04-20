@@ -3562,7 +3562,7 @@
 
   <nav>
     <a class="nav-logo" href="#" onclick="showPage('home')">
-      <div class="nav-logo-mark"><img src="./lhsr-logo.png" alt="LHSR" onerror="this.style.display='none'"></div>
+      <div class="nav-logo-mark"><img src="./lhsr-logo.png" alt="LHSR"></div>
       <div>
         <div class="nav-logo-text">Laboratory for Hypersonic and Shock wave Research</div>
         <div class="nav-logo-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
@@ -3570,8 +3570,8 @@
     </a>
 
     <div class="nav-institution-logos" aria-label="Institution logos">
-      <img src="./aero-logo.svg" alt="Department of Aerospace Engineering, IISc" onerror="this.style.display='none'">
-      <img src="./iisc-logo.svg" alt="Indian Institute of Science" onerror="this.style.display='none'">
+      <img src="./aero-logo.svg" alt="Department of Aerospace Engineering, IISc">
+      <img src="./iisc-logo.svg" alt="Indian Institute of Science">
     </div>
 
     <ul class="nav-links" id="navLinks">
@@ -5190,20 +5190,14 @@
 
             footer.insertAdjacentHTML('afterbegin', `
               <div class="footer-brand-row">
-                <div class="footer-institution-logo footer-logo-left">
-                  <img src="./aero-logo.svg" alt="Department of Aerospace Engineering, IISc" onerror="this.style.display='none'">
-                </div>
-
+        <div class="footer-institution-logo footer-logo-left"><img src="./aero-logo.svg" alt="Department of Aerospace Engineering, IISc"></div>
                 <div class="footer-brand-center">
                   <div>
                     <div class="footer-brand-name">Laboratory for Hypersonic and Shock Wave Research</div>
                     <div class="footer-brand-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
                   </div>
                 </div>
-
-                <div class="footer-institution-logo footer-logo-right">
-                  <img src="./iisc-logo.svg" alt="Indian Institute of Science" onerror="this.style.display='none'">
-                </div>
+        <div class="footer-institution-logo footer-logo-right"><img src="./iisc-logo.svg" alt="Indian Institute of Science"></div>
               </div>
             `);
 
@@ -5211,9 +5205,7 @@
             if (directLogo) directLogo.style.display = 'none';
 
             const nestedLogo = footer.querySelector(':scope > div .footer-logo');
-            if (nestedLogo && nestedLogo.parentElement) {
-              nestedLogo.parentElement.style.display = 'none';
-            }
+              if (nestedLogo && nestedLogo.parentElement) nestedLogo.parentElement.style.display = 'none';
           });
         }
 
@@ -5257,6 +5249,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+            const homeLink = document.querySelector('.nav-links a[data-page="home"]');
+            // No home link in nav, but highlight none by default — home is the logo
           addFooterBrands();
           buildGallery('all');
         });
