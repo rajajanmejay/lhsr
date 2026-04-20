@@ -533,7 +533,7 @@
     }
 
     #page-publications .page-header {
-      background: linear-gradient(rgba(245, 247, 249, 0.72), rgba(245, 247, 249, 0.72)), url('./images/L1.jpg') center/cover no-repeat;
+      background: linear-gradient(rgba(245, 247, 249, 0.72), rgba(245, 247, 249, 0.72)), url('./images/Home_Lab_1.jpg') center/cover no-repeat;
       background-blend-mode: lighten;
     }
 
@@ -1816,7 +1816,7 @@
       background:
         linear-gradient(90deg, rgba(12, 15, 18, 0.95) 0%, rgba(12, 15, 18, 0.84) 42%, rgba(12, 15, 18, 0.28) 100%),
         linear-gradient(0deg, rgba(0, 143, 168, 0.12), rgba(0, 143, 168, 0.12)),
-        url('./images/L2.jpg') center / cover no-repeat;
+        url('./images/Home_Lab_2.jpg') center / cover no-repeat;
       color: #f8fbfc;
     }
 
@@ -2193,7 +2193,7 @@
       border-bottom: 1px solid rgba(20, 24, 29, 0.12);
       background:
         linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.76)),
-        url('./images/L1.jpg') center / cover no-repeat;
+        url('./images/Home_Lab_1.jpg') center / cover no-repeat;
     }
 
     .page-header h1 {
@@ -3114,7 +3114,7 @@
       background:
         linear-gradient(90deg, rgba(10, 37, 64, 0.96) 0%, rgba(10, 37, 64, 0.84) 46%, rgba(10, 37, 64, 0.34) 100%),
         linear-gradient(0deg, rgba(0, 119, 204, 0.18), rgba(0, 119, 204, 0.18)),
-        url('./images/L2.jpg') center / cover no-repeat;
+        url('./images/Home_Lab_2.jpg') center / cover no-repeat;
       color: var(--hero-text);
     }
 
@@ -3267,7 +3267,7 @@
     .page-header {
       background:
         linear-gradient(90deg, rgba(240, 247, 255, 0.97), rgba(255, 255, 255, 0.82)),
-        url('./images/L1.jpg') center / cover no-repeat;
+        url('./images/Home_Lab_1.jpg') center / cover no-repeat;
       border-bottom-color: rgba(0, 119, 204, 0.16);
     }
 
@@ -3652,8 +3652,8 @@
 
     <!-- Images row -->
     <div class="about-images-row">
-      <img src="./images/L1.jpg" alt="">
-      <img src="./images/L2.jpg" alt="">
+      <img src="./images/Home_Lab_1.jpg" alt="">
+      <img src="./images/Home_Lab_2.jpg" alt="">
     </div>
 
     <!-- Text -->
@@ -3677,19 +3677,24 @@
       <div class="section-tag">Research Focus</div>
       <h2 class="section-title">Core Research Areas</h2>
       <div class="research-grid">
-        <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/HST2.jpg" alt="Hypersonic shock tunnel test section" onerror="this.style.opacity='0'">
+        
+        <div class="research-card" onclick="showPage('hypersonic-aerodynamics')">
+          <div class="research-card-image">
+            <img src="./images/Home_HAD.jpg" onerror="console.log('FAILED IMAGE LOAD')">
           </div>
+
           <div class="research-card-num">01 //</div>
-          <div class="research-card-title">Hypersonic Aerodynamics</div>
+
+          <h3 class="research-card-title">Hypersonic Aerodynamics</h3>
+
           <div class="research-card-desc">
-            Experimental and computational studies on hypersonic flows, including shock–boundary layer interactions,
+            Experimental and computational investigations of hypersonic flows, including shock–boundary layer interactions,
             aerodynamic heating, and high-speed inlet design.
           </div>
         </div>
 
         <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/5.jpg" alt="Hypersonic aeroelasticity research poster" onerror="this.style.opacity='0'">
+          <div class="research-card-image"><img src="./images/Home_HAE.jpg" alt="Hypersonic aeroelasticity research poster" onerror="this.style.opacity='0'">
           </div>
           <div class="research-card-num">02 //</div>
           <div class="research-card-title">Hypersonic Aeroelasticity</div>
@@ -3700,7 +3705,7 @@
         </div>
 
         <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/HST3.jpg" alt="High enthalpy free piston shock tunnel" onerror="this.style.opacity='0'">
+          <div class="research-card-image"><img src="./images/Home_HEF.jpg" alt="High enthalpy free piston shock tunnel" onerror="this.style.opacity='0'">
           </div>
           <div class="research-card-num">03 //</div>
           <div class="research-card-title">High-Enthalpy Flows</div>
@@ -3711,7 +3716,7 @@
         </div>
 
         <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/HST1.jpg" alt="Shock wave tunnel hardware" onerror="this.style.opacity='0'"></div>
+          <div class="research-card-image"><img src="./images/Home_SWP.jpg" alt="Shock wave tunnel hardware" onerror="this.style.opacity='0'"></div>
           <div class="research-card-num">04 //</div>
           <div class="research-card-title">Shockwave Physics</div>
           <div class="research-card-desc">
@@ -3721,7 +3726,7 @@
         </div>
 
         <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/CST1.jpg" alt="Chemical shock tube for kinetics studies" onerror="this.style.opacity='0'">
+          <div class="research-card-image"><img src="./images/Home_HTC.jpg" alt="Chemical shock tube for kinetics studies" onerror="this.style.opacity='0'">
           </div>
           <div class="research-card-num">05 //</div>
           <div class="research-card-title">High Temperature Chemical Kinetics</div>
@@ -3732,7 +3737,7 @@
         </div>
 
         <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/VST1.jpg"
+          <div class="research-card-image"><img src="./images/Home_BLE.jpg"
               alt="Vertical shock tube for shock-wave applications" onerror="this.style.opacity='0'"></div>
           <div class="research-card-num">06 //</div>
           <div class="research-card-title">Biological Engineering</div>
@@ -3743,7 +3748,7 @@
         </div>
 
         <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/SU1.jpg" alt="Sputtering unit for material coatings" onerror="this.style.opacity='0'">
+          <div class="research-card-image"><img src="./images/Home_MAT.jpg" alt="Sputtering unit for material coatings" onerror="this.style.opacity='0'">
           </div>
           <div class="research-card-num">07 //</div>
           <div class="research-card-title">Materials</div>
@@ -3754,7 +3759,7 @@
         </div>
 
         <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/RT1.jpg" alt="Compact tunnel for blast and shock tests" onerror="this.style.opacity='0'">
+          <div class="research-card-image"><img src="./images/Home_BWP.jpg" alt="Compact tunnel for blast and shock tests" onerror="this.style.opacity='0'">
           </div>
           <div class="research-card-num">08 //</div>
           <div class="research-card-title">Blast-wave Physics</div>
@@ -3764,7 +3769,7 @@
         </div>
 
         <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/FR1.jpg" alt="Flow reactor experimental setup" onerror="this.style.opacity='0'"></div>
+          <div class="research-card-image"><img src="./images/Home_IND.jpg" alt="Flow reactor experimental setup" onerror="this.style.opacity='0'"></div>
           <div class="research-card-num">09 //</div>
           <div class="research-card-title">Industrial Applications</div>
           <div class="research-card-desc">
@@ -4170,7 +4175,7 @@
                 <div class="mach-badge">Mach 4 — 13</div>
               </div>
               <div class="facility-image">
-                <img src="./images/HST1.jpg" alt="HST1"
+                <img src="./images/Facility_HST1.jpg" alt="HST1"
                   onerror="this.style.display='none';this.parentNode.querySelector('.facility-image-placeholder').style.display='block'" />
                 <div class="facility-image-placeholder" style="display:none">[ HST1.jpg ]</div>
               </div>
@@ -4200,7 +4205,7 @@
                 <div class="mach-badge">Mach 5.75 — 12</div>
               </div>
               <div class="facility-image">
-                <img src="./images/HST2.jpg" alt="HST2" onerror="this.style.display='none'" />
+                <img src="./images/Facility_HST2.jpg" alt="HST2" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ HST2.jpg ]</div>
               </div>
             </div>
@@ -4231,7 +4236,7 @@
                 <div class="mach-badge">Mach 6 — 12</div>
               </div>
               <div class="facility-image">
-                <img src="./images/HST3.jpg" alt="HST3" onerror="this.style.display='none'" />
+                <img src="./images/Facility_HST3.jpg" alt="HST3" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ HST3.jpg ]</div>
               </div>
             </div>
@@ -4260,7 +4265,7 @@
                 <div class="mach-badge">Mach 6 — 15</div>
               </div>
               <div class="facility-image">
-                <img src="./images/HST4.jpg" alt="HST4" onerror="this.style.display='none'" />
+                <img src="./images/Facility_HST4.jpg" alt="HST4" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ HST4.jpg ]</div>
               </div>
             </div>
@@ -4289,7 +4294,7 @@
                   upstream of diaphragm station for combustion driving mode.</p>
               </div>
               <div class="facility-image">
-                <img src="./images/HST5.jpg" alt="HST5" onerror="this.style.display='none'" />
+                <img src="./images/Facility_HST5.jpg" alt="HST5" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ HST5.jpg ]</div>
               </div>
             </div>
@@ -4313,7 +4318,7 @@
                 </div>
               </div>
               <div class="facility-image">
-                <img src="./images/CST1.jpg" alt="CST1" onerror="this.style.display='none'" />
+                <img src="./images/Facility_CST1.jpg" alt="CST1" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ CST1.jpg ]</div>
               </div>
             </div>
@@ -4337,7 +4342,7 @@
                 </div>
               </div>
               <div class="facility-image">
-                <img src="./images/CST3.jpg" alt="CST3" onerror="this.style.display='none'" />
+                <img src="./images/Facility_CST3.jpg" alt="CST3" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ CST3.jpg ]</div>
               </div>
             </div>
@@ -4365,7 +4370,7 @@
                 </div>
               </div>
               <div class="facility-image">
-                <img src="./images/VST1.jpg" alt="VST" onerror="this.style.display='none'" />
+                <img src="./images/Facility_VST1.jpg" alt="VST" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ VST1.jpg ]</div>
               </div>
             </div>
@@ -4390,7 +4395,7 @@
                 <div class="mach-badge">Mach 4 — 13</div>
               </div>
               <div class="facility-image">
-                <img src="./images/RT1.jpg" alt="Reddy Tunnel" onerror="this.style.display='none'" />
+                <img src="./images/Facility_RT1.jpg" alt="Reddy Tunnel" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ RT1.jpg ]</div>
               </div>
             </div>
@@ -4405,7 +4410,7 @@
                   measurements, and validation of kinetic mechanisms for supersonic combustion applications.</p>
               </div>
               <div class="facility-image">
-                <img src="./images/FR1.jpg" alt="Flow Reactor" onerror="this.style.display='none'" />
+                <img src="./images/Facility_FR1.jpg" alt="Flow Reactor" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ FR1.jpg ]</div>
               </div>
             </div>
@@ -4420,7 +4425,7 @@
                   barrier coatings, and specialized sensors for hypersonic test environments.</p>
               </div>
               <div class="facility-image">
-                <img src="./images/SU1.jpg" alt="Sputtering Unit" onerror="this.style.display='none'" />
+                <img src="./images/Facility_SU1.jpg" alt="Sputtering Unit" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ SU1.jpg ]</div>
               </div>
             </div>
@@ -4435,7 +4440,7 @@
                   infrastructure for experiments involving supercritical CO₂ and planetary entry simulation.</p>
               </div>
               <div class="facility-image">
-                <img src="./images/CF1.jpg" alt="CO2 Facility" onerror="this.style.display='none'" />
+                <img src="./images/Facility_CF1.jpg" alt="CO2 Facility" onerror="this.style.display='none'" />
                 <div class="facility-image-placeholder" style="display:none">[ CF1.jpg ]</div>
               </div>
             </div>
@@ -5090,187 +5095,170 @@
               });
             });
 
+        // ── Gallery Code ──
 
-          // ── Gallery Code ──
-          const galleryItems = [
-            { src: './images/L1.jpg', label: 'Open Day at LHSR', cat: 'open-day' },
-            { src: './images/L2.jpg', label: 'Visitors inside the laboratory hall', cat: 'visitors' },
-            { src: './images/5.jpg', label: 'Research presentation and results', cat: 'research-work' },
-            { src: './images/HST1.jpg', label: 'Hypersonic Shock Tunnel 1', cat: 'lab-facilities' },
-            { src: './images/HST2.jpg', label: 'Hypersonic Shock Tunnel 2', cat: 'lab-facilities' },
-            { src: './images/HST3.jpg', label: 'Hypersonic Shock Tunnel 3', cat: 'lab-facilities' },
-            { src: './images/HST4.jpg', label: 'Hypersonic Shock Tunnel 4', cat: 'lab-facilities' },
-            { src: './images/HST5.jpg', label: 'Hypersonic Shock Tunnel 5', cat: 'lab-facilities' },
-            { src: './images/CST1.jpg', label: 'Chemical shock tube experiment', cat: 'research-work' },
-            { src: './images/CST3.jpg', label: 'Chemical shock tube diagnostics', cat: 'research-work' },
-            { src: './images/VST1.jpg', label: 'Vertical Shock Tube', cat: 'lab-facilities' },
-            { src: './images/RT1.jpg', label: 'Reddy Tunnel experimental setup', cat: 'research-work' },
-            { src: './images/SU1.jpg', label: 'Sputtering unit for coatings', cat: 'lab-facilities' },
-            { src: './images/FR1.jpg', label: 'Flow reactor setup', cat: 'research-work' },
-            { src: './images/CF1.jpg', label: 'CO₂ facility 1', cat: 'lab-facilities' },
-            { src: './images/CF2.jpg', label: 'CO₂ facility 2', cat: 'lab-facilities' },
-          ];
+        // Categories (locked)
+        const CATEGORIES = Object.freeze({
+          OPEN: 'open-day',
+          VISITORS: 'visitors',
+          LAB: 'lab-facilities',
+          RESEARCH: 'research-work'
+        });
 
-          function buildGallery(filter = 'all') {
-            const items = filter === 'all' ? galleryItems : galleryItems.filter(g => g.cat === filter);
-            const grid = document.getElementById('gallery-grid');
-            if (grid) {
-              grid.innerHTML = items.map(g => `
-        <div class="gallery-item">
-          <img src="${g.src}" alt="${g.label}" onerror="this.parentNode.style.background='var(--navy3)';this.style.display='none'" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <span class="gallery-item-label">${g.label}</span>
-          </div>
-        </div>`).join('');
-            }
-          }
-
-          function filterGallery(cat, btn) {
-            document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
-            btn.classList.add('active');
-            buildGallery(cat);
-          }
-
-          function sendContactMail() {
-            const name = document.getElementById('contact-name')?.value.trim() || '';
-            const email = document.getElementById('contact-email')?.value.trim() || '';
-            const subject = document.getElementById('contact-subject')?.value.trim() || 'LHSR enquiry';
-            const message = document.getElementById('contact-message')?.value.trim() || '';
-            const body = [
-              name ? `Name: ${name}` : '',
-              email ? `Email: ${email}` : '',
-              '',
-              message
-            ].filter(Boolean).join('\n');
-
-            window.location.href = `mailto:srisharao@iisc.ac.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          }
-
-          function addFooterBrands() {
-            document.querySelectorAll('footer').forEach(footer => {
-              if (footer.querySelector('.footer-brand-row')) return;
-              footer.insertAdjacentHTML('afterbegin', `
-      <div class="footer-brand-row">
-        <div class="footer-institution-logo footer-logo-left"><img src="./aero-logo.svg" alt="Department of Aerospace Engineering, IISc" onerror="this.style.display='none'"></div>
-        <div class="footer-brand-center">
-          <div>
-            <div class="footer-brand-name">Laboratory for Hypersonic and Shock Wave Research</div>
-            <div class="footer-brand-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
-          </div>
-        </div>
-        <div class="footer-institution-logo footer-logo-right"><img src="./iisc-logo.svg" alt="Indian Institute of Science" onerror="this.style.display='none'"></div>
-      </div>
-    `);
-              const directLogo = footer.querySelector(':scope > .footer-logo');
-              if (directLogo) directLogo.style.display = 'none';
-              const nestedLogo = footer.querySelector(':scope > div .footer-logo');
-              if (nestedLogo && nestedLogo.parentElement) nestedLogo.parentElement.style.display = 'none';
-            });
-          }
-
-          // ── Navigation Code ──
-          function showPage(name) {
-            // 1. Hide every page explicitly
-            document.querySelectorAll('.page').forEach(p => {
-              p.classList.remove('active');
-              p.style.display = 'none';
-            });
-
-            // 2. Find the target page and make it visible
-            const activePage = document.getElementById('page-' + name);
-            if (activePage) {
-              activePage.classList.add('active');
-              activePage.style.display = 'block'; // Force override any CSS 'none'
-            }
-
-            // 3. Update the Navigation link styling
-            document.querySelectorAll('.nav-links a').forEach(a => {
-              a.classList.toggle('active', a.getAttribute('data-page') === name);
-            });
-
-            // 4. Reset scroll position and close mobile menu
-            window.scrollTo(0, 0);
-            document.getElementById('navLinks').classList.remove('open');
-
-            if (name === 'gallery') buildGallery('all');
-            if (name === 'research') setTimeout(() => window._simResize?.(), 60);
-
-            // 5. Update the URL hash
-            history.pushState(null, null, '#' + name);
-          }
-
-          // Add this to your DOMContentLoaded event
-          window.addEventListener('load', () => {
-            const hash = window.location.hash.replace('#', '');
-            if (hash && document.getElementById('page-' + hash)) {
-              showPage(hash);
-            } else {
-              showPage('home'); // Default
-            }
-          });
-          function toggleMenu() {
-            const nav = document.getElementById('navLinks');
-            nav.classList.toggle('open');
-          }
-
-          // Auto-highlight active nav link on load
-          document.addEventListener('DOMContentLoaded', function () {
-            const homeLink = document.querySelector('.nav-links a[data-page="home"]');
-            // No home link in nav, but highlight none by default — home is the logo
-            addFooterBrands();
-            buildGallery('all');
-          });
-        </script>
-        <script>
-        const galleryData = [
+        // Gallery Data
+        const galleryItems = [
           // 🔵 OPEN DAY
-          { src: "./images/Open_Day_1.jpg", category: "open-day", label: "Open Day" },
-          { src: "./images/Open_Day_2.jpg", category: "open-day", label: "Open Day" },
+          { src: './images/Gallery_Lab_1.jpg', label: 'Open Day at LHSR', cat: CATEGORIES.OPEN },
 
           // 🟢 VISITORS
-          { src: "./images/Visitors_1.jpg", category: "visitors", label: "Visitors" },
-
-          // 🟡 LAB & FACILITIES
-          { src: "./images/Lab_1.jpg", category: "lab-facilities", label: "Lab & Facilities" },
-          { src: "./images/Lab_2.jpg", category: "lab-facilities", label: "Lab & Facilities" },
+          { src: './images/Gallery_Lab_2.jpg', label: 'Visitors inside the laboratory hall', cat: CATEGORIES.VISITORS },
 
           // 🔴 RESEARCH WORK
-          { src: "./images/Research_1.jpg", category: "research-work", label: "Research Work" }, // Added missing comma here
-          { src: "./images/Research_2.jpg", category: "research-work", label: "Research Work" }
+          { src: './images/Gallery_Research_1.jpg', label: 'Research presentation and results', cat: CATEGORIES.RESEARCH },
+
+          // 🟡 LAB & FACILITIES
+          { src: './images/Gallery_HST1.jpg', label: 'Hypersonic Shock Tunnel 1', cat: CATEGORIES.LAB },
+          { src: './images/Gallery_HST2.jpg', label: 'Hypersonic Shock Tunnel 2', cat: CATEGORIES.LAB },
+          { src: './images/Gallery_HST3.jpg', label: 'Hypersonic Shock Tunnel 3', cat: CATEGORIES.LAB },
+          { src: './images/Gallery_HST4.jpg', label: 'Hypersonic Shock Tunnel 4', cat: CATEGORIES.LAB },
+          { src: './images/Gallery_HST5.jpg', label: 'Hypersonic Shock Tunnel 5', cat: CATEGORIES.LAB },
+
+          { src: './images/Gallery_CST1.jpg', label: 'Chemical shock tube experiment', cat: CATEGORIES.RESEARCH },
+          { src: './images/Gallery_CST3.jpg', label: 'Chemical shock tube diagnostics', cat: CATEGORIES.RESEARCH },
+
+          { src: './images/Gallery_VST1.jpg', label: 'Vertical Shock Tube', cat: CATEGORIES.LAB },
+          { src: './images/Gallery_RT1.jpg', label: 'Reddy Tunnel experimental setup', cat: CATEGORIES.RESEARCH },
+
+          { src: './images/Gallery_SU1.jpg', label: 'Sputtering unit for coatings', cat: CATEGORIES.LAB },
+          { src: './images/Gallery_FR1.jpg', label: 'Flow reactor setup', cat: CATEGORIES.RESEARCH },
+
+          { src: './images/Gallery_CF1.jpg', label: 'CO₂ facility 1', cat: CATEGORIES.LAB },
+          { src: './images/Gallery_CF2.jpg', label: 'CO₂ facility 2', cat: CATEGORIES.LAB }
         ];
 
-        const galleryGrid = document.getElementById("gallery-grid");
+        // Build Gallery
+        function buildGallery(filter = 'all') {
+          const items = filter === 'all'
+            ? galleryItems
+            : galleryItems.filter(g => g.cat === filter);
 
-        function renderGallery(filter = "all") {
-          if (!galleryGrid) return;
-          galleryGrid.innerHTML = "";
+          const grid = document.getElementById('gallery-grid');
+          if (!grid) return;
 
-          galleryData.forEach(item => {
-            if (filter === "all" || item.category === filter) {
-              const div = document.createElement("div");
-              div.className = "gallery-item";
+          grid.innerHTML = items.map(g => `
+            <div class="gallery-item">
+              <img src="${g.src}" alt="${g.label}"
+                  loading="lazy"
+                  onerror="this.parentNode.style.background='var(--navy3)'; this.style.display='none'">
+              <div class="gallery-item-overlay">
+                <span class="gallery-item-label">${g.label}</span>
+              </div>
+            </div>
+          `).join('');
+        }
 
-              div.innerHTML = `
-                <img src="${item.src}" alt="${item.label}" onerror="this.parentElement.style.background='#d8dee4'; this.style.opacity='0';">
-                <div class="gallery-item-overlay">
-                  <div class="gallery-item-label">${item.label}</div>
+        // Filter handler (with active tab highlight)
+        function filterGallery(category, btn) {
+          document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+          if (btn) btn.classList.add('active');
+
+          buildGallery(category);
+        }
+
+        // ── Contact Form ──
+        function sendContactMail() {
+          const name = document.getElementById('contact-name')?.value.trim() || '';
+          const email = document.getElementById('contact-email')?.value.trim() || '';
+          const subject = document.getElementById('contact-subject')?.value.trim() || 'LHSR enquiry';
+          const message = document.getElementById('contact-message')?.value.trim() || '';
+
+          const body = [
+            name ? `Name: ${name}` : '',
+            email ? `Email: ${email}` : '',
+            '',
+            message
+          ].filter(Boolean).join('\n');
+
+          window.location.href =
+            `mailto:srisharao@iisc.ac.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        // ── Footer Branding ──
+        function addFooterBrands() {
+          document.querySelectorAll('footer').forEach(footer => {
+            if (footer.querySelector('.footer-brand-row')) return;
+
+            footer.insertAdjacentHTML('afterbegin', `
+              <div class="footer-brand-row">
+                <div class="footer-institution-logo footer-logo-left">
+                  <img src="./aero-logo.svg" alt="Department of Aerospace Engineering, IISc" onerror="this.style.display='none'">
                 </div>
-              `;
-              galleryGrid.appendChild(div);
+
+                <div class="footer-brand-center">
+                  <div>
+                    <div class="footer-brand-name">Laboratory for Hypersonic and Shock Wave Research</div>
+                    <div class="footer-brand-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
+                  </div>
+                </div>
+
+                <div class="footer-institution-logo footer-logo-right">
+                  <img src="./iisc-logo.svg" alt="Indian Institute of Science" onerror="this.style.display='none'">
+                </div>
+              </div>
+            `);
+
+            const directLogo = footer.querySelector(':scope > .footer-logo');
+            if (directLogo) directLogo.style.display = 'none';
+
+            const nestedLogo = footer.querySelector(':scope > div .footer-logo');
+            if (nestedLogo && nestedLogo.parentElement) {
+              nestedLogo.parentElement.style.display = 'none';
             }
           });
         }
 
-        // Ensure the filter buttons call 'renderGallery' and not 'buildGallery'
-        function filterGallery(category, btn) {
-          document.querySelectorAll(".gallery-tab").forEach(t => t.classList.remove("active"));
-          btn.classList.add("active");
-          renderGallery(category);
+        // ── Navigation ──
+        function showPage(name) {
+          document.querySelectorAll('.page').forEach(p => {
+            p.classList.remove('active');
+            p.style.display = 'none';
+          });
+
+          const activePage = document.getElementById('page-' + name);
+          if (activePage) {
+            activePage.classList.add('active');
+            activePage.style.display = 'block';
+          }
+
+          document.querySelectorAll('.nav-links a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('data-page') === name);
+          });
+
+          window.scrollTo(0, 0);
+          document.getElementById('navLinks').classList.remove('open');
+
+          if (name === 'gallery') buildGallery('all');
+
+          history.pushState(null, null, '#' + name);
         }
 
-        // Initial load
-        document.addEventListener('DOMContentLoaded', () => {
-            renderGallery();
+        // ── Init ──
+        window.addEventListener('load', () => {
+          const hash = window.location.hash.replace('#', '');
+          if (hash && document.getElementById('page-' + hash)) {
+            showPage(hash);
+          } else {
+            showPage('home');
+          }
+        });
+
+        function toggleMenu() {
+          document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          addFooterBrands();
+          buildGallery('all');
         });
         </script>
 </body>
