@@ -3571,7 +3571,7 @@
 	/* Enlarged state for both faculty and student cards */
 	.people-card.enlarged, 
 	.faculty-card.enlarged {
-		transform: scale(1.50) !important; /* Scale up by 50% */
+		transform: scale(1.15) !important; /* Scale up by 15% */
 		z-index: 100 !important;           /* Bring to front */
 		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3) !important;
 		position: relative;
@@ -3587,11 +3587,65 @@
 	/* Smooth transition for the enlargement */
 	.people-card, .faculty-card {
 		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, z-index 0s;
+	}
+	/* --- 5. Dark Mode Variables --- */
+	body.dark-theme {
+		--navy: #0a1120;
+		--navy2: #1e293b;
+		--navy3: #020617;
+		--white: #f8fafc;
+		--muted: #94a3b8;
+		--border: rgba(255, 255, 255, 0.1);
+		--card: #1e293b;
+		--hero-text: #f0f7ff;
+	}
+	body.dark-theme nav { background: rgba(10, 17, 32, 0.95); border-bottom-color: var(--border); }
+	body.dark-theme .research-card, body.dark-theme .faculty-card, 
+	body.dark-theme .people-card, body.dark-theme .scholar-panel,
+	body.dark-theme .publication-list, body.dark-theme .opp-card { 
+		background: #111a2e; 
+		color: #f8fafc; 
+	}
+	body.dark-theme .section-title, body.dark-theme .faculty-name, body.dark-theme .people-card-name {
+		color: #ffffff;
+	}
+
+	/* --- 8. Scroll Progress Bar --- */
+	#scroll-progress {
+		position: fixed;
+		top: 0; left: 0; width: 0%; height: 4px;
+		background: var(--blue);
+		z-index: 9999;
+	}
+
+	/* --- 8. Skeleton Loaders --- */
+	.skeleton {
+		background: #e2e8f0;
+		height: 350px;
+		border-radius: 8px;
+		position: relative;
+		overflow: hidden;
+	}
+	body.dark-theme .skeleton { background: #1e293b; }
+	.skeleton::after {
+		content: ""; position: absolute; inset: 0;
+		background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+		animation: shimmer 1.5s infinite;
+	}
+	@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+	/* Click to Enlarge Class */
+	.people-card.enlarged, .faculty-card.enlarged {
+		transform: scale(1.1) !important;
+		z-index: 1000 !important;
+		box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
 	}	
+	
   </style>
 </head>
 
 <body>
+	<div id="scroll-progress"></div>
 
   <nav>
     <a class="nav-logo" href="#" onclick="showPage('home')">
@@ -3616,6 +3670,7 @@
       <li><a href="#" onclick="showPage('gallery')" data-page="gallery">Gallery</a></li>
       <li><a href="#" onclick="showPage('opportunities')" data-page="opportunities">Opportunities</a></li>
       <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
+	  <li><button onclick="toggleDarkMode()" id="themeBtn" style="background:rgba(0,143,168,0.1); border:1px solid var(--blue); color:var(--blue); cursor:pointer; padding:6px 12px; border-radius:4px; font-family:'Space Mono'; font-size:11px; margin-left:10px;">🌓 DARK</button></li>
     </ul>
 
     <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -4167,6 +4222,17 @@
             });
           </script>
         </div>
+		<div class="scholar-panel" style="margin-top: 3rem;">
+    <div class="section-tag">Hypersonic Tools</div>
+    <h2 class="section-title" style="font-size: 2rem;">Total Temperature Estimator</h2>
+    <p class="publication-note">Calculate the stagnation temperature (T₀) encountered by a vehicle at hypersonic speeds (approx. 20km altitude).</p>
+    <div style="display:flex; gap:15px; align-items:center; margin-top:20px; flex-wrap:wrap;">
+        <label class="form-label">Input Mach (M):</label>
+        <input type="number" id="tool-mach" value="5" step="0.5" style="width:100px; padding:10px; border-radius:5px; border:1px solid var(--border);">
+        <button class="btn-primary" onclick="calcStagnationTemp()">Compute T₀</button>
+        <div style="font-family:'Space Mono'; font-weight:bold; color:var(--blue); font-size:1.2rem;" id="stagnation-res">1451 K / 1177 °C</div>
+    </div>
+</div>
         <footer>
           <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
           <div class="footer-copy">© 2025 LHSR, IISc Bengaluru</div>
@@ -4561,6 +4627,11 @@
             <p>Peer-reviewed publications from LHSR</p>
           </div>
           <div class="page-content">
+		  <div class="scholar-panel" style="margin-bottom: 25px; padding: 15px;">
+    <div class="contact-item-label" style="margin-bottom: 8px;">Filter Publications</div>
+    <input type="text" id="pubSearch" placeholder="Search by author, year, or keyword..." 
+           style="width:100%; padding:12px; border-radius:6px; border:1px solid var(--border); background:var(--navy); color:var(--white);">
+</div>
             <div class="publications-intro">
               <div class="scholar-panel">
                 <div class="section-tag">Scholar Links</div>
@@ -4935,6 +5006,12 @@
           // Force the browser to always load the freshest CSV file (fixes caching)
           const cacheBuster = new Date().getTime();
           const csvUrl = `LHSR_Website_Consolidated.csv?v=${cacheBuster}`;
+
+			// --- STEP 7A: SHOW SKELETONS ---
+			['faculty-grid', 'assocFacultyContainer', 'phd-grid', 'mtech-grid', 'research-members-grid', 'staff-grid', 'alumni-grid'].forEach(id => {
+				const el = document.getElementById(id);
+				if(el) el.innerHTML = '<div class="skeleton"></div>'.repeat(4);
+			});
 
           fetch(csvUrl)
             .then(res => {
@@ -5316,6 +5393,63 @@
           addFooterBrands();
           buildGallery('all');
         });
+		// 1. Scroll Progress Bar
+		window.addEventListener('scroll', () => {
+			const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+			const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+			const scrolled = (winScroll / height) * 100;
+			document.getElementById("scroll-progress").style.width = scrolled + "%";
+		});
+
+		// 2. Dark Mode Toggle
+		function toggleDarkMode() {
+			document.body.classList.toggle('dark-theme');
+			const isDark = document.body.classList.contains('dark-theme');
+			localStorage.setItem('lhsr-theme', isDark ? 'dark' : 'light');
+			document.getElementById('themeBtn').innerText = isDark ? "☀️ LIGHT" : "🌓 DARK";
+		}
+		// Load saved theme on boot
+		if(localStorage.getItem('lhsr-theme') === 'dark') toggleDarkMode();
+
+		// 3. Publication Search
+		document.getElementById('pubSearch')?.addEventListener('input', function(e) {
+			const term = e.target.value.toLowerCase();
+			document.querySelectorAll('.publication-item').forEach(item => {
+				item.style.display = item.innerText.toLowerCase().includes(term) ? 'grid' : 'none';
+			});
+		});
+
+		// 4. Stagnation Temp Calculator
+		function calcStagnationTemp() {
+			const M = parseFloat(document.getElementById('tool-mach').value);
+			const T_inf = 223.15; // Ambient at ~20km
+			const T0 = T_inf * (1 + 0.2 * Math.pow(M, 2));
+			document.getElementById('stagnation-res').innerText = `${Math.round(T0)} K / ${Math.round(T0 - 273.15)} °C`;
+		}
+
+		// 5. Stat Counter Animation
+		const animateStats = () => {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const el = entry.target;
+						const end = parseInt(el.innerText);
+						let start = 0;
+						const duration = 1500;
+						const step = (ts) => {
+							if(!start) start = ts;
+							const progress = Math.min((ts - start) / duration, 1);
+							el.innerText = Math.floor(progress * end) + (el.innerText.match(/\+/g) || "");
+							if(progress < 1) requestAnimationFrame(step);
+						};
+						requestAnimationFrame(step);
+						observer.unobserve(el);
+					}
+				});
+			}, { threshold: 0.5 });
+			document.querySelectorAll('.stat-num').forEach(n => observer.observe(n));
+		};
+		animateStats();		
         </script>
 </body>
 
