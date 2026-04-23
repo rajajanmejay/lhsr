@@ -3640,7 +3640,18 @@
 		z-index: 1000 !important;
 		box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
 	}	
-	
+/* --- Custom Scrollbar --- */
+	::-webkit-scrollbar { width: 8px; }
+	::-webkit-scrollbar-track { background: var(--navy); }
+	::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 10px; }
+	::-webkit-scrollbar-thumb:hover { background: var(--blue2); }
+	* { scrollbar-width: thin; scrollbar-color: var(--blue) var(--navy); }
+
+	/* --- Hover Glow --- */
+	.people-card:hover, .faculty-card:hover, .research-card:hover {
+		outline: 2px solid var(--blue);
+		outline-offset: 2px;
+	}	
   </style>
 </head>
 
@@ -4220,6 +4231,22 @@
               // Initial setup — only useful if page is already visible on load
               setTimeout(resizeCanvas, 100);
             });
+	
+	// 1. Scroll Progress Bar & Back to Top
+		window.addEventListener('scroll', () => {
+			const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+			const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+			const scrolled = (winScroll / height) * 100;
+			document.getElementById("scroll-progress").style.width = scrolled + "%";
+            
+            // Back to Top Logic
+            const btt = document.getElementById("backToTop");
+            if (btt) btt.style.display = winScroll > 500 ? "block" : "none";
+		});
+
+        // Add the click action for Back to Top
+        document.getElementById("backToTop").onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+});
           </script>
         </div>
 		<div class="scholar-panel" style="margin-top: 3rem;">
@@ -5116,7 +5143,7 @@
 
                   card.innerHTML = `
           <div class="faculty-photo-wrap" id="fw-${imgId}">
-            <img src="./images/${imgId}.jpg"
+            <img src="./images/${imgId}.jpg" loading="lazy"
                  alt="${person.Name}"
                  onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div class=\\'faculty-letter\\'>${initial}</div>'; }">
             <div class="faculty-card-base">
@@ -5159,7 +5186,7 @@
 
                   card.innerHTML = `
           <div class="people-card-photo-wrap">
-            <img src="./images/${imgId}.jpg"
+            <img src="./images/${imgId}.jpg" loading="lazy"
                  alt="${person.Name}"
                  onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div class=\\'people-card-letter\\'>${initial}</div>'; }">
             <div class="people-card-base">
@@ -5348,12 +5375,33 @@
           });
         }
 
-        // ── Navigation ──
+// ── Navigation ──
         function showPage(name) {
           document.querySelectorAll('.page').forEach(p => {
             p.classList.remove('active');
             p.style.display = 'none';
           });
+
+          const activePage = document.getElementById('page-' + name);
+          if (activePage) {
+            activePage.classList.add('active');
+            activePage.style.display = 'block';
+          }
+
+          document.querySelectorAll('.nav-links a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('data-page') === name);
+          });
+
+          window.scrollTo(0, 0);
+          document.getElementById('navLinks').classList.remove('open');
+
+          if (name === 'gallery') buildGallery('all');
+
+          history.pushState(null, null, '#' + name);
+          
+          // ADD THIS LINE:
+          document.title = `LHSR | ${name.charAt(0).toUpperCase() + name.slice(1)} – IISc Bengaluru`;
+        }
 
           const activePage = document.getElementById('page-' + name);
           if (activePage) {
@@ -5451,6 +5499,8 @@
 		};
 		animateStats();		
         </script>
+		<button id="backToTop" title="Go to top" style="display:none; position:fixed; bottom:30px; right:30px; z-index:999; background:var(--blue); color:white; border:none; outline:none; cursor:pointer; padding:15px; border-radius:50%; width:50px; height:50px; font-size:20px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">↑</button>
+		
 </body>
 
 </html>
