@@ -3567,6 +3567,27 @@
 	.people-card-hover::-webkit-scrollbar-thumb, .faculty-card-hover::-webkit-scrollbar-thumb {
 		background: rgba(255,255,255,0.2);
 	}
+	
+	/* Enlarged state for both faculty and student cards */
+	.people-card.enlarged, 
+	.faculty-card.enlarged {
+		transform: scale(1.15) !important; /* Scale up by 15% */
+		z-index: 100 !important;           /* Bring to front */
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3) !important;
+		position: relative;
+	}
+
+	/* Ensure the hover overlay stays visible or adjusts when enlarged if needed */
+	.people-card.enlarged .people-card-hover,
+	.faculty-card.enlarged .faculty-card-hover {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Smooth transition for the enlargement */
+	.people-card, .faculty-card {
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, z-index 0s;
+	}	
   </style>
 </head>
 
@@ -4957,7 +4978,19 @@
                 if (!person.Name || !person.Name.trim()) return; // Skip empty rows
 
                 const card = document.createElement('div');
+				// CLICK TO ENLARGE LOGIC
+				card.addEventListener('click', function(e) {
+					// Prevent enlargement if a link (LinkedIn/Scholar) inside the card was clicked
+					if (e.target.tagName === 'A') return;
 
+					// Remove 'enlarged' from any other card first (optional, for a clean look)
+					document.querySelectorAll('.enlarged').forEach(el => {
+						if (el !== card) el.classList.remove('enlarged');
+					});
+
+					// Toggle enlarged class on the clicked card
+					this.classList.toggle('enlarged');
+				});
                 const imgId = person.ID ? person.ID.trim() : '';
                 const linkedInProfile = normalizeExternalUrl(person.LinkedIn_Profile);
                 const role = (person.Role || '').toLowerCase();
