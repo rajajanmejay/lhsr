@@ -3554,7 +3554,19 @@
     align-self: flex-start;
     max-width: 220px;
   }
+  
+	.people-card-hover, .faculty-card-hover {
+		overflow-y: auto;
+		scrollbar-width: thin; /* For Firefox */
+	}
 
+	/* Optional: custom scrollbar for Chrome/Safari */
+	.people-card-hover::-webkit-scrollbar, .faculty-card-hover::-webkit-scrollbar {
+		width: 4px;
+	}
+	.people-card-hover::-webkit-scrollbar-thumb, .faculty-card-hover::-webkit-scrollbar-thumb {
+		background: rgba(255,255,255,0.2);
+	}
   </style>
 </head>
 
@@ -4960,6 +4972,12 @@
                   const websiteUrl = person.Website_Link ? normalizeExternalUrl(person.Website_Link) : '';
                   const googleScholar = person.Google_Scholar ? normalizeExternalUrl(person.Google_Scholar) : '';
                   // linkedInProfile is already extracted earlier in the loop
+				// Extract Hobbies
+				const hobbiesHtml = person.Hobbies && person.Hobbies.trim() 
+					? `<p class="faculty-research" style="margin-top: 8px; font-style: italic;">
+						<strong>Hobbies:</strong> ${person.Hobbies}
+					   </p>` 
+					: '';
 
                   // 2. Generate the HTML buttons for each link
                   const linkedInHtml = linkedInProfile
@@ -4996,7 +5014,7 @@
               <div class="faculty-name">${person.Name}</div>
               <div class="faculty-role">${person.Role || ''}</div>
               <p class="faculty-research">${person.Research_Field || ''}</p>
-              ${linksContainer} 
+				${hobbiesHtml} ${linksContainer} 
             </div>
           </div>
         `;
@@ -5013,6 +5031,12 @@
                   // Standard card for everyone else
                   card.className = 'people-card';
                   const initial = person.Name.charAt(0).toUpperCase();
+				// Extract Hobbies
+				const hobbiesHtml = person.Hobbies && person.Hobbies.trim() 
+					? `<div class="people-card-research" style="font-size: 0.8rem; margin-top: 4px; opacity: 0.9;">
+						<em>Hobbies: ${person.Hobbies}</em>
+					   </div>` 
+					: '';				  
                   const researchHtml = person.Research_Field
                     ? `<div class="people-card-research">${person.Research_Field}</div>`
                     : '';
@@ -5032,8 +5056,8 @@
             <div class="people-card-hover">
               <div class="people-card-name">${person.Name}</div>
               <div class="people-card-role">${person.Role || ''}</div>
-              ${researchHtml}
-              ${linkedInHtml}
+				  ${researchHtml}
+				  ${hobbiesHtml} ${linkedInHtml}
             </div>
           </div>
         `;
