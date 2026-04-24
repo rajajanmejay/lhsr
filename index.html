@@ -3965,6 +3965,29 @@ footer > div:last-child{
 footer *{
   align-self:auto !important;
 }
+	  @media (max-width: 900px){
+
+.nav-links{
+display:none;
+}
+
+.nav-links.open{
+display:flex;
+flex-direction:column;
+position:absolute;
+top:76px;
+left:0;
+right:0;
+background:#0b2a47;
+padding:20px;
+z-index:9999;
+}
+
+.nav-hamburger{
+display:flex;
+}
+
+}
   </style>
 </head>
 
@@ -5838,21 +5861,34 @@ function buildGallery(filter = 'all') {
       <p id="modalText"></p>
     </div>
   </div>
-/* ADD before </body> */
+<script>
 document.addEventListener("DOMContentLoaded", function () {
-  const btn = document.getElementById("menuBtn");
-  const menu = document.querySelector(".nav-links");
 
-  btn.addEventListener("click", function () {
-    menu.classList.toggle("open");
-  });
+  const menuBtn = document.querySelector(".nav-hamburger");
+  const navMenu = document.querySelector(".nav-links");
 
-  /* close after clicking link */
-  menu.querySelectorAll("a").forEach(link=>{
-    link.addEventListener("click", ()=>{
-      menu.classList.remove("open");
+  if(menuBtn && navMenu){
+
+    menuBtn.onclick = function(e){
+      e.stopPropagation();
+      navMenu.classList.toggle("open");
+    };
+
+    document.querySelectorAll(".nav-links a").forEach(link=>{
+      link.onclick = function(){
+        navMenu.classList.remove("open");
+      };
     });
-  });
+
+    document.addEventListener("click", function(e){
+      if(!menuBtn.contains(e.target) && !navMenu.contains(e.target)){
+        navMenu.classList.remove("open");
+      }
+    });
+
+  }
+
 });
+</script>
 </body>
 </html>
