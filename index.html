@@ -3790,19 +3790,36 @@ center/cover no-repeat;
     .page-header { padding-top: 170px !important; }
     .about-section { padding-top: 130px !important; }
 
-    /* Mobile overrides for the new rows */
+/* Mobile overrides for the new rows */
     @media (max-width: 900px) {
       .nav-top-row {
         padding: 15px 20px !important;
       }
       .nav-institution-logos {
-        display: none !important; /* Hides Aero/IISc logos to save space on phones */
+        display: none !important; 
       }
+      
+      /* FIX 1: Make the bottom row invisible without using display:none, 
+         so the menu inside it can still pop out! */
       .nav-bottom-row {
-        display: none !important; /* Hide the bottom row; links will live in the hamburger menu */
+        height: 0 !important; 
+        padding: 0 !important; 
+        background: transparent !important; 
+        overflow: visible !important;
+        border: none !important;
       }
       .nav-links.open {
-        top: 85px !important; /* Adjust dropdown position */
+        top: 66px !important; 
+      }
+      
+      /* FIX 2: Stop the Hero text from squishing into a 320px box */
+      .hero > * {
+        max-width: 100% !important;
+      }
+      .hero-title {
+        font-size: 2.4rem !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
       }
     }	
 /* REAL FIX = parent section has huge height, not footer */
