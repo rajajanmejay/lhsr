@@ -3652,6 +3652,30 @@ center/cover no-repeat;
         border-color: transparent !important;
       }
     }
+	  /* ── MOBILE NAV OVERLAP FIX ── */
+    @media (max-width: 900px) {
+      /* 1. Strip away the massive desktop margins */
+      .nav-logo-mark {
+        margin-left: 0 !important;
+      }
+      
+      /* 2. Target the text container and give it room to wrap */
+      .nav-logo-mark + div {
+        margin-left: 12px !important; 
+        white-space: normal !important; 
+        max-width: 200px; /* Keeps the text away from the menu button */
+      }
+      
+      /* 3. Shrink the logo and text slightly so they fit neatly */
+      .nav-logo-mark img {
+        height: 30px !important;
+      }
+      
+      .nav-logo-text {
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+      }
+    }
   </style>
 </head>
 
