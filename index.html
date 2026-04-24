@@ -130,23 +130,34 @@
       list-style: none;
     }
 
-    .nav-links a {
+.nav-links a {
       padding: 8px 16px;
       font-family: 'Space Mono', monospace;
       font-size: 13px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #4a6080;
+      
+      /* Added !important to force it to pure white */
+      color: #ffffff !important; 
+      
       text-decoration: none;
       border: 1px solid transparent;
       transition: all 0.2s;
     }
+	
+	/* Paste this into your .css file */
+.nav-logo-mark img {
+  height: 50px !important;
+  width: auto !important;
+  max-width: 180px; 
+  object-fit: contain; 
+}
 
     .nav-links a:hover,
     .nav-links a.active {
-      color: var(--blue);
-      border-color: var(--border);
-      background: rgba(0, 119, 204, 0.07);
+      color: #ffffff !important; 
+      border-color: rgba(255, 255, 255, 0.8) !important; 
+      background: rgba(255, 255, 255, 0.1) !important; 
     }
 
     .nav-hamburger {
@@ -3560,18 +3571,23 @@
 
 <body>
 
-  <nav>
-    <a class="nav-logo" href="#" onclick="showPage('home')">
-      <div class="nav-logo-mark"><img src="./lhsr-logo.png" alt="LHSR"></div>
-      <div>
-        <div class="nav-logo-text">Laboratory for Hypersonic and Shock wave Research</div>
-        <div class="nav-logo-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
+<nav style="background-color: #0b1c2e;"> 
+<a class="nav-logo" href="#" onclick="showPage('home')" style="text-decoration: none; display: flex; align-items: center;">
+      
+      <div class="nav-logo-mark" style="margin-left: 50px; background: transparent !important; border: none !important; display: flex; align-items: center; overflow: visible;">
+        <img src="./lhsr-logo-white.png" alt="LHSR" style="height: 45px !important; width: auto !important; max-width: 220px !important; object-fit: contain; display: block;">
       </div>
+
+      <div style="margin-left: 75px; white-space: nowrap;">
+        <div class="nav-logo-text" style="color: #ffffff;">Laboratory for Hypersonic and Shock wave Research</div>
+        <div class="nav-logo-sub" style="color: #cbd5e1;">Department of Aerospace Engineering, IISc Bengaluru</div>
+      </div>
+      
     </a>
 
     <div class="nav-institution-logos" aria-label="Institution logos">
-      <img src="./aero-logo-blue.png" alt="Department of Aerospace Engineering, IISc">
-      <img src="./iisc-logo-blue.png" alt="Indian Institute of Science">
+      <img src="./aero-logo.png" alt="Department of Aerospace Engineering, IISc">
+      <img src="./iisc-logo.png" alt="Indian Institute of Science">
     </div>
 
     <ul class="nav-links" id="navLinks">
