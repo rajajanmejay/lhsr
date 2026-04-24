@@ -3667,57 +3667,7 @@ center/cover no-repeat;
     .nav-hamburger span {
       background-color: #ffffff !important;
     }
-	/* MOBILE MENU FIX */
-.nav-hamburger{
-  display:none;
-  background:none;
-  border:none;
-  cursor:pointer;
-  padding:10px;
-  z-index:2001;
-}
 
-.nav-hamburger span{
-  display:block;
-  width:24px;
-  height:2px;
-  margin:5px 0;
-  background:#ffffff;
-  transition:.3s;
-}
-
-/* mobile */
-@media (max-width:900px){
-
-  .nav-hamburger{
-    display:block !important;
-  }
-
-  .nav-links{
-    display:none !important;
-    position:absolute;
-    top:76px;
-    left:0;
-    right:0;
-    background:#0b2a47;
-    flex-direction:column;
-    padding:18px;
-    gap:10px;
-    z-index:2000;
-  }
-
-  .nav-links.open{
-    display:flex !important;
-  }
-
-  .nav-links a{
-    display:block;
-    width:100%;
-    padding:12px;
-    border-radius:6px;
-    color:#fff !important;
-  }
-}
     @media (max-width: 900px) {
       /* 2. Force the text links in the white mobile dropdown to be dark again */
       .nav-links.open a {
@@ -3856,34 +3806,7 @@ center/cover no-repeat;
       }
     }	
 /* REAL FIX = parent section has huge height, not footer */
-	@media (max-width: 900px) {
-	  /* Override the display:none !important you have currently */
-	  .nav-bottom-row {
-	    display: none; 
-	    position: absolute;
-	    top: 70px; /* Adjust based on your top row height */
-	    left: 0;
-	    width: 100% !important;
-	    background: #0b1c2e !important; /* Matches your header theme */
-	    z-index: 999;
-	  }
-	
-	  .nav-links.open {
-	    display: flex !important;
-	    flex-direction: column;
-	    width: 100%;
-	    padding: 20px;
-	    gap: 15px;
-	  }
-	
-	  /* Force links to be white on the dark mobile background */
-	  .nav-links.open a {
-	    color: #ffffff !important;
-	    font-size: 16px !important;
-	    border-bottom: 1px solid rgba(255,255,255,0.1);
-	    padding-bottom: 10px;
-	  }
-	}	
+
 footer{
   background:#0b2a47 !important;
   padding:14px 20px 10px !important;
@@ -3965,147 +3888,42 @@ footer > div:last-child{
 footer *{
   align-self:auto !important;
 }
-	  @media (max-width: 900px){
-
-.nav-links{
-display:none;
-}
-
-.nav-links.open{
-display:flex;
-flex-direction:column;
-position:absolute;
-top:76px;
-left:0;
-right:0;
-background:#0b2a47;
-padding:20px;
-z-index:9999;
-}
-
-.nav-hamburger{
-display:flex;
-}
-
-}
-@media (max-width: 900px) {
-  /* 1. Show the hamburger button */
-  .nav-hamburger {
-    display: flex !important;
-  }
-
-  /* 2. Hide the entire bottom row by default on mobile */
-  /* This was your main bug: it was stuck on 'display: none' */
-  .nav-bottom-row {
-    display: none !important; 
-    position: absolute;
-    top: 76px; /* Adjust to sit exactly below the top row */
-    left: 0;
-    width: 100% !important;
-    background: #0b1c2e !important; /* Dark blue background for mobile menu */
-    padding: 20px 0;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-
-  /* 3. Create a class that makes the row visible */
-  /* When JavaScript adds this class, the menu pops up */
-  .nav-bottom-row.mobile-open {
-    display: flex !important;
-  }
-
-  /* 4. Stack the links vertically */
-  .nav-links {
-    flex-direction: column !important;
-    width: 100%;
-    gap: 0 !important;
-  }
-
-  /* 5. Make links easy to tap on a phone */
-  .nav-links li {
-    width: 100%;
-  }
-
-  .nav-links li a {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 16px !important;
-    color: #ffffff !important;
-  }
-}
-@media (max-width: 900px) {
-  /* Ensure the hamburger button is visible */
-  .nav-hamburger {
-    display: flex !important;
-  }
-
-  /* 1. This hides the menu by default */
-  .nav-bottom-row {
-    display: none !important; 
-    position: absolute;
-    top: 76px; /* Position it right under the top row */
-    left: 0;
-    width: 100% !important;
-    background: #0b1c2e !important; /* Match your header color */
-    padding: 10px 0;
-    z-index: 1000;
-  }
-
-  /* 2. This SHOWS the menu when JavaScript adds the class */
-  .nav-bottom-row.mobile-open {
-    display: flex !important;
-  }
-
-  /* 3. Stack the links vertically */
-  .nav-links {
-    flex-direction: column !important;
-    width: 100%;
-    padding: 10px 0;
-  }
-
-  .nav-links li {
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-links li a {
-    display: block;
-    padding: 12px 0;
-    color: #ffffff !important;
-    font-size: 16px !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-}
   </style>
 </head>
 
 <body>
 
-<nav style="background-color: #0b1c2e; display: flex; flex-direction: column; align-items: stretch; padding: 0; height: auto; position: fixed; top: 0; left: 0; right: 0; z-index: 1000;">    
+<nav style="background-color: #0b1c2e; flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 0; height: auto;"> 
     
     <div class="nav-top-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 15px 40px; border-bottom: 1px solid rgba(255,255,255,0.1);">
       
-      <a class="nav-logo responsive-logo" href="#" onclick="showPage('home')">
+      
+<a class="nav-logo responsive-logo" href="#" onclick="showPage('home')">
         <div class="nav-logo-mark">
           <img src="./lhsr-logo-white.png" alt="LHSR">
         </div>
         <div class="nav-text-container">
-          <div class="nav-logo-text" style="color: #fff;">Laboratory for Hypersonic and Shock wave Research</div>
-          <div class="nav-logo-sub" style="color: #cbd5e1;">Department of Aerospace Engineering, IISc Bengaluru</div>
+          <div class="nav-logo-text">Laboratory for Hypersonic and Shock wave Research</div>
+          <div class="nav-logo-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
         </div>
       </a>
-
-      <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" style="display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px;">
-        <span style="width: 24px; height: 2px; background: #fff;"></span>
-        <span style="width: 24px; height: 2px; background: #fff;"></span>
-        <span style="width: 24px; height: 2px; background: #fff;"></span>
+	<!--
+      <div class="nav-institution-logos" aria-label="Institution logos" style="border: none; margin: 0; padding: 0; display: flex; gap: 15px;">
+        <a href="https://aero.iisc.ac.in/" target="_blank" rel="noopener noreferrer">
+          <img src="./aero-logo.png" alt="Department of Aerospace Engineering, IISc" style="height: 45px; width: auto;">
+        </a>
+        <a href="https://iisc.ac.in/" target="_blank" rel="noopener noreferrer">
+          <img src="./iisc-logo.png" alt="Indian Institute of Science" style="height: 45px; width: auto;">
+        </a>
+      </div>
+	-->
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
     </div>
 
-    <div class="nav-bottom-row" id="navBottomRow" style="display: flex; justify-content: center; width: 100%; padding: 8px 0; background: rgba(0, 0, 0, 0.15);">
-      <ul class="nav-links" id="navLinks" style="margin: 0; display: flex; list-style: none; gap: 10px;">
+    <div class="nav-bottom-row" style="display: flex; justify-content: center; width: 100%; padding: 8px 0; background: rgba(0, 0, 0, 0.15);">
+      <ul class="nav-links" id="navLinks" style="margin: 0;">
         <li><a href="#" onclick="showPage('home')" data-page="home">Home</a></li>
         <li><a href="#" onclick="showPage('research')" data-page="research">Research</a></li>
         <li><a href="#" onclick="showPage('facilities')" data-page="facilities">Facilities</a></li>
@@ -4116,7 +3934,8 @@ display:flex;
         <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
       </ul>
     </div>
-</nav>
+
+  </nav>
   <div class="page active" id="page-home">
 
     <section class="hero">
@@ -4687,6 +4506,7 @@ font-weight: bold; text-align: center;">
               // Initial setup — only useful if page is already visible on load
               setTimeout(resizeCanvas, 100);
             });
+			
           </script>
         </div>
         <footer>
@@ -5489,7 +5309,7 @@ ring,+Indian+Institute+of+Science,+Bengaluru&output=embed"
           const cacheBuster = new Date().getTime();
           const csvUrl = `LHSR_Website_Consolidated.csv?v=${cacheBuster}`;
 
-          fetch(csvUrl)
+fetch(csvUrl)
             .then(res => {
               if (!res.ok) throw new Error("Could not load CSV — HTTP " + res.status);
               return res.text();
@@ -5498,7 +5318,6 @@ ring,+Indian+Institute+of+Science,+Bengaluru&output=embed"
               const data = Papa.parse(csv, {
                 header: true,
                 skipEmptyLines: true,
-                // Strip BOM and whitespace from every header so column names always match
                 transformHeader: h => h.trim().replace(/^\uFEFF/, '')
               }).data;
 
@@ -5545,8 +5364,7 @@ ring,+Indian+Institute+of+Science,+Bengaluru&output=embed"
                   // 1. Extract and normalize all three links
                   const websiteUrl = person.Website_Link ? normalizeExternalUrl(person.Website_Link) : '';
                   const googleScholar = person.Google_Scholar ? normalizeExternalUrl(person.Google_Scholar) : '';
-                  // linkedInProfile is already extracted earlier in the loop
-
+                  
                   // 2. Generate the HTML buttons for each link
                   const linkedInHtml = linkedInProfile
                     ? `<a class="people-card-linkedin" href="${linkedInProfile}" target="_blank" rel="noopener">LinkedIn ↗</a>`
@@ -5573,9 +5391,7 @@ ring,+Indian+Institute+of+Science,+Bengaluru&output=embed"
           <div class="faculty-photo-wrap" id="fw-${imgId}">
             <img src="./images/${imgId}.jpg"
                  alt="${person.Name}"
-                 onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const 
-w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div 
-class=\\'faculty-letter\\'>${initial}</div>'; }">
+                 onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div class=\\'faculty-letter\\'>${initial}</div>'; }">
             <div class="faculty-card-base">
               <div class="faculty-name">${person.Name}</div>
               <div class="faculty-role">${person.Role || ''}</div>
@@ -5612,9 +5428,7 @@ class=\\'faculty-letter\\'>${initial}</div>'; }">
           <div class="people-card-photo-wrap">
             <img src="./images/${imgId}.jpg"
                  alt="${person.Name}"
-                 onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const 
-w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div 
-class=\\'people-card-letter\\'>${initial}</div>'; }">
+                 onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div class=\\'people-card-letter\\'>${initial}</div>'; }">
             <div class="people-card-base">
               <div class="people-card-name">${person.Name}</div>
               <div class="people-card-role">${person.Role || ''}</div>
@@ -5638,8 +5452,7 @@ class=\\'people-card-letter\\'>${initial}</div>'; }">
                     if (phdGrid) phdGrid.appendChild(card);
                     counts.phd++;
                   }
-                  else if (role.includes('mtech') || role.includes('m.tech') || role.includes('m tech') || role.includes('m. tech'
-)) {
+                  else if (role.includes('mtech') || role.includes('m.tech') || role.includes('m tech') || role.includes('m. tech')) {
                     if (mtechGrid) mtechGrid.appendChild(card);
                     counts.mtech++;
                   }
@@ -5656,20 +5469,13 @@ class=\\'people-card-letter\\'>${initial}</div>'; }">
               });
 
               // Update the count badges in the UI
-              if (document.getElementById('faculty-count')) document.getElementById('faculty-count').textContent = String(
-counts.faculty).padStart(2, '0') + " members";
-              if (document.getElementById('assocFacultyCount')) document.getElementById('assocFacultyCount').textContent = String(
-counts.assocFaculty).padStart(2, '0') + " members";
-              if (document.getElementById('phd-count')) document.getElementById('phd-count').textContent = String(counts.phd).
-padStart(2, '0') + " students";
-              if (document.getElementById('mtech-count')) document.getElementById('mtech-count').textContent = String(counts.mtech
-).padStart(2, '0') + " students";
-              if (document.getElementById('research-count')) document.getElementById('research-count').textContent = String(
-counts.research).padStart(2, '0') + " members";
-              if (document.getElementById('staff-count')) document.getElementById('staff-count').textContent = String(counts.staff
-).padStart(2, '0') + " members";
-              if (document.getElementById('alumni-count')) document.getElementById('alumni-count').textContent = String(
-counts.alumni).padStart(2, '0') + " members";
+              if (document.getElementById('faculty-count')) document.getElementById('faculty-count').textContent = String(counts.faculty).padStart(2, '0') + " members";
+              if (document.getElementById('assocFacultyCount')) document.getElementById('assocFacultyCount').textContent = String(counts.assocFaculty).padStart(2, '0') + " members";
+              if (document.getElementById('phd-count')) document.getElementById('phd-count').textContent = String(counts.phd).padStart(2, '0') + " students";
+              if (document.getElementById('mtech-count')) document.getElementById('mtech-count').textContent = String(counts.mtech).padStart(2, '0') + " students";
+              if (document.getElementById('research-count')) document.getElementById('research-count').textContent = String(counts.research).padStart(2, '0') + " members";
+              if (document.getElementById('staff-count')) document.getElementById('staff-count').textContent = String(counts.staff).padStart(2, '0') + " members";
+              if (document.getElementById('alumni-count')) document.getElementById('alumni-count').textContent = String(counts.alumni).padStart(2, '0') + " members";
 
               // Hide any section whose grid ended up empty (e.g. Associated Faculty when CSV has none)
               document.querySelectorAll('#page-people .people-section').forEach(section => {
@@ -5679,20 +5485,20 @@ counts.alumni).padStart(2, '0') + " members";
             })
             .catch(err => {
               console.error("Error loading/parsing CSV:", err);
-              // Show a visible warning on the People page so the problem is obvious
               const grids = ['faculty-grid', 'phd-grid', 'mtech-grid', 'research-members-grid', 'staff-grid', 'alumni-grid'];
               grids.forEach(id => {
                 const el = document.getElementById(id);
-                if (el) el.innerHTML = `<div style="padding:2rem;font-family:Space 
-Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
+                if (el) el.innerHTML = `<div style="padding:2rem;font-family:Space Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
         Place LHSR_Website_Consolidated.csv in the same folder and serve via a local web server (e.g. python3 -m http.server).
       </div>`;
               });
-            });
+            }); // <-- IMPORTANT: THIS CLOSES THE FETCH CHAIN
+
+        // ==========================================
+        // ── ALL GLOBAL FUNCTIONS START HERE ──
+        // ==========================================
 
         // ── Gallery Code ──
-
-        // Categories (locked)
         const CATEGORIES = Object.freeze({
           OPEN: 'open-day',
           VISITORS: 'visitors',
@@ -5700,40 +5506,27 @@ Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
           RESEARCH: 'research-work'
         });
 
-        // Gallery Data
         const galleryItems = [
-          // 🔵 OPEN DAY
           { src: './images/Gallery_Lab_1.jpg', label: 'Open Day at LHSR', cat: CATEGORIES.OPEN },
-
-          // 🟢 VISITORS
           { src: './images/Gallery_Lab_2.jpg', label: 'Visitors inside the laboratory hall', cat: CATEGORIES.VISITORS },
-
-          // 🔴 RESEARCH WORK
           { src: './images/Gallery_Research_1.jpg', label: 'Research presentation and results', cat: CATEGORIES.RESEARCH },
           { src: './images/Gallery_Research_2.jpg', label: 'GCxGC with MS and FID.', cat: CATEGORIES.RESEARCH },
-
-          // 🟡 LAB & FACILITIES
           { src: './images/Gallery_HST1.jpg', label: 'Hypersonic Shock Tunnel 1', cat: CATEGORIES.LAB },
           { src: './images/Gallery_HST2.jpg', label: 'Hypersonic Shock Tunnel 2', cat: CATEGORIES.LAB },
           { src: './images/Gallery_HST3.jpg', label: 'Hypersonic Shock Tunnel 3', cat: CATEGORIES.LAB },
           { src: './images/Gallery_HST4.jpg', label: 'Hypersonic Shock Tunnel 4', cat: CATEGORIES.LAB },
           { src: './images/Gallery_HST5.jpg', label: 'Hypersonic Shock Tunnel 5', cat: CATEGORIES.LAB },
-
           { src: './images/Gallery_CST1.jpg', label: 'Chemical shock tube experiment', cat: CATEGORIES.LAB },
           { src: './images/Gallery_CST3.jpg', label: 'Chemical shock tube diagnostics', cat: CATEGORIES.LAB },
-
           { src: './images/Gallery_VST1.jpg', label: 'Vertical Shock Tube', cat: CATEGORIES.LAB },
           { src: './images/Gallery_RT1.jpg', label: 'Reddy Tunnel experimental setup', cat: CATEGORIES.LAB },
-
           { src: './images/Gallery_SU1.jpg', label: 'Sputtering unit for coatings', cat: CATEGORIES.LAB },
           { src: './images/Gallery_FR1.jpg', label: 'Flow reactor setup', cat: CATEGORIES.LAB },
-
           { src: './images/Gallery_CF1.jpg', label: 'CO₂ facility 1', cat: CATEGORIES.LAB },
           { src: './images/Gallery_CF2.jpg', label: 'CO₂ facility 2', cat: CATEGORIES.LAB }
         ];
 
-        // Build Gallery
-function buildGallery(filter = 'all') {
+        function buildGallery(filter = 'all') {
           const items = filter === 'all'
             ? galleryItems
             : galleryItems.filter(g => g.cat === filter);
@@ -5741,7 +5534,6 @@ function buildGallery(filter = 'all') {
           const grid = document.getElementById('gallery-grid');
           if (!grid) return;
 
-          // ADDED: onclick="openResearchModal(this)" to the div below
           grid.innerHTML = items.map(g => `
             <div class="gallery-item" onclick="openResearchModal(this)">
               <img src="${g.src}" alt="${g.label}"
@@ -5753,11 +5545,10 @@ function buildGallery(filter = 'all') {
             </div>
           `).join('');
         }
-        // Filter handler (with active tab highlight)
+
         function filterGallery(category, btn) {
           document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
           if (btn) btn.classList.add('active');
-
           buildGallery(category);
         }
 
@@ -5775,37 +5566,32 @@ function buildGallery(filter = 'all') {
             message
           ].filter(Boolean).join('\n');
 
-          window.location.href =
-            `mailto:srisharao@iisc.ac.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = `mailto:srisharao@iisc.ac.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
 
-// ── Footer Branding ──
+        // ── Footer Branding ──
         function addFooterBrands() {
           document.querySelectorAll('footer').forEach(footer => {
             if (footer.querySelector('.footer-brand-row')) return;
 
             footer.insertAdjacentHTML('afterbegin', `
               <div class="footer-brand-row">
-                
                 <div class="footer-institution-logo footer-logo-left">
                   <a href="https://aero.iisc.ac.in/" target="_blank" rel="noopener noreferrer">
                     <img src="./aero-logo.png" alt="Department of Aerospace Engineering, IISc">
                   </a>
                 </div>
-                
                 <div class="footer-brand-center">
                   <div>
                     <div class="footer-brand-name">Laboratory for Hypersonic and Shock Wave Research</div>
                     <div class="footer-brand-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
                   </div>
                 </div>
-                
                 <div class="footer-institution-logo footer-logo-right">
                   <a href="https://iisc.ac.in/" target="_blank" rel="noopener noreferrer">
                     <img src="./iisc-logo.png" alt="Indian Institute of Science">
                   </a>
                 </div>
-                
               </div>
             `);
 
@@ -5813,41 +5599,38 @@ function buildGallery(filter = 'all') {
             if (directLogo) directLogo.style.display = 'none';
 
             const nestedLogo = footer.querySelector(':scope > div .footer-logo');
-              if (nestedLogo && nestedLogo.parentElement) nestedLogo.parentElement.style.display = 'none';
+            if (nestedLogo && nestedLogo.parentElement) nestedLogo.parentElement.style.display = 'none';
           });
         }
 
         // ── Navigation ──
-function showPage(name) {
-  // 1. Hide all pages
-  document.querySelectorAll('.page').forEach(p => {
-    p.classList.remove('active');
-    p.style.display = 'none';
-  });
+        function showPage(name) {
+          document.querySelectorAll('.page').forEach(p => {
+            p.classList.remove('active');
+            p.style.display = 'none';
+          });
 
-  // 2. Show the selected page
-  const activePage = document.getElementById('page-' + name);
-  if (activePage) {
-    activePage.classList.add('active');
-    activePage.style.display = 'block';
-  }
+          const activePage = document.getElementById('page-' + name);
+          if (activePage) {
+            activePage.classList.add('active');
+            activePage.style.display = 'block';
+          }
 
-  // 3. Highlight the active link in the menu
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('data-page') === name);
-  });
+          document.querySelectorAll('.nav-links a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('data-page') === name);
+          });
 
-  // --- THE FIX: CLOSE MENU AUTOMATICALLY ---
-  const bottomRow = document.querySelector('.nav-bottom-row');
-  const navLinks = document.getElementById('navLinks');
-  
-  if (bottomRow) bottomRow.classList.remove('mobile-open');
-  if (navLinks) navLinks.classList.remove('open');
-  // -----------------------------------------
+          window.scrollTo(0, 0);
+          document.getElementById('navLinks').classList.remove('open');
 
-  window.scrollTo(0, 0);
-  history.pushState(null, null, '#' + name);
-}
+          if (name === 'gallery') buildGallery('all');
+
+          history.pushState(null, null, '#' + name);
+        }
+
+        function toggleMenu() {
+          document.getElementById('navLinks').classList.toggle('open');
+        }
 
         // ── Init ──
         window.addEventListener('load', () => {
@@ -5859,114 +5642,91 @@ function showPage(name) {
           }
         });
 
-function toggleMenu() {
-  const bottomRow = document.querySelector('.nav-bottom-row');
-  const navLinks = document.getElementById('navLinks');
-  
-  // Toggle the 'mobile-open' class on the container
-  bottomRow.classList.toggle('mobile-open');
-  
-  // Toggle the 'open' class on the links list
-  navLinks.classList.toggle('open');
-}
-
- // ... previous JS ...
         document.addEventListener('DOMContentLoaded', function () {
-            const homeLink = document.querySelector('.nav-links a[data-page="home"]');
-            // No home link in nav, but highlight none by default — home is the logo
           addFooterBrands();
           buildGallery('all');
         });
 
-// ── Open the Research & Facility Modal ──
-// ── Open the Research & Facility Modal ──
-    function openResearchModal(cardElement) {
-      const modal = document.getElementById('researchModal');
-      const imageContainer = document.getElementById('modalImageContainer');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalText = document.getElementById('modalText');
+        // ── Modal Handling ──
+        function openResearchModal(cardElement) {
+          const modal = document.getElementById('researchModal');
+          const imageContainer = document.getElementById('modalImageContainer');
+          const modalTitle = document.getElementById('modalTitle');
+          const modalText = document.getElementById('modalText');
 
-      // 1. Clear out old images
-      imageContainer.innerHTML = '';
+          imageContainer.innerHTML = '';
 
-      // 2. Find ALL images (Added .gallery-item img)
-      const images = cardElement.querySelectorAll('.research-card-image img, .research-area-image img, .facility-image img, .gallery-item img');
-      
-      // 3. Stack them in the modal
-      images.forEach(img => {
-        const newImg = document.createElement('img');
-        newImg.src = img.src;
-        imageContainer.appendChild(newImg);
-      });
+          const images = cardElement.querySelectorAll('.research-card-image img, .research-area-image img, .facility-image img, .gallery-item img');
+          
+          images.forEach(img => {
+            const newImg = document.createElement('img');
+            newImg.src = img.src;
+            imageContainer.appendChild(newImg);
+          });
 
-      // 4. Grab the text (Added .gallery-item-label)
-      const titleEl = cardElement.querySelector('.research-card-title, .research-area-title, .facility-name, .gallery-item-label');
-      const descEl = cardElement.querySelector('.research-card-desc, .research-area-desc, .facility-subtitle');
+          const titleEl = cardElement.querySelector('.research-card-title, .research-area-title, .facility-name, .gallery-item-label');
+          const descEl = cardElement.querySelector('.research-card-desc, .research-area-desc, .facility-subtitle');
 
-      // Clear text first (so gallery items without descriptions don't show the previous card's text)
-      modalTitle.innerText = '';
-      modalText.innerText = '';
+          modalTitle.innerText = '';
+          modalText.innerText = '';
 
-      if (titleEl) modalTitle.innerText = titleEl.innerText;
-      if (descEl) modalText.innerText = descEl.innerText;
+          if (titleEl) modalTitle.innerText = titleEl.innerText;
+          if (descEl) modalText.innerText = descEl.innerText;
 
-      // 5. Show modal and lock scrolling
-      modal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-        // ── Close the Research Modal ──
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        }
+
         function closeResearchModal() {
           const modal = document.getElementById('researchModal');
           modal.style.display = 'none';
-          document.body.style.overflow = 'auto'; // Turn scrolling back on
+          document.body.style.overflow = 'auto';
         }
 
-        // Close the modal if the user clicks the dark background outside the box
         window.addEventListener('click', function(event) {
           const modal = document.getElementById('researchModal');
           if (event.target === modal) {
             closeResearchModal();
           }
         });
-        </script>
-
+</script>		
+		
 <div id="researchModal" class="research-modal">
     <div class="research-modal-content">
       <span class="research-modal-close" onclick="closeResearchModal()">×</span>
-      
       <div id="modalImageContainer" style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;"></div>
-      
       <h2 id="modalTitle" class="section-title" style="margin-bottom: 1rem; white-space: normal;"></h2>
       <p id="modalText"></p>
     </div>
   </div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
   const menuBtn = document.querySelector(".nav-hamburger");
   const navMenu = document.querySelector(".nav-links");
 
-  if(menuBtn && navMenu){
-
-    menuBtn.onclick = function(e){
+  if (menuBtn && navMenu) {
+    // Toggle menu visibility
+    menuBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       navMenu.classList.toggle("open");
-    };
-
-    document.querySelectorAll(".nav-links a").forEach(link=>{
-      link.onclick = function(){
-        navMenu.classList.remove("open");
-      };
     });
 
-    document.addEventListener("click", function(e){
-      if(!menuBtn.contains(e.target) && !navMenu.contains(e.target)){
+    // Close menu when a link is clicked
+    const links = navMenu.querySelectorAll("a");
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
+      });
+    });
+
+    // Close menu if clicking anywhere outside the menu
+    document.addEventListener("click", function (e) {
+      if (!menuBtn.contains(e.target) && !navMenu.contains(e.target)) {
         navMenu.classList.remove("open");
       }
     });
-
   }
-
 });
 </script>
 </body>
