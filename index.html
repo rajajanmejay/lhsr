@@ -3706,52 +3706,153 @@ center/cover no-repeat;
         line-height: 1.2 !important;
       }
     }
+/* ── BULLETPROOF RESPONSIVE LOGO ── */
+    
+    /* Desktop Layout */
+    .responsive-logo {
+      text-decoration: none !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 30px !important; /* Creates a clean gap between plane and text */
+      margin-left: 30px !important;
+    }
+
+    .responsive-logo .nav-logo-mark {
+      background: transparent !important;
+      border: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .responsive-logo .nav-logo-mark img {
+      height: 45px !important;
+      width: auto !important;
+      max-width: 220px !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+
+    .responsive-logo .nav-text-container {
+      margin: 0 !important;
+      white-space: nowrap !important; /* Forces text to stay on one line */
+    }
+
+    .responsive-logo .nav-logo-text {
+      color: #ffffff !important;
+      font-size: 16px !important;
+    }
+
+    .responsive-logo .nav-logo-sub {
+      color: #cbd5e1 !important;
+    }
+
+    /* Mobile & Tablet Overrides */
+    @media (max-width: 900px) {
+      .responsive-logo {
+        margin-left: 0 !important;
+        gap: 12px !important; /* Shrink the gap */
+        max-width: 80% !important; /* Stop it from crashing into the menu */
+      }
+      
+      .responsive-logo .nav-logo-mark img {
+        height: 24px !important; /* Shrink the plane for phones */
+      }
+      
+      .responsive-logo .nav-text-container {
+        white-space: normal !important; /* Allow text to wrap onto two lines */
+      }
+      
+      .responsive-logo .nav-logo-text {
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+      }
+      
+      .responsive-logo .nav-logo-sub {
+        display: none !important; /* Hide long subtitle on phones to save space */
+      }
+    }
+/* ── TWO-ROW NAVBAR LAYOUT & FIXES ── */
+    nav {
+      height: auto !important; 
+      padding: 0 !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+
+    /* This fixes the overlapping airplane! Allows the invisible box to match the plane's width */
+    .responsive-logo .nav-logo-mark {
+      width: auto !important; 
+      max-width: none !important;
+    }
+
+    /* Push page content down slightly to account for the taller 2-row navbar */
+    .hero { padding-top: 180px !important; }
+    .page-header { padding-top: 170px !important; }
+    .about-section { padding-top: 130px !important; }
+
+    /* Mobile overrides for the new rows */
+    @media (max-width: 900px) {
+      .nav-top-row {
+        padding: 15px 20px !important;
+      }
+      .nav-institution-logos {
+        display: none !important; /* Hides Aero/IISc logos to save space on phones */
+      }
+      .nav-bottom-row {
+        display: none !important; /* Hide the bottom row; links will live in the hamburger menu */
+      }
+      .nav-links.open {
+        top: 85px !important; /* Adjust dropdown position */
+      }
+    }	
   </style>
 </head>
 
 <body>
 
-<nav style="background-color: #0b1c2e;"> 
-<a class="nav-logo" href="#" onclick="showPage('home')" style="text-decoration: none; display: flex; align-items: center;">
+<nav style="background-color: #0b1c2e; flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 0; height: auto;"> 
+    
+    <div class="nav-top-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 15px 40px; border-bottom: 1px solid rgba(255,255,255,0.1);">
       
-      <div class="nav-logo-mark" style="margin-left: 50px; background: transparent !important; border: none !important; display: 
-flex; align-items: center; overflow: visible;">
-        <img src="./lhsr-logo-white.png" alt="LHSR" style="height: 45px !important; width: auto !important; max-width: 220px 
-!important; object-fit: contain; display: block;">
-      </div>
-
-      <div style="margin-left: 75px; white-space: nowrap;">
-        <div class="nav-logo-text" style="color: #ffffff;">Laboratory for Hypersonic and Shock wave Research</div>
-        <div class="nav-logo-sub" style="color: #cbd5e1;">Department of Aerospace Engineering, IISc Bengaluru</div>
-      </div>
       
-    </a>
-
-    <div class="nav-institution-logos" aria-label="Institution logos">
-		<a href="https://aero.iisc.ac.in/" target="_blank" rel="noopener noreferrer">
-			<img src="./aero-logo.png" alt="Department of Aerospace Engineering, IISc">
-		</a>
-		<a href="https://iisc.ac.in/" target="_blank" rel="noopener noreferrer">
-			<img src="./iisc-logo.png" alt="Indian Institute of Science">
-		</a>
+<a class="nav-logo responsive-logo" href="#" onclick="showPage('home')">
+        <div class="nav-logo-mark">
+          <img src="./lhsr-logo-white.png" alt="LHSR">
+        </div>
+        <div class="nav-text-container">
+          <div class="nav-logo-text">Laboratory for Hypersonic and Shock wave Research</div>
+          <div class="nav-logo-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
+        </div>
+      </a>
+	<!--
+      <div class="nav-institution-logos" aria-label="Institution logos" style="border: none; margin: 0; padding: 0; display: flex; gap: 15px;">
+        <a href="https://aero.iisc.ac.in/" target="_blank" rel="noopener noreferrer">
+          <img src="./aero-logo.png" alt="Department of Aerospace Engineering, IISc" style="height: 45px; width: auto;">
+        </a>
+        <a href="https://iisc.ac.in/" target="_blank" rel="noopener noreferrer">
+          <img src="./iisc-logo.png" alt="Indian Institute of Science" style="height: 45px; width: auto;">
+        </a>
+      </div>
+	-->
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#" onclick="showPage('home')" data-page="home">Home</a></li>
-      <li><a href="#" onclick="showPage('research')" data-page="research">Research</a></li>
-      <li><a href="#" onclick="showPage('facilities')" data-page="facilities">Facilities</a></li>
-      <li><a href="#" onclick="showPage('people')" data-page="people">People</a></li>
-      <li><a href="#" onclick="showPage('publications')" data-page="publications">Publications</a></li>
-      <li><a href="#" onclick="showPage('gallery')" data-page="gallery">Gallery</a></li>
-      <li><a href="#" onclick="showPage('opportunities')" data-page="opportunities">Opportunities</a></li>
-      <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
-    </ul>
+    <div class="nav-bottom-row" style="display: flex; justify-content: center; width: 100%; padding: 8px 0; background: rgba(0, 0, 0, 0.15);">
+      <ul class="nav-links" id="navLinks" style="margin: 0;">
+        <li><a href="#" onclick="showPage('home')" data-page="home">Home</a></li>
+        <li><a href="#" onclick="showPage('research')" data-page="research">Research</a></li>
+        <li><a href="#" onclick="showPage('facilities')" data-page="facilities">Facilities</a></li>
+        <li><a href="#" onclick="showPage('people')" data-page="people">People</a></li>
+        <li><a href="#" onclick="showPage('publications')" data-page="publications">Publications</a></li>
+        <li><a href="#" onclick="showPage('gallery')" data-page="gallery">Gallery</a></li>
+        <li><a href="#" onclick="showPage('opportunities')" data-page="opportunities">Opportunities</a></li>
+        <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
+      </ul>
+    </div>
 
-    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
   </nav>
-
   <div class="page active" id="page-home">
 
     <section class="hero">
