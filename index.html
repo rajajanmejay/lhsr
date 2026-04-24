@@ -3667,7 +3667,57 @@ center/cover no-repeat;
     .nav-hamburger span {
       background-color: #ffffff !important;
     }
+	/* MOBILE MENU FIX */
+.nav-hamburger{
+  display:none;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:10px;
+  z-index:2001;
+}
 
+.nav-hamburger span{
+  display:block;
+  width:24px;
+  height:2px;
+  margin:5px 0;
+  background:#ffffff;
+  transition:.3s;
+}
+
+/* mobile */
+@media (max-width:900px){
+
+  .nav-hamburger{
+    display:block !important;
+  }
+
+  .nav-links{
+    display:none !important;
+    position:absolute;
+    top:76px;
+    left:0;
+    right:0;
+    background:#0b2a47;
+    flex-direction:column;
+    padding:18px;
+    gap:10px;
+    z-index:2000;
+  }
+
+  .nav-links.open{
+    display:flex !important;
+  }
+
+  .nav-links a{
+    display:block;
+    width:100%;
+    padding:12px;
+    border-radius:6px;
+    color:#fff !important;
+  }
+}
     @media (max-width: 900px) {
       /* 2. Force the text links in the white mobile dropdown to be dark again */
       .nav-links.open a {
@@ -3947,6 +3997,12 @@ footer *{
 	<button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
 	    <span></span><span></span><span></span>
 	</button>
+		<!-- ADD this to your HTML (inside nav) -->
+<button class="nav-hamburger" id="menuBtn" aria-label="Menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
     </div>
 
     <div class="nav-bottom-row" style="display: flex; justify-content: center; width: 100%; padding: 8px 0; background: rgba(0, 0, 0, 0.15);">
@@ -5782,6 +5838,21 @@ function buildGallery(filter = 'all') {
       <p id="modalText"></p>
     </div>
   </div>
+/* ADD before </body> */
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("menuBtn");
+  const menu = document.querySelector(".nav-links");
 
+  btn.addEventListener("click", function () {
+    menu.classList.toggle("open");
+  });
+
+  /* close after clicking link */
+  menu.querySelectorAll("a").forEach(link=>{
+    link.addEventListener("click", ()=>{
+      menu.classList.remove("open");
+    });
+  });
+});
 </body>
 </html>
