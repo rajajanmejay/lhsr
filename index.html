@@ -3631,6 +3631,36 @@ center/cover no-repeat;
         padding: 25px;
       }
     }
+	  /* ── LAPTOP & TABLET OVERLAP FIX ── */
+    @media (max-width: 1350px) and (min-width: 901px) {
+      /* 1. Pull the logo back to the left edge */
+      .nav-logo-mark {
+        margin-left: 0 !important;
+      }
+      
+      /* 2. Shrink the gap and let the long lab name wrap into two lines */
+      .nav-logo-mark + div {
+        margin-left: 16px !important;
+        white-space: normal !important; 
+        max-width: 280px; /* Prevents the text from stretching too far */
+      }
+      
+      /* 3. Shrink the text sizes slightly */
+      .nav-logo-text {
+        font-size: 13px !important;
+        line-height: 1.2 !important;
+      }
+      .nav-logo-sub {
+        font-size: 10px !important;
+      }
+      
+      /* 4. Squeeze the right-side menu links closer together */
+      .nav-links a {
+        padding: 8px 8px !important;
+        font-size: 11px !important;
+        letter-spacing: 0.05em !important;
+      }
+    }
 	  /* ── MOBILE NAV OVERRIDES ── */
     
     /* 1. Make the hamburger menu lines white so they pop against the dark blue bar */
