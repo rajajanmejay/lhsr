@@ -3631,6 +3631,27 @@ center/cover no-repeat;
         padding: 25px;
       }
     }
+	  /* ── MOBILE NAV OVERRIDES ── */
+    
+    /* 1. Make the hamburger menu lines white so they pop against the dark blue bar */
+    .nav-hamburger span {
+      background-color: #ffffff !important;
+    }
+
+    @media (max-width: 900px) {
+      /* 2. Force the text links in the white mobile dropdown to be dark again */
+      .nav-links.open a {
+        color: #0a2540 !important; 
+      }
+      
+      /* 3. Give the mobile links a nice blue highlight when tapped */
+      .nav-links.open a:hover,
+      .nav-links.open a.active {
+        color: #008fa8 !important;
+        background: rgba(0, 143, 168, 0.08) !important;
+        border-color: transparent !important;
+      }
+    }
   </style>
 </head>
 
