@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LHSR – Laboratory for Hypersonic and Shock Wave Research | IISc</title>
   <meta name="description"
-    content="Laboratory for Hypersonic and Shock Wave Research at IISc Bengaluru. Pioneering research in hypersonic aerodynamics, shock waves, and high-enthalpy flows." />
+    content="Laboratory for Hypersonic and Shock Wave Research at IISc Bengaluru. Pioneering research in hypersonic aerodynamics, 
+shock waves, and high-enthalpy flows." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    href=
+"https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=Inter:
+wght@300;400;500;600&display=swap"
     rel="stylesheet" />
 
   <style>
@@ -544,7 +547,8 @@
     }
 
     #page-publications .page-header {
-      background: linear-gradient(rgba(245, 247, 249, 0.72), rgba(245, 247, 249, 0.72)), url('./images/Home_Lab_1.jpg') center/cover no-repeat;
+      background: linear-gradient(rgba(245, 247, 249, 0.72), rgba(245, 247, 249, 0.72)), url('./images/Home_Lab_1.jpg') 
+center/cover no-repeat;
       background-blend-mode: lighten;
     }
 
@@ -3565,7 +3569,68 @@
     align-self: flex-start;
     max-width: 220px;
   }
+/* ── RESEARCH MODAL (LIGHTBOX) ── */
+    .research-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(10, 37, 64, 0.85); /* Matches your dark blue theme */
+      backdrop-filter: blur(5px);
+      overflow-y: auto;
+    }
 
+    .research-modal-content {
+      background-color: #ffffff;
+      margin: 5% auto;
+      padding: 40px;
+      width: 80%; /* Takes up exactly 80% of display */
+      max-width: 1200px;
+      border-radius: 8px;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .research-modal-close {
+      color: var(--muted);
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .research-modal-close:hover {
+      color: var(--blue);
+    }
+
+    #modalImg {
+      width: 100%;
+      height: auto;
+      max-height: 55vh;
+      object-fit: contain;
+      margin-bottom: 24px;
+      border-radius: 6px;
+      background: var(--navy3);
+    }
+
+    #modalText {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .research-modal-content {
+        width: 95%; /* Make it slightly wider on mobile devices */
+        padding: 25px;
+      }
+    }
   </style>
 </head>
 
@@ -3574,8 +3639,10 @@
 <nav style="background-color: #0b1c2e;"> 
 <a class="nav-logo" href="#" onclick="showPage('home')" style="text-decoration: none; display: flex; align-items: center;">
       
-      <div class="nav-logo-mark" style="margin-left: 50px; background: transparent !important; border: none !important; display: flex; align-items: center; overflow: visible;">
-        <img src="./lhsr-logo-white.png" alt="LHSR" style="height: 45px !important; width: auto !important; max-width: 220px !important; object-fit: contain; display: block;">
+      <div class="nav-logo-mark" style="margin-left: 50px; background: transparent !important; border: none !important; display: 
+flex; align-items: center; overflow: visible;">
+        <img src="./lhsr-logo-white.png" alt="LHSR" style="height: 45px !important; width: auto !important; max-width: 220px 
+!important; object-fit: contain; display: block;">
       </div>
 
       <div style="margin-left: 75px; white-space: nowrap;">
@@ -3586,8 +3653,12 @@
     </a>
 
     <div class="nav-institution-logos" aria-label="Institution logos">
-      <img src="./aero-logo.png" alt="Department of Aerospace Engineering, IISc">
-      <img src="./iisc-logo.png" alt="Indian Institute of Science">
+		<a href="https://aero.iisc.ac.in/" target="_blank" rel="noopener noreferrer">
+			<img src="./aero-logo.png" alt="Department of Aerospace Engineering, IISc">
+		</a>
+		<a href="https://iisc.ac.in/" target="_blank" rel="noopener noreferrer">
+			<img src="./iisc-logo.png" alt="Indian Institute of Science">
+		</a>
     </div>
 
     <ul class="nav-links" id="navLinks">
@@ -3696,7 +3767,7 @@
       <h2 class="section-title">Core Research Areas</h2>
       <div class="research-grid">
         
-        <div class="research-card" onclick="showPage('hypersonic-aerodynamics')">
+        <div class="research-card" onclick="openResearchModal(this)">
           <div class="research-card-image">
             <img src="./images/Home_HAD.jpg" onerror="console.log('FAILED IMAGE LOAD')">
           </div>
@@ -3711,8 +3782,9 @@
           </div>
         </div>
 
-        <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/Home_HAE.jpg" alt="Hypersonic aeroelasticity research poster" onerror="this.style.opacity='0'">
+        <div class="research-card" onclick="openResearchModal(this)">
+          <div class="research-card-image"><img src="./images/Home_HAE.jpg" alt="Hypersonic aeroelasticity research poster" onerror
+="this.style.opacity='0'">
           </div>
           <div class="research-card-num">02 //</div>
           <div class="research-card-title">Hypersonic Aeroelasticity</div>
@@ -3722,8 +3794,9 @@
           </div>
         </div>
 
-        <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/Home_HEF.jpg" alt="High enthalpy free piston shock tunnel" onerror="this.style.opacity='0'">
+        <div class="research-card" onclick="openResearchModal(this)">
+          <div class="research-card-image"><img src="./images/Home_HEF.jpg" alt="High enthalpy free piston shock tunnel" onerror=
+"this.style.opacity='0'">
           </div>
           <div class="research-card-num">03 //</div>
           <div class="research-card-title">High-Enthalpy Flows</div>
@@ -3733,8 +3806,9 @@
           </div>
         </div>
 
-        <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/Home_SWP.jpg" alt="Shock wave tunnel hardware" onerror="this.style.opacity='0'"></div>
+        <div class="research-card" onclick="openResearchModal(this)">
+          <div class="research-card-image"><img src="./images/Home_SWP.jpg" alt="Shock wave tunnel hardware" onerror=
+"this.style.opacity='0'"></div>
           <div class="research-card-num">04 //</div>
           <div class="research-card-title">Shockwave Physics</div>
           <div class="research-card-desc">
@@ -3743,8 +3817,9 @@
           </div>
         </div>
 
-        <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/Home_HTC.jpg" alt="Chemical shock tube for kinetics studies" onerror="this.style.opacity='0'">
+        <div class="research-card" onclick="openResearchModal(this)">
+          <div class="research-card-image"><img src="./images/Home_HTC.jpg" alt="Chemical shock tube for kinetics studies" onerror=
+"this.style.opacity='0'">
           </div>
           <div class="research-card-num">05 //</div>
           <div class="research-card-title">High Temperature Chemical Kinetics</div>
@@ -3754,7 +3829,7 @@
           </div>
         </div>
 
-        <div class="research-card" onclick="showPage('research')">
+        <div class="research-card" onclick="openResearchModal(this)">
           <div class="research-card-image"><img src="./images/Home_BLE.jpg"
               alt="Vertical shock tube for shock-wave applications" onerror="this.style.opacity='0'"></div>
           <div class="research-card-num">06 //</div>
@@ -3765,8 +3840,9 @@
           </div>
         </div>
 
-        <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/Home_MAT.jpg" alt="Sputtering unit for material coatings" onerror="this.style.opacity='0'">
+        <div class="research-card" onclick="openResearchModal(this)">
+          <div class="research-card-image"><img src="./images/Home_MAT.jpg" alt="Sputtering unit for material coatings" onerror=
+"this.style.opacity='0'">
           </div>
           <div class="research-card-num">07 //</div>
           <div class="research-card-title">Materials</div>
@@ -3776,8 +3852,9 @@
           </div>
         </div>
 
-        <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/Home_BWP.jpg" alt="Compact tunnel for blast and shock tests" onerror="this.style.opacity='0'">
+        <div class="research-card" onclick="openResearchModal(this)">
+          <div class="research-card-image"><img src="./images/Home_BWP.jpg" alt="Compact tunnel for blast and shock tests" onerror=
+"this.style.opacity='0'">
           </div>
           <div class="research-card-num">08 //</div>
           <div class="research-card-title">Blast-wave Physics</div>
@@ -3786,8 +3863,9 @@
           </div>
         </div>
 
-        <div class="research-card" onclick="showPage('research')">
-          <div class="research-card-image"><img src="./images/Home_IND.jpg" alt="Flow reactor experimental setup" onerror="this.style.opacity='0'"></div>
+        <div class="research-card" onclick="openResearchModal(this)">
+          <div class="research-card-image"><img src="./images/Home_IND.jpg" alt="Flow reactor experimental setup" onerror=
+"this.style.opacity='0'"></div>
           <div class="research-card-num">09 //</div>
           <div class="research-card-title">Industrial Applications</div>
           <div class="research-card-desc">
@@ -3879,7 +3957,14 @@
                 <div class="research-icon">🔬</div>
                 <div class="research-area-title">Chemical Kinetics & Combustion</div>
                 <div class="research-area-desc">
-                  The Chemical Kinetics & Combustion section focuses on characterizing fuel behavior under extreme conditions using sophisticated experimental infrastructure. A chemical shock tube is employed to investigate pyrolysis, ignition delay times, and laminar flame speeds across elevated temperatures and pressures. Astrochemistry studies encompass pyrolysis of complex molecules including fullerene, coronene, and polystyrene, probed via emission spectroscopy to elucidate reaction mechanisms. A plug flow reactor examines fuel behavior as coolants within regenerative cooling channels of high-speed air-breathing engines, with emphasis on thermal decomposition and heat transfer. Detailed product speciation is conducted using comprehensive GC×GC platforms equipped with FID, MS, and TCD detectors.
+                  The Chemical Kinetics & Combustion section focuses on characterizing fuel behavior under extreme conditions 
+using sophisticated experimental infrastructure. A chemical shock tube is employed to investigate pyrolysis, 
+ignition delay times, and laminar flame speeds across elevated temperatures and pressures. Astrochemistry 
+studies encompass pyrolysis of complex molecules including fullerene, coronene, and polystyrene, probed via 
+emission spectroscopy to elucidate reaction mechanisms. A plug flow reactor examines fuel behavior as coolants 
+within regenerative cooling channels of high-speed air-breathing engines, with emphasis on thermal decomposition 
+and heat transfer. Detailed product speciation is conducted using comprehensive GC×GC platforms equipped with 
+FID, MS, and TCD detectors.
                 </div>
                 <div class="research-tags">
                   <span class="research-tag">Chemical Kinetics</span>
@@ -3921,7 +4006,10 @@
                 <div class="research-icon">🦅</div>
                 <div class="research-area-title">Bio-inspired Research</div>
                 <div class="research-area-desc">
-                  At LHSR Laboratory, we pioneer cutting-edge bio-inspired shock wave technologies for transformative healthcare solutions. Our innovations enable needle-free vaccine delivery, enhanced fertility treatments in cattle, and precise drug administration. With high-efficiency cellular transformation methods and cost-effective designs, we are redefining biomedical engineering through safe, painless, and impactful micro-shock wave applications. 
+                  At LHSR Laboratory, we pioneer cutting-edge bio-inspired shock wave technologies for transformative healthcare 
+solutions. Our innovations enable needle-free vaccine delivery, enhanced fertility treatments in cattle, and 
+precise drug administration. With high-efficiency cellular transformation methods and cost-effective designs, we 
+are redefining biomedical engineering through safe, painless, and impactful micro-shock wave applications. 
                 </div>
                 <div class="research-tags">
                   <span class="research-tag">Drag Reduction</span>
@@ -4007,7 +4095,9 @@
               </div>
 
               <div id="sim-alert"
-                style="display: none; margin-top: 1.5rem; padding: 12px; background: rgba(213, 61, 61, 0.1); border: 1px solid var(--gold); border-radius: 4px; color: var(--gold); font-family: 'Space Mono', monospace; font-size: 12px; font-weight: bold; text-align: center;">
+                style="display: none; margin-top: 1.5rem; padding: 12px; background: rgba(213, 61, 61, 0.1); border: 1px solid 
+var(--gold); border-radius: 4px; color: var(--gold); font-family: 'Space Mono', monospace; font-size: 12px; 
+font-weight: bold; text-align: center;">
                 DETACHED SHOCK REGIME
               </div>
             </div>
@@ -4197,7 +4287,8 @@
               </div>
               <div class="facility-image">
                 <img src="./images/Facility_HST1.jpg" alt="HST1"
-                  onerror="this.style.display='none';this.parentNode.querySelector('.facility-image-placeholder').style.display='block'" />
+                  onerror=
+"this.style.display='none';this.parentNode.querySelector('.facility-image-placeholder').style.display='block'" />
                 <div class="facility-image-placeholder" style="display:none">[ HST1.jpg ]</div>
               </div>
             </div>
@@ -4561,17 +4652,21 @@
                   <div class="scholar-card">
                     <div class="scholar-card-name">Prof. Gopalan Jagadeesh</div>
                     <div class="scholar-card-role">Hypersonic aerodynamics and shock wave dynamics</div>
-                    <a class="scholar-link" href="https://scholar.google.co.in/citations?user=eVRuYlgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+                    <a class="scholar-link" href="https://scholar.google.co.in/citations?user=eVRuYlgAAAAJ&hl=en" target="_blank" 
+rel="noopener">Google Scholar ↗</a>
                   </div>
                   <div class="scholar-card">
                     <div class="scholar-card-name">Prof. Srisha Rao M V</div>
                     <div class="scholar-card-role">High-speed gas dynamics, mixing, and flow diagnostics</div>
-                    <a class="scholar-link" href="https://scholar.google.com/citations?view_op=search_authors&mauthors=Srisha+Rao+M+V+IISc" target="_blank" rel="noopener">Google Scholar ↗</a>
+                    <a class="scholar-link" href=
+"https://scholar.google.com/citations?view_op=search_authors&mauthors=Srisha+Rao+M+V+IISc" target="_blank" rel=
+"noopener">Google Scholar ↗</a>
                   </div>
                   <div class="scholar-card">
                     <div class="scholar-card-name">Dr. S. Saravanan</div>
                     <div class="scholar-card-role">Shock tunnel testing and experimental gas dynamics</div>
-                    <a class="scholar-link" href="https://scholar.google.co.in/citations?user=cDLhMckAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+                    <a class="scholar-link" href="https://scholar.google.co.in/citations?user=cDLhMckAAAAJ&hl=en" target="_blank" 
+rel="noopener">Google Scholar ↗</a>
                   </div>
                 </div>
               </div>
@@ -4748,7 +4843,10 @@
                 <div class="opp-icon">🎓</div>
                 <div class="opp-content">
                   <div class="opp-title">PhD Positions</div>
-                  <div class="opp-desc">We admit PhD students through the IISc admissions process. Students with backgrounds in aerospace, mechanical, chemical engineering, or physics are encouraged to apply. Research opportunities are available in hypersonic aerodynamics, shock wave–boundary layer interactions, chemical kinetics, high-enthalpy flows, and flow control.</div>
+                  <div class="opp-desc">We admit PhD students through the IISc admissions process. Students with backgrounds in 
+aerospace, mechanical, chemical engineering, or physics are encouraged to apply. Research opportunities are 
+available in hypersonic aerodynamics, shock wave–boundary layer interactions, chemical kinetics, high-enthalpy 
+flows, and flow control.</div>
                 </div>
               </div>
 
@@ -4756,7 +4854,10 @@
                 <div class="opp-icon">📐</div>
                 <div class="opp-content">
                   <div class="opp-title">M.Tech Research</div>
-                  <div class="opp-desc">M.Tech (Research) positions are available for students seeking to develop strong experimental and computational skills in high-speed flows. Projects span flow diagnostics, shock tunnel experimentation, optical measurements, instrumentation development, and data analysis for hypersonic applications.</div>
+                  <div class="opp-desc">M.Tech (Research) positions are available for students seeking to develop strong 
+experimental and computational skills in high-speed flows. Projects span flow diagnostics, shock tunnel 
+experimentation, optical measurements, instrumentation development, and data analysis for hypersonic 
+applications.</div>
                 </div>
               </div>
 
@@ -4764,7 +4865,10 @@
                 <div class="opp-icon">🔭</div>
                 <div class="opp-content">
                   <div class="opp-title">Post-Doctoral Fellows</div>
-                  <div class="opp-desc">Post-doctoral opportunities are available for candidates with a PhD in aerospace or related disciplines. We seek researchers with strong expertise in experimental gas dynamics, shock tunnel instrumentation, optical diagnostics, or CFD validation in high-speed flows. Candidates are expected to lead independent research and mentor students.</div>
+                  <div class="opp-desc">Post-doctoral opportunities are available for candidates with a PhD in aerospace or 
+related disciplines. We seek researchers with strong expertise in experimental gas dynamics, shock tunnel 
+instrumentation, optical diagnostics, or CFD validation in high-speed flows. Candidates are expected to lead 
+independent research and mentor students.</div>
                 </div>
               </div>
 
@@ -4772,7 +4876,9 @@
                 <div class="opp-icon">🛠️</div>
                 <div class="opp-content">
                   <div class="opp-title">Project Associates</div>
-                  <div class="opp-desc">Funded project associate positions are available periodically for candidates with B.Tech/M.Tech degrees. These roles involve hands-on experimental work, facility operations, data acquisition, and support for ongoing hypersonic research projects.</div>
+                  <div class="opp-desc">Funded project associate positions are available periodically for candidates with 
+B.Tech/M.Tech degrees. These roles involve hands-on experimental work, facility operations, data acquisition, 
+and support for ongoing hypersonic research projects.</div>
                 </div>
               </div>
 
@@ -4780,7 +4886,10 @@
                 <div class="opp-icon">🌍</div>
                 <div class="opp-content">
                   <div class="opp-title">Visiting Researchers</div>
-                  <div class="opp-desc">We welcome visiting researchers, interns (from premier institutes), and international collaborators for short-term research stays. Opportunities exist to work on ongoing experimental and computational projects in hypersonic flows, shock wave physics, and diagnostics. Funding may be available through SERB, CSIR, or bilateral research programs.</div>
+                  <div class="opp-desc">We welcome visiting researchers, interns (from premier institutes), and international 
+collaborators for short-term research stays. Opportunities exist to work on ongoing experimental and 
+computational projects in hypersonic flows, shock wave physics, and diagnostics. Funding may be available 
+through SERB, CSIR, or bilateral research programs.</div>
                 </div>
               </div>
 
@@ -4788,7 +4897,9 @@
                 <div class="opp-icon">🤝</div>
                 <div class="opp-content">
                   <div class="opp-title">Industry Collaboration</div>
-                  <div class="opp-desc">LHSR collaborates with organizations such as ISRO, DRDO, NAL, and aerospace industries for sponsored research, testing, and consultancy. We support high-speed flow testing, hypersonic vehicle design studies, and advanced diagnostics. Organizations seeking collaboration are encouraged to reach out.</div>
+                  <div class="opp-desc">LHSR collaborates with organizations such as ISRO, DRDO, NAL, and aerospace industries for 
+sponsored research, testing, and consultancy. We support high-speed flow testing, hypersonic vehicle design 
+studies, and advanced diagnostics. Organizations seeking collaboration are encouraged to reach out.</div>
                 </div>
               </div>
 
@@ -4808,7 +4919,8 @@
 
             <div style="text-align:center; padding: 3rem 0;">
               <p
-                style="color:var(--muted);margin-bottom:1.5rem;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.15em;">
+                style="color:var(--muted);margin-bottom:1.5rem;font-family:'Space 
+Mono',monospace;font-size:13px;letter-spacing:0.15em;">
                 READY TO APPLY?</p>
               <a href="#" class="btn-primary" onclick="showPage('contact')">Contact Us</a>
             </div>
@@ -4893,7 +5005,9 @@
               <div class="map-wrap">
                 <div class="contact-item-label" style="margin-bottom:1.5rem;">Location on Map</div>
                 <iframe class="map-iframe"
-                  src="https://maps.google.com/maps?q=Laboratory+for+Hypersonic+and+Shock+Wave+Research+Department+of+Aerospace+Engineering,+Indian+Institute+of+Science,+Bengaluru&output=embed"
+                  src=
+"https://maps.google.com/maps?q=Laboratory+for+Hypersonic+and+Shock+Wave+Research+Department+of+Aerospace+Enginee
+ring,+Indian+Institute+of+Science,+Bengaluru&output=embed"
                   allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
               </div>
@@ -5019,7 +5133,9 @@
           <div class="faculty-photo-wrap" id="fw-${imgId}">
             <img src="./images/${imgId}.jpg"
                  alt="${person.Name}"
-                 onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div class=\\'faculty-letter\\'>${initial}</div>'; }">
+                 onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const 
+w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div 
+class=\\'faculty-letter\\'>${initial}</div>'; }">
             <div class="faculty-card-base">
               <div class="faculty-name">${person.Name}</div>
               <div class="faculty-role">${person.Role || ''}</div>
@@ -5056,7 +5172,9 @@
           <div class="people-card-photo-wrap">
             <img src="./images/${imgId}.jpg"
                  alt="${person.Name}"
-                 onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div class=\\'people-card-letter\\'>${initial}</div>'; }">
+                 onerror="if(!this.dataset.retried){ this.dataset.retried=true; this.src='./images/${imgId}.jpeg'; } else { const 
+w=this.parentNode; w.classList.add('no-image'); this.remove(); w.innerHTML+='<div 
+class=\\'people-card-letter\\'>${initial}</div>'; }">
             <div class="people-card-base">
               <div class="people-card-name">${person.Name}</div>
               <div class="people-card-role">${person.Role || ''}</div>
@@ -5080,7 +5198,8 @@
                     if (phdGrid) phdGrid.appendChild(card);
                     counts.phd++;
                   }
-                  else if (role.includes('mtech') || role.includes('m.tech') || role.includes('m tech') || role.includes('m. tech')) {
+                  else if (role.includes('mtech') || role.includes('m.tech') || role.includes('m tech') || role.includes('m. tech'
+)) {
                     if (mtechGrid) mtechGrid.appendChild(card);
                     counts.mtech++;
                   }
@@ -5097,13 +5216,20 @@
               });
 
               // Update the count badges in the UI
-              if (document.getElementById('faculty-count')) document.getElementById('faculty-count').textContent = String(counts.faculty).padStart(2, '0') + " members";
-              if (document.getElementById('assocFacultyCount')) document.getElementById('assocFacultyCount').textContent = String(counts.assocFaculty).padStart(2, '0') + " members";
-              if (document.getElementById('phd-count')) document.getElementById('phd-count').textContent = String(counts.phd).padStart(2, '0') + " students";
-              if (document.getElementById('mtech-count')) document.getElementById('mtech-count').textContent = String(counts.mtech).padStart(2, '0') + " students";
-              if (document.getElementById('research-count')) document.getElementById('research-count').textContent = String(counts.research).padStart(2, '0') + " members";
-              if (document.getElementById('staff-count')) document.getElementById('staff-count').textContent = String(counts.staff).padStart(2, '0') + " members";
-              if (document.getElementById('alumni-count')) document.getElementById('alumni-count').textContent = String(counts.alumni).padStart(2, '0') + " members";
+              if (document.getElementById('faculty-count')) document.getElementById('faculty-count').textContent = String(
+counts.faculty).padStart(2, '0') + " members";
+              if (document.getElementById('assocFacultyCount')) document.getElementById('assocFacultyCount').textContent = String(
+counts.assocFaculty).padStart(2, '0') + " members";
+              if (document.getElementById('phd-count')) document.getElementById('phd-count').textContent = String(counts.phd).
+padStart(2, '0') + " students";
+              if (document.getElementById('mtech-count')) document.getElementById('mtech-count').textContent = String(counts.mtech
+).padStart(2, '0') + " students";
+              if (document.getElementById('research-count')) document.getElementById('research-count').textContent = String(
+counts.research).padStart(2, '0') + " members";
+              if (document.getElementById('staff-count')) document.getElementById('staff-count').textContent = String(counts.staff
+).padStart(2, '0') + " members";
+              if (document.getElementById('alumni-count')) document.getElementById('alumni-count').textContent = String(
+counts.alumni).padStart(2, '0') + " members";
 
               // Hide any section whose grid ended up empty (e.g. Associated Faculty when CSV has none)
               document.querySelectorAll('#page-people .people-section').forEach(section => {
@@ -5117,7 +5243,8 @@
               const grids = ['faculty-grid', 'phd-grid', 'mtech-grid', 'research-members-grid', 'staff-grid', 'alumni-grid'];
               grids.forEach(id => {
                 const el = document.getElementById(id);
-                if (el) el.innerHTML = `<div style="padding:2rem;font-family:Space Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
+                if (el) el.innerHTML = `<div style="padding:2rem;font-family:Space 
+Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
         Place LHSR_Website_Consolidated.csv in the same folder and serve via a local web server (e.g. python3 -m http.server).
       </div>`;
               });
@@ -5212,21 +5339,33 @@
             `mailto:srisharao@iisc.ac.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
 
-        // ── Footer Branding ──
+// ── Footer Branding ──
         function addFooterBrands() {
           document.querySelectorAll('footer').forEach(footer => {
             if (footer.querySelector('.footer-brand-row')) return;
 
             footer.insertAdjacentHTML('afterbegin', `
               <div class="footer-brand-row">
-        <div class="footer-institution-logo footer-logo-left"><img src="./aero-logo.png" alt="Department of Aerospace Engineering, IISc"></div>
+                
+                <div class="footer-institution-logo footer-logo-left">
+                  <a href="https://aero.iisc.ac.in/" target="_blank" rel="noopener noreferrer">
+                    <img src="./aero-logo.png" alt="Department of Aerospace Engineering, IISc">
+                  </a>
+                </div>
+                
                 <div class="footer-brand-center">
                   <div>
                     <div class="footer-brand-name">Laboratory for Hypersonic and Shock Wave Research</div>
                     <div class="footer-brand-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
                   </div>
                 </div>
-        <div class="footer-institution-logo footer-logo-right"><img src="./iisc-logo.png" alt="Indian Institute of Science"></div>
+                
+                <div class="footer-institution-logo footer-logo-right">
+                  <a href="https://iisc.ac.in/" target="_blank" rel="noopener noreferrer">
+                    <img src="./iisc-logo.png" alt="Indian Institute of Science">
+                  </a>
+                </div>
+                
               </div>
             `);
 
@@ -5277,13 +5416,60 @@
           document.getElementById('navLinks').classList.toggle('open');
         }
 
+ // ... previous JS ...
         document.addEventListener('DOMContentLoaded', function () {
             const homeLink = document.querySelector('.nav-links a[data-page="home"]');
             // No home link in nav, but highlight none by default — home is the logo
           addFooterBrands();
           buildGallery('all');
         });
-        </script>
-</body>
 
+        // ── Open the Research Modal ──
+        function openResearchModal(cardElement) {
+          const modal = document.getElementById('researchModal');
+          const modalImg = document.getElementById('modalImg');
+          const modalTitle = document.getElementById('modalTitle');
+          const modalText = document.getElementById('modalText');
+
+          // Grab the data from the specific card that was clicked
+          const imgEl = cardElement.querySelector('.research-card-image img');
+          const titleEl = cardElement.querySelector('.research-card-title');
+          const descEl = cardElement.querySelector('.research-card-desc');
+
+          // Fill the modal with that data
+          if (imgEl) modalImg.src = imgEl.src;
+          if (titleEl) modalTitle.innerText = titleEl.innerText;
+          if (descEl) modalText.innerText = descEl.innerText;
+
+          // Show the modal and stop the background from scrolling
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        }
+
+        // ── Close the Research Modal ──
+        function closeResearchModal() {
+          const modal = document.getElementById('researchModal');
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto'; // Turn scrolling back on
+        }
+
+        // Close the modal if the user clicks the dark background outside the box
+        window.addEventListener('click', function(event) {
+          const modal = document.getElementById('researchModal');
+          if (event.target === modal) {
+            closeResearchModal();
+          }
+        });
+        </script>
+
+  <div id="researchModal" class="research-modal">
+    <div class="research-modal-content">
+      <span class="research-modal-close" onclick="closeResearchModal()">×</span>
+      <img id="modalImg" src="" alt="Enlarged Research Image">
+      <h2 id="modalTitle" class="section-title" style="margin-bottom: 1rem; white-space: normal;"></h2>
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+</body>
 </html>
