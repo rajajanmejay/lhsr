@@ -3805,6 +3805,89 @@ center/cover no-repeat;
         top: 85px !important; /* Adjust dropdown position */
       }
     }	
+/* REAL FIX = parent section has huge height, not footer */
+
+footer{
+  background:#0b2a47 !important;
+  padding:14px 20px 10px !important;
+  margin:0 !important;
+  height:auto !important;
+  min-height:unset !important;
+  display:block !important;
+}
+
+/* remove giant empty area from footer parent */
+footer,
+footer.section,
+footer.container,
+section:has(footer),
+div:has(> footer){
+  min-height:auto !important;
+  height:auto !important;
+}
+
+/* if page uses last section wrapper */
+section:last-child,
+main > section:last-child,
+body > section:last-child,
+.page-section:last-child{
+  min-height:auto !important;
+  height:auto !important;
+  padding-top:0 !important;
+  padding-bottom:0 !important;
+  margin-bottom:0 !important;
+  display:block !important;
+}
+
+/* center content tightly */
+.footer-brand-row{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:24px !important;
+  margin:0 !important;
+}
+
+.footer-institution-logo{
+  width:68px !important;
+  flex:0 0 68px !important;
+}
+
+.footer-institution-logo img{
+  max-height:54px !important;
+  width:auto !important;
+}
+
+.footer-brand-text{
+  text-align:center !important;
+}
+
+.footer-brand-name{
+  font-size:15px !important;
+  margin:0 0 4px !important;
+}
+
+.footer-brand-sub{
+  font-size:11px !important;
+}
+
+/* bottom copyright directly below */
+footer > div:last-child{
+  margin-top:10px !important;
+  padding-top:8px !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+  text-align:center !important;
+}
+
+.footer-dev,.footer-copy{
+  font-size:10px !important;
+  margin:2px 0 !important;
+}
+
+/* nuclear fix for vertical centering from previous css */
+footer *{
+  align-self:auto !important;
+}
   </style>
 </head>
 
