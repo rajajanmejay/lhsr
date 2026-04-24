@@ -3609,12 +3609,12 @@ center/cover no-repeat;
       color: var(--blue);
     }
 
-    #modalImg {
+/* Applied to all images injected into the modal */
+    #modalImageContainer img {
       width: 100%;
       height: auto;
-      max-height: 55vh;
+      max-height: 50vh; /* Slightly smaller so 2 images fit better on screen */
       object-fit: contain;
-      margin-bottom: 24px;
       border-radius: 6px;
       background: var(--navy3);
     }
@@ -3905,7 +3905,7 @@ flex; align-items: center; overflow: visible;">
 
           <div class="research-areas">
 
-            <div class="research-area-card">
+            <div class="research-area-card" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="research-area-content">
                 <div class="research-icon">🚀</div>
                 <div class="research-area-title">Hypersonic Aerodynamics & Propulsion</div>
@@ -3930,7 +3930,7 @@ flex; align-items: center; overflow: visible;">
               </div>
             </div>
 
-            <div class="research-area-card">
+            <div class="research-area-card" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="research-area-content">
                 <div class="research-icon">💥</div>
                 <div class="research-area-title">Shock Wave Physics</div>
@@ -3952,7 +3952,7 @@ flex; align-items: center; overflow: visible;">
                 </div>
             </div>
 
-            <div class="research-area-card">
+            <div class="research-area-card" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="research-area-content">
                 <div class="research-icon">🔬</div>
                 <div class="research-area-title">Chemical Kinetics & Combustion</div>
@@ -3979,7 +3979,7 @@ FID, MS, and TCD detectors.
               </div>
             </div>
 
-            <div class="research-area-card">
+            <div class="research-area-card" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="research-area-content">
                 <div class="research-icon">🌊</div>
                 <div class="research-area-title">Compressible Flow & Mixing</div>
@@ -4001,7 +4001,7 @@ FID, MS, and TCD detectors.
               </div>
             </div>
 
-            <div class="research-area-card">
+            <div class="research-area-card" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="research-area-content">
                 <div class="research-icon">🦅</div>
                 <div class="research-area-title">Bio-inspired Research</div>
@@ -4024,7 +4024,7 @@ are redefining biomedical engineering through safe, painless, and impactful micr
               </div>
             </div>
 
-            <div class="research-area-card">
+            <div class="research-area-card" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="research-area-content">
                 <div class="research-icon">🔩</div>
                 <div class="research-area-title">Materials Under Extreme Conditions</div>
@@ -4265,7 +4265,7 @@ font-weight: bold; text-align: center;">
           </div>
           <div class="page-content">
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Hypersonic Shock Tunnel // HST-1</div>
                 <div class="facility-name">Hypersonic Shock Tunnel 1</div>
@@ -4293,7 +4293,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Hypersonic Shock Tunnel // HST-2</div>
                 <div class="facility-name">Hypersonic Shock Tunnel 2</div>
@@ -4322,7 +4322,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Hypersonic Shock Tunnel // HST-3</div>
                 <div class="facility-name">Hypersonic Shock Tunnel 3</div>
@@ -4353,7 +4353,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Hypersonic Shock Tunnel // HST-4</div>
                 <div class="facility-name">Hypersonic Shock Tunnel 4</div>
@@ -4382,7 +4382,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Hypersonic Shock Tunnel // HST-5</div>
                 <div class="facility-name">Hypersonic Shock Tunnel 5</div>
@@ -4411,7 +4411,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Chemical Shock Tube // CST-1</div>
                 <div class="facility-name">Chemical Shock Tunnel 1</div>
@@ -4435,7 +4435,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Chemical Shock Tube // CST-3</div>
                 <div class="facility-name">Chemical Shock Tunnel 3</div>
@@ -4459,7 +4459,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Vertical Shock Tube // VST</div>
                 <div class="facility-name">Vertical Shock Tube (VST)</div>
@@ -4487,7 +4487,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Compact Tunnel // RT</div>
                 <div class="facility-name">Reddy Tunnel</div>
@@ -4512,7 +4512,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Flow Reactor // FR</div>
                 <div class="facility-name">Flow Reactor</div>
@@ -4527,7 +4527,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Thin Film // SU</div>
                 <div class="facility-name">Sputtering Unit</div>
@@ -4542,7 +4542,7 @@ font-weight: bold; text-align: center;">
               </div>
             </div>
 
-            <div class="facility-item">
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
                 <div class="facility-tag">Gas Supply // CO2</div>
                 <div class="facility-name">CO₂ Facility</div>
@@ -5293,7 +5293,7 @@ Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
         ];
 
         // Build Gallery
-        function buildGallery(filter = 'all') {
+function buildGallery(filter = 'all') {
           const items = filter === 'all'
             ? galleryItems
             : galleryItems.filter(g => g.cat === filter);
@@ -5301,8 +5301,9 @@ Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
           const grid = document.getElementById('gallery-grid');
           if (!grid) return;
 
+          // ADDED: onclick="openResearchModal(this)" to the div below
           grid.innerHTML = items.map(g => `
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openResearchModal(this)">
               <img src="${g.src}" alt="${g.label}"
                   loading="lazy"
                   onerror="this.parentNode.style.background='var(--navy3)'; this.style.display='none'">
@@ -5312,7 +5313,6 @@ Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
             </div>
           `).join('');
         }
-
         // Filter handler (with active tab highlight)
         function filterGallery(category, btn) {
           document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
@@ -5424,28 +5424,42 @@ Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
           buildGallery('all');
         });
 
-        // ── Open the Research Modal ──
-        function openResearchModal(cardElement) {
-          const modal = document.getElementById('researchModal');
-          const modalImg = document.getElementById('modalImg');
-          const modalTitle = document.getElementById('modalTitle');
-          const modalText = document.getElementById('modalText');
+// ── Open the Research & Facility Modal ──
+// ── Open the Research & Facility Modal ──
+    function openResearchModal(cardElement) {
+      const modal = document.getElementById('researchModal');
+      const imageContainer = document.getElementById('modalImageContainer');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalText = document.getElementById('modalText');
 
-          // Grab the data from the specific card that was clicked
-          const imgEl = cardElement.querySelector('.research-card-image img');
-          const titleEl = cardElement.querySelector('.research-card-title');
-          const descEl = cardElement.querySelector('.research-card-desc');
+      // 1. Clear out old images
+      imageContainer.innerHTML = '';
 
-          // Fill the modal with that data
-          if (imgEl) modalImg.src = imgEl.src;
-          if (titleEl) modalTitle.innerText = titleEl.innerText;
-          if (descEl) modalText.innerText = descEl.innerText;
+      // 2. Find ALL images (Added .gallery-item img)
+      const images = cardElement.querySelectorAll('.research-card-image img, .research-area-image img, .facility-image img, .gallery-item img');
+      
+      // 3. Stack them in the modal
+      images.forEach(img => {
+        const newImg = document.createElement('img');
+        newImg.src = img.src;
+        imageContainer.appendChild(newImg);
+      });
 
-          // Show the modal and stop the background from scrolling
-          modal.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-        }
+      // 4. Grab the text (Added .gallery-item-label)
+      const titleEl = cardElement.querySelector('.research-card-title, .research-area-title, .facility-name, .gallery-item-label');
+      const descEl = cardElement.querySelector('.research-card-desc, .research-area-desc, .facility-subtitle');
 
+      // Clear text first (so gallery items without descriptions don't show the previous card's text)
+      modalTitle.innerText = '';
+      modalText.innerText = '';
+
+      if (titleEl) modalTitle.innerText = titleEl.innerText;
+      if (descEl) modalText.innerText = descEl.innerText;
+
+      // 5. Show modal and lock scrolling
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
         // ── Close the Research Modal ──
         function closeResearchModal() {
           const modal = document.getElementById('researchModal');
@@ -5462,10 +5476,12 @@ Mono,monospace;font-size:12px;color:var(--muted);letter-spacing:0.1em;">
         });
         </script>
 
-  <div id="researchModal" class="research-modal">
+<div id="researchModal" class="research-modal">
     <div class="research-modal-content">
       <span class="research-modal-close" onclick="closeResearchModal()">×</span>
-      <img id="modalImg" src="" alt="Enlarged Research Image">
+      
+      <div id="modalImageContainer" style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;"></div>
+      
       <h2 id="modalTitle" class="section-title" style="margin-bottom: 1rem; white-space: normal;"></h2>
       <p id="modalText"></p>
     </div>
