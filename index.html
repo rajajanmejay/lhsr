@@ -4121,7 +4121,7 @@ footer *{
         </div>
 
         <div class="research-card" onclick="openResearchModal(this)">
-          <div class="research-card-image"><img src="./images/Home_SWP.jpg" alt="Shock wave tunnel hardware" onerror=
+          <div class="research-card-image"><img src="./images/Home_SWP.gif" alt="Schlieren visualisation video of 'Unstart' in a 2D Scramjet Intake" onerror=
 "this.style.opacity='0'"></div>
           <div class="research-card-num">04 //</div>
           <div class="research-card-title">Shockwave Physics</div>
@@ -4173,7 +4173,11 @@ footer *{
           <div class="research-card-num">08 //</div>
           <div class="research-card-title">Blast-wave Physics</div>
           <div class="research-card-desc">
-            Explosion dynamics, blast wave propagation, and interaction with structures, fluids, and biological systems.
+            The facilities comprise systems for near- and far-field Friedlander wave simulation, 
+			including conical shock tubes and a differential plate pulse simulator. 
+			These enable controlled blast loading on test specimens. 
+			Integrated high-speed 3D Digital Image Correlation systems capture full-field transient deformations, 
+			supporting accurate analysis of structural response under realistic blast conditions.
           </div>
         </div>
 
@@ -4298,9 +4302,14 @@ FID, MS, and TCD detectors.
                 <div class="research-icon">🌊</div>
                 <div class="research-area-title">Compressible Flow & Mixing</div>
                 <div class="research-area-desc">
-                  Understanding mixing in compressible and supersonic flows is critical for scramjet combustor
-                  performance. We study compressible mixing layers, supersonic jet injection, and large eddy simulations
-                  to understand and enhance mixing in high-speed flows.
+                  Studies on canonical supersonic-supersonic mixing layers having zero streamwise pressure gradient, which has a significant bearing on system design, is that
+				the growth of the mixing layer is significantly reduced as the convective Mach number increases. In applications, however, streamwise pressure gradients can exist due to the flow topology.  We study the mixing layer both experimentally
+				and numerically(LES) under streamwise pressure gradient conditions. We also study the methods which enhances mixing rates for compact design.
+				 The first method is where discrete holes connects the high-pressure side to the
+				low-pressure side, leading to a jet into the supersonic stream. Second method
+				employed for mixing layer enhancement is by providing lobes on the
+				splitter plate. These methods creates counter-rotating vortices, which in
+				turn enhances entrainment, and thus the mixing layer thickness increases significantly. 
                 </div>
                 <div class="research-tags">
                   <span class="research-tag">Compressible Mixing Layer</span>
@@ -4841,6 +4850,21 @@ font-weight: bold; text-align: center;">
                 <div class="facility-image-placeholder" style="display:none">[ FR1.jpg ]</div>
               </div>
             </div>
+			
+            <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
+              <div class="facility-info">
+                <div class="facility-tag">Differential Plate Pulse Simulator // DPPS</div>
+                <div class="facility-name">Differential Plate Pulse Simulator</div>
+                <div class="facility-subtitle">Laboratory Scale Friedlander Wave Simulation</div>
+                <p style="color:var(--muted);font-size:1.05rem;margin-top:1.5rem;">This facility controlled blast loading 
+				on test specimens. Integrated high-speed 3D Digital Image Correlation systems capture full-field 
+				transient deformations, supporting accurate analysis of structural response under realistic blast conditions.</p>
+              </div>
+              <div class="facility-image">
+                <img src="./images/Facility_DPPS.jpg" alt="Differential Plate Pulse Simulator" onerror="this.style.display='none'" />
+                <div class="facility-image-placeholder" style="display:none">[ DPPS.jpg ]</div>
+              </div>
+            </div>			
 
             <div class="facility-item" onclick="openResearchModal(this)" style="cursor: pointer;">
               <div class="facility-info">
@@ -5588,8 +5612,15 @@ fetch(csvUrl)
         const galleryItems = [
           { src: './images/Gallery_Lab_1.jpg', label: 'Open Day at LHSR', cat: CATEGORIES.OPEN },
           { src: './images/Gallery_Lab_2.jpg', label: 'Visitors inside the laboratory hall', cat: CATEGORIES.VISITORS },
-          { src: './images/Gallery_Research_1.jpg', label: 'Research presentation and results', cat: CATEGORIES.RESEARCH },
-          { src: './images/Gallery_Research_2.jpg', label: 'GCxGC with MS and FID.', cat: CATEGORIES.RESEARCH },
+          { src: './images/Gallery_Research_1.jpg', label: 'Poster Presentation at NSSW 2024', cat: CATEGORIES.RESEARCH },
+          { src: './images/Gallery_Research_2.jpg', label: 'GCxGC with MS and FID', cat: CATEGORIES.RESEARCH },
+		  { src: './images/Gallery_Research_3.jpg', label: 'Modified Nonel tube for needleless drug delivery', cat: CATEGORIES.RESEARCH },
+		  { src: './images/Gallery_Research_4.jpg', label: 'Shockwave in Modified Nonel tube for needleless drug delivery', cat: CATEGORIES.RESEARCH },
+		  { src: './images/Gallery_Research_5.jpg', label: 'Turbulent spot convection on a cone surface under Mach 5.85 freestream.', cat: CATEGORIES.RESEARCH },
+		  { src: './images/Gallery_Research_6.jpg', label: 'Elliptic cone placed in Hypersonic Shock Tunnel 4', cat: CATEGORIES.RESEARCH },
+		  { src: './images/Gallery_Research_7.jpg', label: 'Plate deformation due to Blast Wave', cat: CATEGORIES.RESEARCH },
+		  { src: './images/Gallery_Research_8.gif', label: 'Schlieren visualisation video of Unstart in a 2D Scramjet Intake', cat: CATEGORIES.RESEARCH },
+		  { src: './images/Gallery_Research_9.jpg', label: 'Time-averaged wall pressure along the walls of the 2D Scramjet intake for various Throttle Ratios (TR)', cat: CATEGORIES.RESEARCH },
           { src: './images/Gallery_HST1.jpg', label: 'Hypersonic Shock Tunnel 1', cat: CATEGORIES.LAB },
           { src: './images/Gallery_HST2.jpg', label: 'Hypersonic Shock Tunnel 2', cat: CATEGORIES.LAB },
           { src: './images/Gallery_HST3.jpg', label: 'Hypersonic Shock Tunnel 3', cat: CATEGORIES.LAB },
@@ -5603,6 +5634,7 @@ fetch(csvUrl)
           { src: './images/Gallery_FR1.jpg', label: 'Flow reactor setup', cat: CATEGORIES.LAB },
           { src: './images/Gallery_CF1.jpg', label: 'CO₂ facility 1', cat: CATEGORIES.LAB },
           { src: './images/Gallery_CF2.jpg', label: 'CO₂ facility 2', cat: CATEGORIES.LAB }
+		  { src: './images/Gallery_DPPS.jpg', label: 'Differential Plate Pulse Simulation', cat: CATEGORIES.LAB }
         ];
 
         function buildGallery(filter = 'all') {
