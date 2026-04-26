@@ -5419,6 +5419,9 @@ fetch(csvUrl)
                 const linkedInProfile = normalizeExternalUrl(person.LinkedIn_Profile);
                 const role = (person.Role || '').toLowerCase();
                 const category = (person.Category || '').toLowerCase();
+				// --- HOBBIES EXTRACTION ---
+				// We check if Hobbies exist and trim them. We'll format the HTML inside the card types.
+				const hobbyText = person.Hobbies && person.Hobbies.trim() ? person.Hobbies.trim() : null;				
 
                 // Faculty uses a larger card style
                 if (category.includes('faculty')) {
@@ -5428,7 +5431,12 @@ fetch(csvUrl)
                   // 1. Extract and normalize all three links
                   const websiteUrl = person.Website_Link ? normalizeExternalUrl(person.Website_Link) : '';
                   const googleScholar = person.Google_Scholar ? normalizeExternalUrl(person.Google_Scholar) : '';
-                  
+					// Extract Hobbies
+				const hobbiesHtml = person.Hobbies && person.Hobbies.trim() 
+					? `<p class="faculty-research" style="margin-top: 8px; font-style: italic;">
+						<strong>Hobbies:</strong> ${person.Hobbies}
+					   </p>` 
+					: '';                  
                   // 2. Generate the HTML buttons for each link
                   const linkedInHtml = linkedInProfile
                     ? `<a class="people-card-linkedin" href="${linkedInProfile}" target="_blank" rel="noopener">LinkedIn ↗</a>`
@@ -5464,7 +5472,7 @@ fetch(csvUrl)
               <div class="faculty-name">${person.Name}</div>
               <div class="faculty-role">${person.Role || ''}</div>
               <p class="faculty-research">${person.Research_Field || ''}</p>
-              ${linksContainer} 
+				${hobbiesHtml} ${linksContainer} 
             </div>
           </div>
         `;
@@ -5481,6 +5489,13 @@ fetch(csvUrl)
                   // Standard card for everyone else
                   card.className = 'people-card';
                   const initial = person.Name.charAt(0).toUpperCase();
+				// Extract Hobbies
+				const hobbiesHtml = person.Hobbies && person.Hobbies.trim() 
+					? `<div class="people-card-research" style="font-size: 0.8rem; margin-top: 4px; opacity: 0.9;">
+						<em>Hobbies: ${person.Hobbies}</em>
+					   </div>` 
+					: '';				  
+                  				  
                   const researchHtml = person.Research_Field
                     ? `<div class="people-card-research">${person.Research_Field}</div>`
                     : '';
@@ -5500,8 +5515,8 @@ fetch(csvUrl)
             <div class="people-card-hover">
               <div class="people-card-name">${person.Name}</div>
               <div class="people-card-role">${person.Role || ''}</div>
-              ${researchHtml}
-              ${linkedInHtml}
+				  ${researchHtml}
+				  ${hobbiesHtml} ${linkedInHtml}
             </div>
           </div>
         `;
