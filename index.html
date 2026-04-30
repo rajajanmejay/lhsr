@@ -1163,43 +1163,44 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
     }
 
     /* ── OPPORTUNITIES PAGE ── */
+    /* FIXED GRID */
     .opp-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: rgba(0, 119, 204, 0.1);
-      margin-bottom: 5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
     }
 
+    /* CARD */
     .opp-card {
       background: #ffffff;
-      padding: 3rem;
-      transition: background 0.3s, box-shadow 0.3s;
-      border-top: 3px solid transparent;
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .opp-card:hover {
-      background: #f0f7ff;
-      border-top-color: var(--blue);
-      box-shadow: var(--glow);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
 
-    .opp-icon {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-    }
-
+    /* TITLE */
     .opp-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 1.2rem;
-      color: #0a2540;
+      margin-bottom: 10px;
     }
 
+    /* DESCRIPTION */
     .opp-desc {
+      font-size: 0.95rem;
       color: var(--muted);
-      font-size: 1.05rem;
+      line-height: 1.6;
     }
 
     .requirements-box {
@@ -5129,103 +5130,109 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
   </footer>
   </div>
 
-  <div class="page" id="page-opportunities">
-    <div class="page-header">
-      <div class="page-header-meta">// Opportunities</div>
-      <h1>Join the Lab</h1>
-      <p>
-        We are always looking for motivated researchers to join our team.
-        Explore openings at all levels.
-      </p>
-    </div>
+<div class="page" id="page-opportunities">
+  <div class="page-header">
+    <div class="page-header-meta">// Opportunities</div>
+    <h1>Join the Lab</h1>
+    <p>
+      We are always looking for motivated researchers to join our team.
+      Explore openings at all levels.
+    </p>
+  </div>
 
-    <div class="page-content">
-      <div class="opp-grid">
+  <div class="page-content">
 
-        <!-- Research Scholars -->
-        <div class="opp-card">
-          <div class="opp-icon">🎓</div>
-          <div class="opp-content">
-            <div class="opp-title">Research Scholars</div>
-            <div class="opp-desc">
-              We admit Ph.D. and M.Tech. (Research) students through the IISc admissions process.
-              For detailed guidelines, please refer to:
-              <a href="https://aero.iisc.ac.in/academics/admissions/" target="_blank" rel="noopener noreferrer">
-                Admissions Page
-              </a>
-            </div>
+    <!-- MAIN GRID -->
+    <div class="opp-grid">
+
+      <!-- Research Scholars -->
+      <div class="opp-card">
+        <div class="opp-icon">🎓</div>
+        <div class="opp-content">
+          <div class="opp-title">Research Scholars</div>
+          <div class="opp-desc">
+            We admit Ph.D. and M.Tech. (Research) students through the IISc admissions process.
+            For detailed guidelines, please refer to:
+            <a href="https://aero.iisc.ac.in/academics/admissions/" target="_blank">Admissions Page</a>
           </div>
         </div>
-
-        <!-- Postdoctoral Fellows -->
-        <div class="opp-card">
-          <div class="opp-icon">🔭</div>
-          <div class="opp-content">
-            <div class="opp-title">Post-Doctoral Fellows</div>
-            <div class="opp-desc">
-              Applications for <strong>Postdoctoral Fellowships</strong> will be encouraged through national-level schemes (such as NPDF) and institute fellowships.
-              <br><br>
-              Project-based positions will be offered based on vacancies. Prospective candidates should contact the relevant faculty member for further details.
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Staff -->
-        <div class="opp-card">
-          <div class="opp-icon">🛠️</div>
-          <div class="opp-content">
-            <div class="opp-title">Project Staff</div>
-            <div class="opp-desc">
-              Funded project positions will be advertised on this website as and when they become available.
-            </div>
-          </div>
-        </div>
-
-        <!-- Interns / Visiting Researchers -->
-        <div class="opp-card">
-          <div class="opp-icon">🌍</div>
-          <div class="opp-content">
-            <div class="opp-title">Interns / Visiting Researchers</div>
-            <div class="opp-desc">
-              Internships under the <strong>IAS Summer Fellowship Program</strong> and <strong>NPTEL Internship</strong> will be strongly encouraged.
-              <br><br>
-              Undergraduate internships will be offered based on collaborations. Visiting researchers will be considered based on mutual research interests and ongoing projects.
-            </div>
-          </div>
-        </div>
-
-      <!-- CTA (full width inside grid) -->
-      <div class="opp-card" style="grid-column: 1 / -1; text-align:center; padding: 2.5rem 2rem;">
-        <p style="color:var(--muted); margin-bottom:1rem; font-family:'Inter', sans-serif; font-size:13px;">
-          READY TO APPLY?
-        </p>
-        <a href="#" class="btn-primary" onclick="showPage('contact')">Contact Us</a>
       </div>
 
-      <!-- Industry Collaboration -->
+      <!-- Postdoc -->
+      <div class="opp-card">
+        <div class="opp-icon">🔭</div>
+        <div class="opp-content">
+          <div class="opp-title">Post-Doctoral Fellows</div>
+          <div class="opp-desc">
+            Applications for <strong>Postdoctoral Fellowships</strong> are encouraged via national schemes (NPDF, IISc).
+            <br><br>
+            Project-based positions depend on availability.
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Staff -->
+      <div class="opp-card">
+        <div class="opp-icon">🛠️</div>
+        <div class="opp-content">
+          <div class="opp-title">Project Staff</div>
+          <div class="opp-desc">
+            Funded project positions will be advertised here when available.
+          </div>
+        </div>
+      </div>
+
+      <!-- Interns -->
+      <div class="opp-card">
+        <div class="opp-icon">🌍</div>
+        <div class="opp-content">
+          <div class="opp-title">Interns / Visiting Researchers</div>
+          <div class="opp-desc">
+            Internships via IAS Summer Fellowship and NPTEL are encouraged.
+            <br><br>
+            Visiting researchers based on collaboration and research alignment.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA (NOW CLEAN) -->
+    <div style="text-align:center; margin: 40px 0;">
+      <p style="color:var(--muted); margin-bottom:12px; font-size:13px;">
+        READY TO APPLY?
+      </p>
+      <a href="#" class="btn-primary" onclick="showPage('contact')">
+        Contact Us
+      </a>
+    </div>
+
+    <!-- INDUSTRY (SEPARATE GRID) -->
+    <div class="opp-grid">
+
       <div class="opp-card">
         <div class="opp-icon">🤝</div>
         <div class="opp-content">
           <div class="opp-title">Industry Collaboration</div>
           <div class="opp-desc">
-            LHSR engages with leading research laboratories such as <strong>ISRO</strong>, <strong>DRDO</strong>, and <strong>NAL</strong>, as well as industry partners, to provide knowledge and technology solutions in areas including hypersonic aerothermodynamics, shock waves and their applications, chemical kinetics, and materials.
+            LHSR collaborates with ISRO, DRDO, and NAL, and industry partners in
+            hypersonic aerothermodynamics, shock waves, and materials.
             <br><br>
-            Laboratory facilities will be available for sponsored research and testing through IISc’s industry interaction initiatives (e.g., CSIC, FSID). The laboratory will also undertake consultancy across its areas of expertise.
-            <br><br>
-            Interested parties should contact faculty members for further details.
+            Facilities available for sponsored research, testing, and consultancy.
           </div>
         </div>
       </div>
 
-      </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-      <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
-      <div class="footer-copy">© 2025 LHSR, IISc Bengaluru</div>
-    </footer>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
+    <div class="footer-copy">© 2025 LHSR, IISc Bengaluru</div>
+  </footer>
+</div>
 
   <div class="page" id="page-contact">
     <div class="page-header">
