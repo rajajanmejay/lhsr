@@ -1166,23 +1166,26 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
     /* FIXED GRID */
     .opp-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(2, 1fr);   /* 👈 FORCE 2x2 */
       gap: 24px;
-      align-items: stretch;   /* all cards equal height */
+      align-items: stretch;
     }
 
     /* CARD */
     .opp-card {
       display: flex;
-      gap: 16px;                    /* icon + text spacing */
+      gap: 16px;
       align-items: flex-start;
 
       padding: 28px;
+
       border-radius: 10px;
       background: #ffffff;
-      border: 1px solid var(--border);
 
-      min-height: 240px;            /* prevents short/ugly cards */
+      border: 1px solid rgba(20, 24, 29, 0.12);   /* clean consistent border */
+
+      min-height: 240px;
+
       transition: all 0.25s ease;
     }
 
@@ -2113,13 +2116,6 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
       gap: 24px;
     }
 
-    .opp-card {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-
     .opp-icon {
       width: 60px;
       height: 60px;
@@ -2155,10 +2151,6 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
 
     .research-card,
     .research-area-card,
-    .opp-card {
-      padding: 28px;
-      border-bottom: 1px solid rgba(20, 24, 29, 0.12);
-    }
 
     .research-card:hover,
     .research-area-card:hover,
