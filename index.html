@@ -1171,6 +1171,28 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
       align-items: stretch;
     }
 
+    /* CTA */
+    .opp-cta {
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .opp-cta p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    /* Industry spacing */
+    .opp-industry {
+      margin-top: 60px;
+    }
+
+    /* Ensure industry spans full width */
+    .opp-industry .opp-card {
+      grid-column: 1 / -1;
+    }
+
     /* CARD */
     .opp-card {
       display: flex;
@@ -5148,7 +5170,6 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
     <!-- MAIN GRID -->
     <div class="opp-grid">
 
-      <!-- Research Scholars -->
       <div class="opp-card">
         <div class="opp-icon">🎓</div>
         <div class="opp-content">
@@ -5161,7 +5182,6 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
         </div>
       </div>
 
-      <!-- Postdoc -->
       <div class="opp-card">
         <div class="opp-icon">🔭</div>
         <div class="opp-content">
@@ -5174,7 +5194,6 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
         </div>
       </div>
 
-      <!-- Project Staff -->
       <div class="opp-card">
         <div class="opp-icon">🛠️</div>
         <div class="opp-content">
@@ -5185,7 +5204,6 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
         </div>
       </div>
 
-      <!-- Interns -->
       <div class="opp-card">
         <div class="opp-icon">🌍</div>
         <div class="opp-content">
@@ -5200,37 +5218,36 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
 
     </div>
 
-    <!-- CTA (NOW CLEAN) -->
-    <div style="text-align:center; margin: 40px 0;">
-      <p style="color:var(--muted); margin-bottom:12px; font-size:13px;">
-        READY TO APPLY?
-      </p>
+    <!-- CTA -->
+    <div class="opp-cta">
+      <p>READY TO APPLY?</p>
       <a href="#" class="btn-primary" onclick="showPage('contact')">
         Contact Us
       </a>
     </div>
 
-    <!-- INDUSTRY (SEPARATE GRID) -->
-    <div class="opp-grid">
+    <!-- INDUSTRY (FIXED WRAPPER) -->
+    <div class="opp-industry">
+      <div class="opp-grid">
 
-      <div class="opp-card">
-        <div class="opp-icon">🤝</div>
-        <div class="opp-content">
-          <div class="opp-title">Industry Collaboration</div>
-          <div class="opp-desc">
-            LHSR collaborates with ISRO, DRDO, and NAL, and industry partners in
-            hypersonic aerothermodynamics, shock waves, and materials.
-            <br><br>
-            Facilities available for sponsored research, testing, and consultancy.
+        <div class="opp-card">
+          <div class="opp-icon">🤝</div>
+          <div class="opp-content">
+            <div class="opp-title">Industry Collaboration</div>
+            <div class="opp-desc">
+              LHSR collaborates with ISRO, DRDO, and NAL, and industry partners in
+              hypersonic aerothermodynamics, shock waves, and materials.
+              <br><br>
+              Facilities available for sponsored research, testing, and consultancy.
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
 
   </div>
 
-  <!-- Footer -->
   <footer>
     <div class="footer-logo">LH<span style="color:var(--blue)">SR</span></div>
     <div class="footer-copy">© 2025 LHSR, IISc Bengaluru</div>
