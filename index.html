@@ -4839,7 +4839,7 @@ wght@300;400;500;600&display=swap" rel="stylesheet" />
 
       <div class="people-section">
         <div class="people-section-header">
-          <div class="people-section-title">Associated Faculty</div>
+          <div class="people-section-title">Associate Faculty</div>
           <div class="people-count" id="assocFacultyCount">00 members</div>
         </div>
         <div class="faculty-grid" id="assocFacultyContainer"></div>
@@ -5475,7 +5475,7 @@ ring,+Indian+Institute+of+Science,+Bengaluru&output=embed" allowfullscreen="" lo
           </div>
         `;
 
-            if (category.includes('associated') || category.includes('adjunct')) {
+            if (category.includes('Associate') || category.includes('adjunct')) {
               if (assocFacultyGrid) assocFacultyGrid.appendChild(card);
               counts.assocFaculty++;
             } else {
@@ -5554,7 +5554,7 @@ ring,+Indian+Institute+of+Science,+Bengaluru&output=embed" allowfullscreen="" lo
         if (document.getElementById('staff-count')) document.getElementById('staff-count').textContent = String(counts.staff).padStart(2, '0') + " members";
         if (document.getElementById('alumni-count')) document.getElementById('alumni-count').textContent = String(counts.alumni).padStart(2, '0') + " members";
 
-        // Hide any section whose grid ended up empty (e.g. Associated Faculty when CSV has none)
+        // Hide any section whose grid ended up empty (e.g. Associate Faculty when CSV has none)
         document.querySelectorAll('#page-people .people-section').forEach(section => {
           const grid = section.querySelector('.people-grid, .faculty-grid');
           if (grid && grid.children.length === 0) section.style.display = 'none';
