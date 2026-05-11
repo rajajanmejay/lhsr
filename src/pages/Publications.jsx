@@ -133,7 +133,7 @@ const Publications = () => {
         }}
       >
         <div className="page-header-meta">Publications</div>
-        <h1 style={{ whiteSpace: 'nowrap', overflowWrap: 'normal' }}>Selected Works</h1>
+        <h1>Selected Works</h1>
         <p>
           A sample of recent publications from the laboratory spanning experimental fluid dynamics,
           chemical kinetics, and applied shock wave research.
