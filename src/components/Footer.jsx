@@ -15,31 +15,38 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             <img
-              src="/logos/aero-logo.png"
+              src={`${import.meta.env.BASE_URL}logos/aero-logo.png`}
               alt="Department of Aerospace Engineering, IISc"
             />
           </a>
         </div>
+
         <div className="footer-brand-center">
           <div>
             <div className="footer-brand-name">
               Laboratory for Hypersonic and Shock wave Research
             </div>
+
             <div className="footer-brand-sub">
               Department of Aerospace Engineering, IISc Bengaluru
             </div>
           </div>
         </div>
+
         <div className="footer-institution-logo footer-logo-right">
           <a
             href="https://iisc.ac.in/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/logos/iisc-logo.png" alt="Indian Institute of Science" />
+            <img
+              src={`${import.meta.env.BASE_URL}logos/iisc-logo.png`}
+              alt="Indian Institute of Science"
+            />
           </a>
         </div>
       </div>
+
       <div
         style={{
           marginTop: "10px",
@@ -66,10 +73,15 @@ const Footer = () => {
             >
               Concept & Direction
             </div>
+
             <div
-              style={{ lineHeight: "1.5", color: "var(--hero-text, #cbd5e1)" }}
+              style={{
+                lineHeight: "1.5",
+                color: "var(--hero-text, #cbd5e1)",
+              }}
             >
-              Prof Srisha Rao M V<br />
+              Prof Srisha Rao M V
+              <br />
               Raja Janmejay
               <br />
               LNV Pratap
@@ -87,6 +99,7 @@ const Footer = () => {
         >
           Website Developed by - Raja Janmejay
         </div>
+
         <div
           className="footer-copy"
           style={{ fontFamily: "Inter, sans-serif" }}
