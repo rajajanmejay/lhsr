@@ -1,0 +1,190 @@
+import React, { useState } from "react";
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const sendContactMail = () => {
+    const { name, email, subject, message } = formData;
+    const finalSubject = subject || "LHSR enquiry";
+    const body = [
+      name ? `Name: ${name}` : "",
+      email ? `Email: ${email}` : "",
+      "",
+      message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.location.href = `mailto:srisharao@iisc.ac.in?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  return (
+    <div className="page active" id="page-contact">
+      <div className="page-header">
+        <div className="page-header-meta">Contact</div>
+        <h1>Get In Touch</h1>
+        <p>
+          Reach out for collaborations, admissions enquiries, or facility
+          access.
+        </p>
+      </div>
+      <div className="page-content">
+        <div className="contact-grid">
+          <div className="contact-info">
+            <div className="contact-item">
+              <div className="contact-item-label">Location</div>
+              <div className="contact-item-val">
+                Laboratory for Hypersonic and Shock Wave Research
+                <br />
+                Department of Aerospace Engineering
+                <br />
+                Indian Institute of Science
+                <br />
+                Bengaluru – 560012, Karnataka, India
+              </div>
+            </div>
+            <div className="contact-item">
+              <div className="contact-item-label">Email</div>
+              <div className="contact-item-val">
+                <div className="faculty-links">
+                  <a
+                    href="mailto:srisharao@iisc.ac.in"
+                    className="faculty-link"
+                    style={{ display: "block", marginBottom: "8px" }}
+                  >
+                    Srisha Rao M V <span className="external">↗</span>
+                  </a>
+                  <a
+                    href="mailto:jaggie@iisc.ac.in"
+                    className="faculty-link"
+                    style={{ display: "block" }}
+                  >
+                    Gopalan Jagadeesh <span className="external">↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="contact-item">
+              <div className="contact-item-label">Department</div>
+              <div className="contact-item-val">
+                <a
+                  href="https://aero.iisc.ac.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  aero.iisc.ac.in ↗
+                </a>
+              </div>
+            </div>
+            <div className="contact-item">
+              <div className="contact-item-label">How to reach us</div>
+              <div
+                className="contact-item-val"
+                style={{ color: "var(--muted)", fontSize: "1.05rem" }}
+              >
+                IISc is located in central Bengaluru. The Department of
+                Aerospace Engineering is in the main campus. Visitors should
+                contact us in advance to arrange campus access.
+              </div>
+            </div>
+          </div>
+
+          <div className="contact-form-wrap">
+            <div
+              className="req-title"
+              style={{
+                marginBottom: "2.5rem",
+                fontFamily: "Syne, sans-serif",
+                fontSize: "1.6rem",
+                fontWeight: "700",
+                color: "#0a2540",
+              }}
+            >
+              Send a Message
+            </div>
+            <div className="form-group">
+              <label className="form-label">Your Name</label>
+              <input
+                className="form-input"
+                name="name"
+                type="text"
+                placeholder="Full name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Email Address</label>
+              <input
+                className="form-input"
+                name="email"
+                type="email"
+                placeholder="your@email.com"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Subject</label>
+              <input
+                className="form-input"
+                name="subject"
+                type="text"
+                placeholder="e.g. PhD Admission / Collaboration / Facility Access"
+                value={formData.subject}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Message</label>
+              <textarea
+                className="form-textarea"
+                name="message"
+                placeholder="Describe your enquiry in detail..."
+                value={formData.message}
+                onChange={handleChange}
+              ></textarea>
+            </div>
+            <button
+              className="btn-primary"
+              style={{ width: "100%" }}
+              onClick={sendContactMail}
+            >
+              Send Message
+            </button>
+          </div>
+        </div>
+
+        <div className="map-section" style={{ marginTop: "1.5px" }}>
+          <div className="map-wrap">
+            <div
+              className="contact-item-label"
+              style={{ marginBottom: "1.5rem" }}
+            >
+              Location on Map
+            </div>
+            <iframe
+              className="map-iframe"
+              src="https://maps.google.com/maps?q=Laboratory+for+Hypersonic+and+Shock+Wave+Research+Department+of+Aerospace+Engineering,+Indian+Institute+of+Science,+Bengaluru&output=embed"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Map Location"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Contact;
