@@ -4162,3 +4162,24 @@ footer {
     max-width: calc(100vw - 86px) !important;
   }
 }
+
+@media (min-width: 901px) {
+  .responsive-logo.nav-logo {
+    flex: 0 1 860px !important;
+    min-width: min(860px, calc(100vw - 80px)) !important;
+    max-width: none !important;
+    gap: 30px !important;
+  }
+
+  .responsive-logo .nav-text-container {
+    display: block !important;
+    flex: 0 1 560px;
+    max-width: 560px;
+  }
+
+  .responsive-logo .nav-logo-text {
+    font-size: 16px !important;
+    line-height: 1.18 !important;
+    overflow-wrap: normal !important;
+  }
+}
