@@ -85,7 +85,9 @@ const Home = () => {
           <span className="line1">Laboratory for</span>
           <span className="line2">
             Hypersonic &<br />
-            Shock wave Research
+            Shock wave
+            <br />
+            Research
           </span>
           <span className="line3">IISc Bengaluru</span>
         </h1>
@@ -136,7 +138,7 @@ const Home = () => {
       </section>
 
       <section className="about-section">
-        <div className="about-section">
+        <div className="about-inner">
           <div className="section-tag">About the Lab</div>
           <h2 className="section-title">Decades of Hypersonic Excellence</h2>
 

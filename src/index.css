@@ -4035,3 +4035,130 @@ footer * {
     margin-left: auto !important;
   }
 }
+
+/* Final small-screen guardrails: keep content inside narrow phone viewports. */
+.page,
+.hero,
+.page-header,
+.page-content,
+.about-section,
+.about-inner,
+.research-preview,
+.research-grid,
+.research-card,
+.research-area-card,
+.facility-item,
+.facility-info,
+.publication-list,
+.publication-item,
+.gallery-tabs,
+.contact-grid,
+footer {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.hero-title,
+.section-title,
+.page-header h1,
+.research-card-title,
+.research-area-title,
+.facility-name,
+.publication-title,
+.people-section-title,
+.contact-item-val,
+.spec-key,
+.spec-val {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+@media (max-width: 600px) {
+  .page-header,
+  .about-section,
+  .research-preview,
+  .page-content {
+    width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .about-section {
+    padding-top: 64px !important;
+  }
+
+  .about-inner {
+    width: 100%;
+  }
+
+  .section-title,
+  .page-header h1 {
+    font-size: clamp(1.9rem, 10vw, 2.45rem) !important;
+    line-height: 1.16 !important;
+  }
+
+  .hero-title {
+    font-size: clamp(1.45rem, 7.2vw, 1.75rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  .hero-title .line1,
+  .hero-title .line2,
+  .hero-title .line3 {
+    max-width: 100%;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+
+  .about-images-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .about-images-row img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .research-card,
+  .research-area-card,
+  .opp-card,
+  .facility-info,
+  .contact-info,
+  .contact-form-wrap,
+  .map-wrap,
+  .scholar-panel,
+  .publication-item {
+    padding: 18px !important;
+  }
+
+  .spec-row {
+    align-items: flex-start;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .gallery-tabs {
+    width: 100%;
+  }
+
+  .gallery-tab {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .responsive-logo .nav-text-container {
+    display: none !important;
+  }
+
+  .responsive-logo {
+    max-width: calc(100% - 56px) !important;
+  }
+
+  .responsive-logo .nav-logo-mark img {
+    height: auto !important;
+    max-height: 32px !important;
+    max-width: calc(100vw - 86px) !important;
+  }
+}
