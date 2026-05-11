@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Papa from "papaparse";
+import React, { useState, useEffect } from 'react';
+import Papa from 'papaparse';
+import LoadingSkeleton from '../components/LoadingSkeleton';
+
+const CACHE_KEY = 'lhsr_people_data';
+const CACHE_EXPIRY_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 const People = () => {
   const [peopleData, setPeopleData] = useState({
@@ -16,19 +20,35 @@ const People = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const cacheBuster = new Date().getTime();
-    const csvUrl = `${import.meta.env.BASE_URL}LHSR_Website_Consolidated.csv?v=${cacheBuster}`;
+    // Check if cached data exists and is fresh
+    const cachedData = localStorage.getItem(CACHE_KEY);
+    const cachedTime = localStorage.getItem(CACHE_KEY + '_time');
+
+    if (cachedData && cachedTime && Date.now() - parseInt(cachedTime) < CACHE_EXPIRY_MS) {
+      try {
+        setPeopleData(JSON.parse(cachedData));
+        setLoading(false);
+        return;
+      } catch (e) {
+        console.warn('Cache parse failed, fetching fresh data');
+        localStorage.removeItem(CACHE_KEY);
+        localStorage.removeItem(CACHE_KEY + '_time');
+      }
+    }
+
+    // Fetch and parse CSV
+    const csvUrl = `${import.meta.env.BASE_URL}LHSR_Website_Consolidated.csv`;
 
     fetch(csvUrl)
       .then((res) => {
-        if (!res.ok) throw new Error("Could not load CSV — HTTP " + res.status);
+        if (!res.ok) throw new Error('Could not load CSV — HTTP ' + res.status);
         return res.text();
       })
       .then((csv) => {
         const data = Papa.parse(csv, {
           header: true,
           skipEmptyLines: true,
-          transformHeader: (h) => h.trim().replace(/^\uFEFF/, ""),
+          transformHeader: (h) => h.trim().replace(/^\uFEFF/, ''),
         }).data;
 
         const grouped = {
@@ -42,8 +62,8 @@ const People = () => {
         };
 
         const normalizeExternalUrl = (url) => {
-          const value = (url || "").trim();
-          if (!value) return "";
+          const value = (url || '').trim();
+          if (!value) return '';
           return /^https?:\/\//i.test(value) ? value : `https://${value}`;
         };
 
@@ -51,42 +71,35 @@ const People = () => {
           if (!person.Name || !person.Name.trim()) return;
 
           const p = { ...person };
-          p.imgId = p.ID ? p.ID.trim() : "";
+          p.imgId = p.ID ? p.ID.trim() : '';
           p.linkedInProfile = normalizeExternalUrl(p.LinkedIn_Profile);
-          p.websiteUrl = p.Website_Link
-            ? normalizeExternalUrl(p.Website_Link)
-            : "";
-          p.googleScholar = p.Google_Scholar
-            ? normalizeExternalUrl(p.Google_Scholar)
-            : "";
+          p.websiteUrl = p.Website_Link ? normalizeExternalUrl(p.Website_Link) : '';
+          p.googleScholar = p.Google_Scholar ? normalizeExternalUrl(p.Google_Scholar) : '';
 
-          const role = (p.Role || "").toLowerCase();
-          const category = (p.Category || "").toLowerCase();
+          const role = (p.Role || '').toLowerCase();
+          const category = (p.Category || '').toLowerCase();
 
-          if (category.includes("faculty")) {
-            if (
-              category.includes("associated") ||
-              category.includes("adjunct")
-            ) {
+          if (category.includes('faculty')) {
+            if (category.includes('associated') || category.includes('adjunct')) {
               grouped.assocFaculty.push(p);
             } else {
               grouped.faculty.push(p);
             }
           } else {
-            if (category.includes("alumni")) {
+            if (category.includes('alumni')) {
               grouped.alumni.push(p);
-            } else if (role.includes("phd")) {
+            } else if (role.includes('phd')) {
               grouped.phd.push(p);
             } else if (
-              role.includes("mtech") ||
-              role.includes("m.tech") ||
-              role.includes("m tech") ||
-              role.includes("m. tech")
+              role.includes('mtech') ||
+              role.includes('m.tech') ||
+              role.includes('m tech') ||
+              role.includes('m. tech')
             ) {
               grouped.mtech.push(p);
-            } else if (category.includes("research")) {
+            } else if (category.includes('research')) {
               grouped.research.push(p);
-            } else if (category.includes("staff")) {
+            } else if (category.includes('staff')) {
               grouped.staff.push(p);
             } else {
               grouped.research.push(p); // default to research if unspecified
@@ -95,10 +108,19 @@ const People = () => {
         });
 
         setPeopleData(grouped);
+        
+        // Cache the parsed data
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify(grouped));
+          localStorage.setItem(CACHE_KEY + "_time", Date.now().toString());
+        } catch (e) {
+          console.warn("Failed to cache people data:", e);
+        }
+        
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error loading/parsing CSV:", err);
+        console.error('Error loading/parsing CSV:', err);
         setError(err.message);
         setLoading(false);
       });
@@ -117,11 +139,11 @@ const People = () => {
                 e.target.dataset.retried = true;
                 e.target.src = `${import.meta.env.BASE_URL}images/${person.imgId}.jpeg`;
               } else {
-                e.target.parentNode.classList.add("no-image");
-                e.target.style.display = "none";
-                if (!e.target.parentNode.querySelector(".faculty-letter")) {
-                  const letterDiv = document.createElement("div");
-                  letterDiv.className = "faculty-letter";
+                e.target.parentNode.classList.add('no-image');
+                e.target.style.display = 'none';
+                if (!e.target.parentNode.querySelector('.faculty-letter')) {
+                  const letterDiv = document.createElement('div');
+                  letterDiv.className = 'faculty-letter';
                   letterDiv.innerText = initial;
                   e.target.parentNode.appendChild(letterDiv);
                 }
@@ -130,26 +152,23 @@ const People = () => {
           />
           <div className="faculty-card-base">
             <div className="faculty-name">{person.Name}</div>
-            <div className="faculty-role">{person.Role || ""}</div>
+            <div className="faculty-role">{person.Role || ''}</div>
           </div>
           <div className="faculty-card-hover">
             <div className="faculty-name">{person.Name}</div>
-            <div className="faculty-role">{person.Role || ""}</div>
-            <p className="faculty-research">{person.Research_Field || ""}</p>
+            <div className="faculty-role">{person.Role || ''}</div>
+            <p className="faculty-research">{person.Research_Field || ''}</p>
             {person.Hobbies && (
-              <p
-                className="faculty-research"
-                style={{ marginTop: "8px", fontStyle: "italic" }}
-              >
+              <p className="faculty-research" style={{ marginTop: '8px', fontStyle: 'italic' }}>
                 <strong>Hobbies:</strong> {person.Hobbies}
               </p>
             )}
             <div
               style={{
-                display: "flex",
-                gap: "8px",
-                flexWrap: "wrap",
-                marginTop: "12px",
+                display: 'flex',
+                gap: '8px',
+                flexWrap: 'wrap',
+                marginTop: '12px',
               }}
             >
               {person.linkedInProfile && (
@@ -202,11 +221,11 @@ const People = () => {
                 e.target.dataset.retried = true;
                 e.target.src = `${import.meta.env.BASE_URL}images/${person.imgId}.jpeg`;
               } else {
-                e.target.parentNode.classList.add("no-image");
-                e.target.style.display = "none";
-                if (!e.target.parentNode.querySelector(".people-card-letter")) {
-                  const letterDiv = document.createElement("div");
-                  letterDiv.className = "people-card-letter";
+                e.target.parentNode.classList.add('no-image');
+                e.target.style.display = 'none';
+                if (!e.target.parentNode.querySelector('.people-card-letter')) {
+                  const letterDiv = document.createElement('div');
+                  letterDiv.className = 'people-card-letter';
                   letterDiv.innerText = initial;
                   e.target.parentNode.appendChild(letterDiv);
                 }
@@ -215,20 +234,18 @@ const People = () => {
           />
           <div className="people-card-base">
             <div className="people-card-name">{person.Name}</div>
-            <div className="people-card-role">{person.Role || ""}</div>
+            <div className="people-card-role">{person.Role || ''}</div>
           </div>
           <div className="people-card-hover">
             <div className="people-card-name">{person.Name}</div>
-            <div className="people-card-role">{person.Role || ""}</div>
+            <div className="people-card-role">{person.Role || ''}</div>
             {person.Research_Field && (
-              <div className="people-card-research">
-                {person.Research_Field}
-              </div>
+              <div className="people-card-research">{person.Research_Field}</div>
             )}
             {person.Hobbies && (
               <div
                 className="people-card-research"
-                style={{ fontSize: "0.8rem", marginTop: "4px", opacity: 0.9 }}
+                style={{ fontSize: '0.8rem', marginTop: '4px', opacity: 0.9 }}
               >
                 <em>Hobbies: {person.Hobbies}</em>
               </div>
@@ -239,7 +256,7 @@ const People = () => {
                 href={person.linkedInProfile}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ marginTop: "auto" }}
+                style={{ marginTop: 'auto' }}
               >
                 LinkedIn ↗
               </a>
@@ -256,14 +273,22 @@ const People = () => {
         <div className="page-header-meta">Our People</div>
         <h1>Meet the Team</h1>
         <p>
-          A multidisciplinary group of researchers dedicated to pushing the
-          boundaries of high-speed aerodynamics and shock wave physics.
+          A multidisciplinary group of researchers dedicated to pushing the boundaries of high-speed
+          aerodynamics and shock wave physics.
         </p>
       </div>
 
       <div className="page-content">
-        {loading && <p>Loading team members...</p>}
-        {error && <p style={{ color: "red" }}>Error: {error}</p>}
+        {loading && (
+          <div style={{ padding: "2rem" }}>
+            <LoadingSkeleton count={4} type="card" />
+          </div>
+        )}
+        {error && (
+          <p style={{ color: "red", padding: "2rem" }}>
+            Error: {error}
+          </p>
+        )}
 
         {!loading && !error && (
           <>
@@ -272,29 +297,22 @@ const People = () => {
                 <div className="people-section-header">
                   <h2 className="people-section-title">Core Faculty</h2>
                   <span className="people-count">
-                    {String(peopleData.faculty.length).padStart(2, "0")} members
+                    {String(peopleData.faculty.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="faculty-grid">
-                  {peopleData.faculty.map(renderFacultyCard)}
-                </div>
+                <div className="faculty-grid">{peopleData.faculty.map(renderFacultyCard)}</div>
               </section>
             )}
 
             {peopleData.assocFaculty.length > 0 && (
               <section className="people-section">
                 <div className="people-section-header">
-                  <h2 className="people-section-title">
-                    Associated & Adjunct Faculty
-                  </h2>
+                  <h2 className="people-section-title">Associated & Adjunct Faculty</h2>
                   <span className="people-count">
-                    {String(peopleData.assocFaculty.length).padStart(2, "0")}{" "}
-                    members
+                    {String(peopleData.assocFaculty.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="faculty-grid">
-                  {peopleData.assocFaculty.map(renderFacultyCard)}
-                </div>
+                <div className="faculty-grid">{peopleData.assocFaculty.map(renderFacultyCard)}</div>
               </section>
             )}
 
@@ -303,61 +321,46 @@ const People = () => {
                 <div className="people-section-header">
                   <h2 className="people-section-title">Ph.D. Scholars</h2>
                   <span className="people-count">
-                    {String(peopleData.phd.length).padStart(2, "0")} students
+                    {String(peopleData.phd.length).padStart(2, '0')} students
                   </span>
                 </div>
-                <div className="people-grid">
-                  {peopleData.phd.map(renderPeopleCard)}
-                </div>
+                <div className="people-grid">{peopleData.phd.map(renderPeopleCard)}</div>
               </section>
             )}
 
             {peopleData.mtech.length > 0 && (
               <section className="people-section">
                 <div className="people-section-header">
-                  <h2 className="people-section-title">
-                    M.Tech. (Research) Scholars
-                  </h2>
+                  <h2 className="people-section-title">M.Tech. (Research) Scholars</h2>
                   <span className="people-count">
-                    {String(peopleData.mtech.length).padStart(2, "0")} students
+                    {String(peopleData.mtech.length).padStart(2, '0')} students
                   </span>
                 </div>
-                <div className="people-grid">
-                  {peopleData.mtech.map(renderPeopleCard)}
-                </div>
+                <div className="people-grid">{peopleData.mtech.map(renderPeopleCard)}</div>
               </section>
             )}
 
             {peopleData.research.length > 0 && (
               <section className="people-section">
                 <div className="people-section-header">
-                  <h2 className="people-section-title">
-                    Research Fellows & Assistants
-                  </h2>
+                  <h2 className="people-section-title">Research Fellows & Assistants</h2>
                   <span className="people-count">
-                    {String(peopleData.research.length).padStart(2, "0")}{" "}
-                    members
+                    {String(peopleData.research.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="people-grid">
-                  {peopleData.research.map(renderPeopleCard)}
-                </div>
+                <div className="people-grid">{peopleData.research.map(renderPeopleCard)}</div>
               </section>
             )}
 
             {peopleData.staff.length > 0 && (
               <section className="people-section">
                 <div className="people-section-header">
-                  <h2 className="people-section-title">
-                    Technical & Project Staff
-                  </h2>
+                  <h2 className="people-section-title">Technical & Project Staff</h2>
                   <span className="people-count">
-                    {String(peopleData.staff.length).padStart(2, "0")} members
+                    {String(peopleData.staff.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="people-grid">
-                  {peopleData.staff.map(renderPeopleCard)}
-                </div>
+                <div className="people-grid">{peopleData.staff.map(renderPeopleCard)}</div>
               </section>
             )}
 
@@ -366,12 +369,10 @@ const People = () => {
                 <div className="people-section-header">
                   <h2 className="people-section-title">Alumni</h2>
                   <span className="people-count">
-                    {String(peopleData.alumni.length).padStart(2, "0")} members
+                    {String(peopleData.alumni.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="people-grid">
-                  {peopleData.alumni.map(renderPeopleCard)}
-                </div>
+                <div className="people-grid">{peopleData.alumni.map(renderPeopleCard)}</div>
               </section>
             )}
           </>

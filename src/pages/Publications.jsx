@@ -1,133 +1,148 @@
-import React from "react";
+import React, { useState, useMemo } from 'react';
 
 const Publications = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedYear, setSelectedYear] = useState('all');
+
   const publications = [
     {
-      year: "2026",
+      year: '2026',
+      title: 'Turbulent spots in hypersonic transitional planar and axisymmetric boundary layers',
+      authors: 'Bajpai Ankit, Jagadeesh Gopalan',
+      meta: 'Journal of Fluid Mechanics, 2026',
+      link: 'https://arxiv.org/abs/2601.08795',
+      linkText: 'DOI ↗',
+    },
+    {
+      year: '2026',
       title:
-        "Turbulent spots in hypersonic transitional planar and axisymmetric boundary layers",
-      authors: "Bajpai Ankit, Jagadeesh Gopalan",
-      meta: "Journal of Fluid Mechanics, 2026",
-      link: "https://arxiv.org/abs/2601.08795",
-      linkText: "DOI ↗",
+        'Kinematics of Single-Winged Spinning Seeds: A Study on Mahogany and Buddha Coconut Samaras',
+      authors: 'Rajkamal Sah, Yogeshwaran G, Srisha M V Rao, Gopalan Jagadeesh',
+      meta: 'Physics of Fluids, 2026',
+      link: 'https://arxiv.org/abs/2603.08746',
+      linkText: 'View Paper ↗',
     },
     {
-      year: "2026",
+      year: '2025',
       title:
-        "Kinematics of Single-Winged Spinning Seeds: A Study on Mahogany and Buddha Coconut Samaras",
-      authors: "Rajkamal Sah, Yogeshwaran G, Srisha M V Rao, Gopalan Jagadeesh",
-      meta: "Physics of Fluids, 2026",
-      link: "https://arxiv.org/abs/2603.08746",
-      linkText: "View Paper ↗",
+        'Experimental Investigation of Lift-Up and Instability Characteristics Induced by a Rotating Cone-Cylinder Model',
+      authors: 'Rajkamal Sah, Sumit Sunil Tambe, Jagadeesh Gopalan',
+      meta: 'Physics of Fluids, Vol. 37, Issue 7, 074108, 2025',
+      link: 'https://pubs.aip.org/aip/pof/article/37/7/074108/3354898',
+      linkText: 'DOI ↗',
     },
     {
-      year: "2025",
+      year: '2024',
+      title: 'Dynamics of Wingtip Vortex in Natural Samaras',
+      authors: 'Yogeshwaran G, Srisha M.V. Rao, Jagadeesh G',
+      meta: 'Physics of Fluids, Vol. 36, Issue 12, 123621, 2024',
+      link: 'https://pubs.aip.org/aip/pof/article/36/12/123621/3325721/Dynamics-of-wingtip-vortex-in-natural-samaras',
+      linkText: 'DOI ↗',
+    },
+    {
+      year: '2024',
+      title: 'Surrogate model based multi-objective optimisation of supercritical CO2 ejectors',
+      authors: 'S. Paul, R. P. Srikar, Srisha Rao M V, P. Kumar',
+      meta: 'International Journal of Refrigeration, 2024',
+      link: 'https://www.sciencedirect.com/science/article/abs/pii/S0896844624003280',
+      linkText: 'View publication ↗',
+    },
+    {
+      year: '2023',
       title:
-        "Experimental Investigation of Lift-Up and Instability Characteristics Induced by a Rotating Cone-Cylinder Model",
-      authors: "Rajkamal Sah, Sumit Sunil Tambe, Jagadeesh Gopalan",
-      meta: "Physics of Fluids, Vol. 37, Issue 7, 074108, 2025",
-      link: "https://pubs.aip.org/aip/pof/article/37/7/074108/3354898",
-      linkText: "DOI ↗",
+        'Low-frequency unsteadiness of recompression shock structures in the diffuser of supersonic ejectors',
+      authors: 'P. Gupta, P. Kumar, Srisha Rao M V',
+      meta: 'Physics of Fluids, 2023',
+      link: 'https://doi.org/10.1063/5.0137051',
+      linkText: 'DOI ↗',
     },
     {
-      year: "2024",
-      title: "Dynamics of Wingtip Vortex in Natural Samaras",
-      authors: "Yogeshwaran G, Srisha M.V. Rao, Jagadeesh G",
-      meta: "Physics of Fluids, Vol. 36, Issue 12, 123621, 2024",
-      link: "https://pubs.aip.org/aip/pof/article/36/12/123621/3325721/Dynamics-of-wingtip-vortex-in-natural-samaras",
-      linkText: "DOI ↗",
+      year: '2022',
+      title: 'Shock-induced leading-edge separation in hypersonic flows',
+      authors: 'L. Srinath, R. Sriram, P. Akhilesh, G. Jagadeesh',
+      meta: 'Journal of Fluid Mechanics, 2022',
+      link: 'https://doi.org/10.1017/jfm.2022.619',
+      linkText: 'DOI ↗',
     },
     {
-      year: "2024",
+      year: '2022',
+      title: 'Artificial neural network model for single-phase real gas ejectors',
+      authors: 'P. Gupta, Srisha Rao M V, P. Kumar',
+      meta: 'Applied Thermal Engineering, 2022',
+      link: 'https://doi.org/10.1016/j.applthermaleng.2021.117615',
+      linkText: 'DOI ↗',
+    },
+    {
+      year: '2021',
       title:
-        "Surrogate model based multi-objective optimisation of supercritical CO2 ejectors",
-      authors: "S. Paul, R. P. Srikar, Srisha Rao M V, P. Kumar",
-      meta: "International Journal of Refrigeration, 2024",
-      link: "https://www.sciencedirect.com/science/article/abs/pii/S0896844624003280",
-      linkText: "View publication ↗",
+        'Length scale for the estimation of buzz frequency in the limit of high mechanical blockage in mixed-compression intakes',
+      authors: 'M. K. K. Devaraj, P. Jutur, Srisha M V Rao, G. Jagadeesh, G. T. K. Anavardham',
+      meta: 'Journal of Fluid Mechanics, 2021',
+      link: 'https://doi.org/10.1017/jfm.2021.230',
+      linkText: 'DOI ↗',
     },
     {
-      year: "2023",
+      year: '2021',
+      title: 'Investigation of local unstart in a hypersonic scramjet intake at a Mach number of 6',
+      authors: 'M. K. K. Devaraj, P. Jutur, Srisha M V Rao, G. Jagadeesh, G. T. K. Anavardham',
+      meta: 'Aerospace Science and Technology, 2021',
+      link: 'https://doi.org/10.1016/j.ast.2021.106789',
+      linkText: 'DOI ↗',
+    },
+    {
+      year: '2021',
       title:
-        "Low-frequency unsteadiness of recompression shock structures in the diffuser of supersonic ejectors",
-      authors: "P. Gupta, P. Kumar, Srisha Rao M V",
-      meta: "Physics of Fluids, 2023",
-      link: "https://doi.org/10.1063/5.0137051",
-      linkText: "DOI ↗",
+        'Effect of the axial cavity with an opposing high-pressure jet combination in a Mach 6 flow condition',
+      authors: 'B. Sudarshan, S. M. Rao, G. Jagadeesh, S. Saravanan',
+      meta: 'Acta Astronautica, 2021',
+      link: 'https://doi.org/10.1016/j.actaastro.2020.09.021',
+      linkText: 'DOI ↗',
     },
     {
-      year: "2022",
-      title: "Shock-induced leading-edge separation in hypersonic flows",
-      authors: "L. Srinath, R. Sriram, P. Akhilesh, G. Jagadeesh",
-      meta: "Journal of Fluid Mechanics, 2022",
-      link: "https://doi.org/10.1017/jfm.2022.619",
-      linkText: "DOI ↗",
+      year: '2021',
+      title: 'Insights into the shockwave attenuation in miniature shock tubes',
+      authors: 'S. Janardhanraj, K. Abhishek, G. Jagadeesh',
+      meta: 'Experimental Thermal and Fluid Science, 2021',
+      link: 'https://cir.nii.ac.jp/crid/1360588384083606528',
+      linkText: 'View record ↗',
     },
     {
-      year: "2022",
+      year: '2020',
       title:
-        "Artificial neural network model for single-phase real gas ejectors",
-      authors: "P. Gupta, Srisha Rao M V, P. Kumar",
-      meta: "Applied Thermal Engineering, 2022",
-      link: "https://doi.org/10.1016/j.applthermaleng.2021.117615",
-      linkText: "DOI ↗",
+        'Experimental investigation of unstart dynamics driven by subsonic spillage in a hypersonic scramjet intake at Mach 6',
+      authors: 'M. K. K. Devaraj, P. Jutur, Srisha M V Rao, G. Jagadeesh, G. T. K. Anavardham',
+      meta: 'Physics of Fluids, 2020',
+      link: 'https://doi.org/10.1063/1.5135096',
+      linkText: 'DOI ↗',
     },
     {
-      year: "2021",
-      title:
-        "Length scale for the estimation of buzz frequency in the limit of high mechanical blockage in mixed-compression intakes",
-      authors:
-        "M. K. K. Devaraj, P. Jutur, Srisha M V Rao, G. Jagadeesh, G. T. K. Anavardham",
-      meta: "Journal of Fluid Mechanics, 2021",
-      link: "https://doi.org/10.1017/jfm.2021.230",
-      linkText: "DOI ↗",
-    },
-    {
-      year: "2021",
-      title:
-        "Investigation of local unstart in a hypersonic scramjet intake at a Mach number of 6",
-      authors:
-        "M. K. K. Devaraj, P. Jutur, Srisha M V Rao, G. Jagadeesh, G. T. K. Anavardham",
-      meta: "Aerospace Science and Technology, 2021",
-      link: "https://doi.org/10.1016/j.ast.2021.106789",
-      linkText: "DOI ↗",
-    },
-    {
-      year: "2021",
-      title:
-        "Effect of the axial cavity with an opposing high-pressure jet combination in a Mach 6 flow condition",
-      authors: "B. Sudarshan, S. M. Rao, G. Jagadeesh, S. Saravanan",
-      meta: "Acta Astronautica, 2021",
-      link: "https://doi.org/10.1016/j.actaastro.2020.09.021",
-      linkText: "DOI ↗",
-    },
-    {
-      year: "2021",
-      title: "Insights into the shockwave attenuation in miniature shock tubes",
-      authors: "S. Janardhanraj, K. Abhishek, G. Jagadeesh",
-      meta: "Experimental Thermal and Fluid Science, 2021",
-      link: "https://cir.nii.ac.jp/crid/1360588384083606528",
-      linkText: "View record ↗",
-    },
-    {
-      year: "2020",
-      title:
-        "Experimental investigation of unstart dynamics driven by subsonic spillage in a hypersonic scramjet intake at Mach 6",
-      authors:
-        "M. K. K. Devaraj, P. Jutur, Srisha M V Rao, G. Jagadeesh, G. T. K. Anavardham",
-      meta: "Physics of Fluids, 2020",
-      link: "https://doi.org/10.1063/1.5135096",
-      linkText: "DOI ↗",
-    },
-    {
-      year: "2020",
-      title: "Impulse loading of plates using a diverging shock tube",
-      authors: "O. S. Isaac, G. Jagadeesh",
-      meta: "Experimental Mechanics, 2020",
-      link: "https://doi.org/10.1007/s11340-020-00576-7",
-      linkText: "DOI ↗",
+      year: '2020',
+      title: 'Impulse loading of plates using a diverging shock tube',
+      authors: 'O. S. Isaac, G. Jagadeesh',
+      meta: 'Experimental Mechanics, 2020',
+      link: 'https://doi.org/10.1007/s11340-020-00576-7',
+      linkText: 'DOI ↗',
     },
   ];
+
+  // Get unique years for filter
+  const years = ['all', ...new Set(publications.map((p) => p.year))].sort((a, b) =>
+    a === 'all' ? -1 : parseInt(b) - parseInt(a)
+  );
+
+  // Filter publications
+  const filteredPublications = useMemo(() => {
+    return publications.filter((pub) => {
+      const matchesSearch =
+        pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        pub.authors.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        pub.meta.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchesYear = selectedYear === 'all' || pub.year === selectedYear;
+
+      return matchesSearch && matchesYear;
+    });
+  }, [searchTerm, selectedYear]);
 
   return (
     <div className="page active" id="page-publications">
@@ -136,96 +151,205 @@ const Publications = () => {
         style={{
           background:
             "linear-gradient(rgba(245, 247, 249, 0.72), rgba(245, 247, 249, 0.72)), url('/images/Home_Lab_1.jpg') center/cover no-repeat",
-          backgroundBlendMode: "lighten",
+          backgroundBlendMode: 'lighten',
         }}
       >
         <div className="page-header-meta">Publications</div>
-        <h1 style={{ whiteSpace: "nowrap", overflowWrap: "normal" }}>
-          Selected Works
-        </h1>
+        <h1 style={{ whiteSpace: 'nowrap', overflowWrap: 'normal' }}>Selected Works</h1>
         <p>
-          A sample of recent publications from the laboratory spanning
-          experimental fluid dynamics, chemical kinetics, and applied shock wave
-          research.
+          A sample of recent publications from the laboratory spanning experimental fluid dynamics,
+          chemical kinetics, and applied shock wave research.
         </p>
       </div>
-      <div
-        className="page-content"
-        style={{ maxWidth: "900px", padding: "5rem 2.5rem" }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          {publications.map((pub, idx) => (
-            <article
-              key={idx}
-              className="publication-item"
-              style={{
-                display: "flex",
-                gap: "2rem",
-                paddingBottom: "2rem",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
-              <div
-                className="publication-year"
+      <div className="page-content" style={{ maxWidth: '900px', padding: '5rem 2.5rem' }}>
+        {/* Search and Filter Section */}
+        <div
+          style={{
+            marginBottom: '3rem',
+            padding: '2rem',
+            backgroundColor: 'var(--navy3)',
+            borderRadius: '8px',
+            border: '1px solid var(--border)',
+          }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            {/* Search */}
+            <div>
+              <label
+                htmlFor="pub-search"
                 style={{
-                  fontFamily: "Space Mono, monospace",
-                  fontSize: "14px",
-                  color: "var(--blue)",
-                  fontWeight: "bold",
+                  display: 'block',
+                  marginBottom: '0.5rem',
+                  fontWeight: '600',
+                  color: 'var(--white)',
+                  fontSize: '0.9rem',
                 }}
               >
-                {pub.year}
-              </div>
-              <div>
-                <div
-                  className="publication-title"
-                  style={{
-                    fontFamily: "Syne, sans-serif",
-                    fontSize: "1.25rem",
-                    fontWeight: "700",
-                    color: "#0a2540",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {pub.title}
-                </div>
-                <div
-                  className="publication-authors"
-                  style={{ color: "var(--muted)", marginBottom: "0.25rem" }}
-                >
-                  {pub.authors}
-                </div>
-                <div
-                  className="publication-meta"
-                  style={{
-                    fontStyle: "italic",
-                    color: "var(--muted)",
-                    fontSize: "0.95rem",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {pub.meta}
-                </div>
-                <a
-                  className="publication-link"
-                  href={pub.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    color: "var(--blue)",
-                    textDecoration: "none",
-                    fontFamily: "Space Mono, monospace",
-                    fontSize: "12px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  {pub.linkText}
-                </a>
-              </div>
-            </article>
-          ))}
+                Search Publications
+              </label>
+              <input
+                id="pub-search"
+                type="text"
+                placeholder="Search by title, authors, or journal..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  border: '1px solid var(--border)',
+                  borderRadius: '4px',
+                  backgroundColor: 'var(--navy)',
+                  color: 'var(--white)',
+                  fontSize: '1rem',
+                  fontFamily: 'inherit',
+                }}
+              />
+            </div>
+
+            {/* Year Filter */}
+            <div>
+              <label
+                htmlFor="year-filter"
+                style={{
+                  display: 'block',
+                  marginBottom: '0.5rem',
+                  fontWeight: '600',
+                  color: 'var(--white)',
+                  fontSize: '0.9rem',
+                }}
+              >
+                Filter by Year
+              </label>
+              <select
+                id="year-filter"
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  border: '1px solid var(--border)',
+                  borderRadius: '4px',
+                  backgroundColor: 'var(--navy)',
+                  color: 'var(--white)',
+                  fontSize: '1rem',
+                  fontFamily: 'inherit',
+                  cursor: 'pointer',
+                }}
+              >
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year === 'all' ? 'All Years' : year}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Results Counter */}
+            <div
+              style={{
+                fontSize: '0.9rem',
+                color: 'var(--muted)',
+                fontStyle: 'italic',
+              }}
+            >
+              Showing {filteredPublications.length} of {publications.length} publication
+              {publications.length !== 1 ? 's' : ''}
+            </div>
+          </div>
         </div>
+
+        {/* Publications List */}
+        {filteredPublications.length > 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            {filteredPublications.map((pub, idx) => (
+              <article
+                key={idx}
+                className="publication-item"
+                style={{
+                  display: 'flex',
+                  gap: '2rem',
+                  paddingBottom: '2rem',
+                  borderBottom: '1px solid var(--border)',
+                }}
+              >
+                <div
+                  className="publication-year"
+                  style={{
+                    fontFamily: 'Space Mono, monospace',
+                    fontSize: '14px',
+                    color: 'var(--blue)',
+                    fontWeight: 'bold',
+                    minWidth: '3rem',
+                  }}
+                >
+                  {pub.year}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <h3
+                    className="publication-title"
+                    style={{
+                      fontFamily: 'Syne, sans-serif',
+                      fontSize: '1.25rem',
+                      fontWeight: '700',
+                      color: '#0a2540',
+                      marginBottom: '0.5rem',
+                      lineHeight: '1.4',
+                    }}
+                  >
+                    {pub.title}
+                  </h3>
+                  <div
+                    className="publication-authors"
+                    style={{ color: 'var(--muted)', marginBottom: '0.25rem' }}
+                  >
+                    {pub.authors}
+                  </div>
+                  <div
+                    className="publication-meta"
+                    style={{
+                      fontStyle: 'italic',
+                      color: 'var(--muted)',
+                      fontSize: '0.95rem',
+                      marginBottom: '1rem',
+                    }}
+                  >
+                    {pub.meta}
+                  </div>
+                  <a
+                    className="publication-link"
+                    href={pub.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: 'var(--blue)',
+                      textDecoration: 'none',
+                      fontFamily: 'Space Mono, monospace',
+                      fontSize: '12px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.1em',
+                    }}
+                  >
+                    {pub.linkText}
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div
+            style={{
+              textAlign: 'center',
+              padding: '3rem 2rem',
+              color: 'var(--muted)',
+              fontSize: '1.1rem',
+            }}
+          >
+            <p>No publications match your search criteria.</p>
+            <p style={{ fontSize: '0.95rem', marginTop: '0.5rem' }}>
+              Try adjusting your search or filter.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
