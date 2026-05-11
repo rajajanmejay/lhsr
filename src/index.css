@@ -4165,16 +4165,16 @@ footer {
 
 @media (min-width: 901px) {
   .responsive-logo.nav-logo {
-    flex: 0 1 860px !important;
-    min-width: min(860px, calc(100vw - 80px)) !important;
+    flex: 0 1 980px !important;
+    min-width: min(980px, calc(100vw - 80px)) !important;
     max-width: none !important;
     gap: 30px !important;
   }
 
   .responsive-logo .nav-text-container {
     display: block !important;
-    flex: 0 1 560px;
-    max-width: 560px;
+    flex: 0 1 700px;
+    max-width: 700px;
   }
 
   .responsive-logo .nav-logo-text {
