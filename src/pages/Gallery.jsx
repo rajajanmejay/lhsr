@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Lightbox from '../components/Lightbox';
+import ResearchModal from '../components/ResearchModal';
 
 const CATEGORIES = Object.freeze({
-  OPEN: { id: 'open-day', label: 'Open Day', icon: '🎉' },
-  VISITORS: { id: 'visitors', label: 'Visitors', icon: '👥' },
-  LAB: { id: 'lab-facilities', label: 'Lab & Facilities', icon: '🔬' },
-  RESEARCH: { id: 'research-work', label: 'Research Work', icon: '📊' },
+  OPEN: 'open-day',
+  VISITORS: 'visitors',
+  LAB: 'lab-facilities',
+  RESEARCH: 'research-work',
 });
 
 const galleryItems = [
@@ -210,27 +210,23 @@ const galleryItems = [
 
 const Gallery = () => {
   const [filter, setFilter] = useState('all');
-  const [lightboxState, setLightboxState] = useState({
+  const [modalState, setModalState] = useState({
     isOpen: false,
+    title: '',
+    text: '',
     images: [],
-    currentIndex: 0,
   });
 
-  const openLightbox = (index) => {
-    const allFilteredSrcs = filteredItems.map((item) => item.src);
-    setLightboxState({
-      isOpen: true,
-      images: allFilteredSrcs,
-      currentIndex: index,
-    });
+  const openModal = (label, img) => {
+    setModalState({ isOpen: true, title: label, text: '', images: [img] });
   };
 
-  const closeLightbox = () => {
-    setLightboxState({ ...lightboxState, isOpen: false });
+  const closeModal = () => {
+    setModalState({ ...modalState, isOpen: false });
   };
 
   const filteredItems =
-    filter === 'all' ? galleryItems : galleryItems.filter((g) => g.cat.id === filter);
+    filter === 'all' ? galleryItems : galleryItems.filter((g) => g.cat === filter);
 
   return (
     <div className="page active" id="page-gallery">
@@ -239,150 +235,64 @@ const Gallery = () => {
         <h1>Gallery</h1>
         <p>Facilities, experiments, events, and the people behind the science.</p>
       </div>
-      <div className="page-content" style={{ padding: '3rem 2.5rem' }}>
-        {/* Category Tabs */}
-        <div className="gallery-tabs" style={{ marginBottom: '2rem' }}>
+      <div className="page-content">
+        <div className="gallery-tabs">
           <button
             className={`gallery-tab ${filter === 'all' ? 'active' : ''}`}
             onClick={() => setFilter('all')}
-            style={{
-              padding: '0.75rem 1.5rem',
-              marginRight: '0.75rem',
-              marginBottom: '0.5rem',
-              border: `2px solid ${filter === 'all' ? 'var(--blue)' : 'var(--border)'}`,
-              background: filter === 'all' ? 'rgba(0, 119, 204, 0.1)' : 'transparent',
-              color: filter === 'all' ? 'var(--blue)' : 'var(--muted)',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontWeight: '600',
-              transition: 'all 0.2s',
-              fontSize: '0.95rem',
-            }}
           >
-            All ({galleryItems.length})
+            All
           </button>
-          {Object.values(CATEGORIES).map((cat) => {
-            const count = galleryItems.filter((g) => g.cat.id === cat.id).length;
-            return (
-              <button
-                key={cat.id}
-                className={`gallery-tab ${filter === cat.id ? 'active' : ''}`}
-                onClick={() => setFilter(cat.id)}
-                style={{
-                  padding: '0.75rem 1.5rem',
-                  marginRight: '0.75rem',
-                  marginBottom: '0.5rem',
-                  border: `2px solid ${filter === cat.id ? 'var(--blue)' : 'var(--border)'}`,
-                  background: filter === cat.id ? 'rgba(0, 119, 204, 0.1)' : 'transparent',
-                  color: filter === cat.id ? 'var(--blue)' : 'var(--muted)',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontWeight: '600',
-                  transition: 'all 0.2s',
-                  fontSize: '0.95rem',
-                }}
-              >
-                {cat.icon} {cat.label} ({count})
-              </button>
-            );
-          })}
+          <button
+            className={`gallery-tab ${filter === CATEGORIES.OPEN ? 'active' : ''}`}
+            onClick={() => setFilter(CATEGORIES.OPEN)}
+          >
+            Open Day
+          </button>
+          <button
+            className={`gallery-tab ${filter === CATEGORIES.VISITORS ? 'active' : ''}`}
+            onClick={() => setFilter(CATEGORIES.VISITORS)}
+          >
+            Visitors
+          </button>
+          <button
+            className={`gallery-tab ${filter === CATEGORIES.LAB ? 'active' : ''}`}
+            onClick={() => setFilter(CATEGORIES.LAB)}
+          >
+            Lab & Facilities
+          </button>
+          <button
+            className={`gallery-tab ${filter === CATEGORIES.RESEARCH ? 'active' : ''}`}
+            onClick={() => setFilter(CATEGORIES.RESEARCH)}
+          >
+            Research Work
+          </button>
         </div>
-
-        {/* Gallery Grid */}
-        <div className="gallery-grid" style={{ marginBottom: '2rem' }}>
+        <div className="gallery-grid">
           {filteredItems.map((g, idx) => (
-            <div
-              key={idx}
-              className="gallery-item"
-              onClick={() => openLightbox(idx)}
-              style={{
-                cursor: 'pointer',
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: '4px',
-                background: 'var(--navy3)',
-                aspectRatio: '1',
-              }}
-              title="Click to view full size"
-            >
+            <div key={idx} className="gallery-item" onClick={() => openModal(g.label, g.src)}>
               <img
                 src={g.src}
                 alt={g.label}
                 loading="lazy"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  transition: 'transform 0.3s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'scale(1.05)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'scale(1)';
-                }}
                 onError={(e) => {
+                  e.target.parentNode.style.background = 'var(--navy3)';
                   e.target.style.display = 'none';
                 }}
               />
-              <div
-                className="gallery-item-overlay"
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.6))',
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  padding: '1rem',
-                  opacity: 0,
-                  transition: 'opacity 0.3s ease',
-                }}
-                onMouseEnter={(e) => (e.style.opacity = '1')}
-                onMouseLeave={(e) => (e.style.opacity = '0')}
-              >
-                <span
-                  className="gallery-item-label"
-                  style={{
-                    color: 'white',
-                    fontSize: '0.9rem',
-                    lineHeight: '1.4',
-                    fontWeight: '500',
-                  }}
-                >
-                  {g.label}
-                </span>
+              <div className="gallery-item-overlay">
+                <span className="gallery-item-label">{g.label}</span>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Info */}
-        {filteredItems.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--muted)' }}>
-            <p>No images in this category.</p>
-          </div>
-        )}
-
-        <div
-          style={{
-            fontSize: '0.85rem',
-            color: 'var(--muted)',
-            textAlign: 'center',
-            paddingTop: '1rem',
-            borderTop: '1px solid var(--border)',
-          }}
-        >
-          <p>💡 Tip: Use arrow keys to navigate, ESC to close when viewing full size</p>
-        </div>
       </div>
-
-      {/* Lightbox */}
-      <Lightbox
-        isOpen={lightboxState.isOpen}
-        images={lightboxState.images}
-        currentIndex={lightboxState.currentIndex}
-        onClose={closeLightbox}
-        onNavigate={(index) => setLightboxState({ ...lightboxState, currentIndex: index })}
+      <ResearchModal
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
+        title={modalState.title}
+        text={modalState.text}
+        images={modalState.images}
       />
     </div>
   );

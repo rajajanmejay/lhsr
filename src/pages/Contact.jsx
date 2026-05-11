@@ -8,55 +8,18 @@ const Contact = () => {
     message: '',
   });
 
-  const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
-
-    return newErrors;
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const sendContactMail = () => {
-    const newErrors = validateForm();
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
     const { name, email, subject, message } = formData;
     const finalSubject = subject || 'LHSR enquiry';
-    const body = [`Name: ${name}`, `Email: ${email}`, '', message].filter(Boolean).join('\n');
+    const body = [name ? `Name: ${name}` : '', email ? `Email: ${email}` : '', '', message]
+      .filter(Boolean)
+      .join('\n');
 
     window.location.href = `mailto:srisharao@iisc.ac.in?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setSubmitted(false);
-    }, 2000);
   };
 
   return (
@@ -135,25 +98,8 @@ const Contact = () => {
             >
               Send a Message
             </div>
-
-            {submitted && (
-              <div
-                style={{
-                  padding: '1rem',
-                  marginBottom: '1.5rem',
-                  backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                  border: '1px solid rgba(34, 197, 94, 0.3)',
-                  borderRadius: '4px',
-                  color: '#22c55e',
-                  fontSize: '0.95rem',
-                }}
-              >
-                ✓ Message sent! Your email client will open now.
-              </div>
-            )}
-
             <div className="form-group">
-              <label className="form-label">Your Name *</label>
+              <label className="form-label">Your Name</label>
               <input
                 className="form-input"
                 name="name"
@@ -161,25 +107,10 @@ const Contact = () => {
                 placeholder="Full name"
                 value={formData.name}
                 onChange={handleChange}
-                aria-invalid={!!errors.name}
-                style={{
-                  borderColor: errors.name ? '#ef4444' : 'inherit',
-                }}
               />
-              {errors.name && (
-                <div
-                  style={{
-                    fontSize: '0.85rem',
-                    color: '#ef4444',
-                    marginTop: '0.25rem',
-                  }}
-                >
-                  {errors.name}
-                </div>
-              )}
             </div>
             <div className="form-group">
-              <label className="form-label">Email Address *</label>
+              <label className="form-label">Email Address</label>
               <input
                 className="form-input"
                 name="email"
@@ -187,22 +118,7 @@ const Contact = () => {
                 placeholder="your@email.com"
                 value={formData.email}
                 onChange={handleChange}
-                aria-invalid={!!errors.email}
-                style={{
-                  borderColor: errors.email ? '#ef4444' : 'inherit',
-                }}
               />
-              {errors.email && (
-                <div
-                  style={{
-                    fontSize: '0.85rem',
-                    color: '#ef4444',
-                    marginTop: '0.25rem',
-                  }}
-                >
-                  {errors.email}
-                </div>
-              )}
             </div>
             <div className="form-group">
               <label className="form-label">Subject</label>
@@ -216,38 +132,17 @@ const Contact = () => {
               />
             </div>
             <div className="form-group">
-              <label className="form-label">Message *</label>
+              <label className="form-label">Message</label>
               <textarea
                 className="form-textarea"
                 name="message"
                 placeholder="Describe your enquiry in detail..."
                 value={formData.message}
                 onChange={handleChange}
-                aria-invalid={!!errors.message}
-                style={{
-                  borderColor: errors.message ? '#ef4444' : 'inherit',
-                }}
               ></textarea>
-              {errors.message && (
-                <div
-                  style={{
-                    fontSize: '0.85rem',
-                    color: '#ef4444',
-                    marginTop: '0.25rem',
-                  }}
-                >
-                  {errors.message}
-                </div>
-              )}
             </div>
-            <button
-              className="btn-primary"
-              style={{ width: '100%' }}
-              onClick={sendContactMail}
-              disabled={submitted}
-              aria-label="Send contact form"
-            >
-              {submitted ? 'Message Sent...' : 'Send Message'}
+            <button className="btn-primary" style={{ width: '100%' }} onClick={sendContactMail}>
+              Send Message
             </button>
           </div>
         </div>

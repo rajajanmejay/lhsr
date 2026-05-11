@@ -1,9 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 
 const Publications = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedYear, setSelectedYear] = useState('all');
-
   const publications = [
     {
       year: '2026',
@@ -125,25 +122,6 @@ const Publications = () => {
     },
   ];
 
-  // Get unique years for filter
-  const years = ['all', ...new Set(publications.map((p) => p.year))].sort((a, b) =>
-    a === 'all' ? -1 : parseInt(b) - parseInt(a)
-  );
-
-  // Filter publications
-  const filteredPublications = useMemo(() => {
-    return publications.filter((pub) => {
-      const matchesSearch =
-        pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        pub.authors.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        pub.meta.toLowerCase().includes(searchTerm.toLowerCase());
-
-      const matchesYear = selectedYear === 'all' || pub.year === selectedYear;
-
-      return matchesSearch && matchesYear;
-    });
-  }, [searchTerm, selectedYear]);
-
   return (
     <div className="page active" id="page-publications">
       <div
@@ -162,194 +140,79 @@ const Publications = () => {
         </p>
       </div>
       <div className="page-content" style={{ maxWidth: '900px', padding: '5rem 2.5rem' }}>
-        {/* Search and Filter Section */}
-        <div
-          style={{
-            marginBottom: '3rem',
-            padding: '2rem',
-            backgroundColor: 'var(--navy3)',
-            borderRadius: '8px',
-            border: '1px solid var(--border)',
-          }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {/* Search */}
-            <div>
-              <label
-                htmlFor="pub-search"
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontWeight: '600',
-                  color: 'var(--white)',
-                  fontSize: '0.9rem',
-                }}
-              >
-                Search Publications
-              </label>
-              <input
-                id="pub-search"
-                type="text"
-                placeholder="Search by title, authors, or journal..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  border: '1px solid var(--border)',
-                  borderRadius: '4px',
-                  backgroundColor: 'var(--navy)',
-                  color: 'var(--white)',
-                  fontSize: '1rem',
-                  fontFamily: 'inherit',
-                }}
-              />
-            </div>
-
-            {/* Year Filter */}
-            <div>
-              <label
-                htmlFor="year-filter"
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontWeight: '600',
-                  color: 'var(--white)',
-                  fontSize: '0.9rem',
-                }}
-              >
-                Filter by Year
-              </label>
-              <select
-                id="year-filter"
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  border: '1px solid var(--border)',
-                  borderRadius: '4px',
-                  backgroundColor: 'var(--navy)',
-                  color: 'var(--white)',
-                  fontSize: '1rem',
-                  fontFamily: 'inherit',
-                  cursor: 'pointer',
-                }}
-              >
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year === 'all' ? 'All Years' : year}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Results Counter */}
-            <div
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {publications.map((pub, idx) => (
+            <article
+              key={idx}
+              className="publication-item"
               style={{
-                fontSize: '0.9rem',
-                color: 'var(--muted)',
-                fontStyle: 'italic',
+                display: 'flex',
+                gap: '2rem',
+                paddingBottom: '2rem',
+                borderBottom: '1px solid var(--border)',
               }}
             >
-              Showing {filteredPublications.length} of {publications.length} publication
-              {publications.length !== 1 ? 's' : ''}
-            </div>
-          </div>
-        </div>
-
-        {/* Publications List */}
-        {filteredPublications.length > 0 ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            {filteredPublications.map((pub, idx) => (
-              <article
-                key={idx}
-                className="publication-item"
+              <div
+                className="publication-year"
                 style={{
-                  display: 'flex',
-                  gap: '2rem',
-                  paddingBottom: '2rem',
-                  borderBottom: '1px solid var(--border)',
+                  fontFamily: 'Space Mono, monospace',
+                  fontSize: '14px',
+                  color: 'var(--blue)',
+                  fontWeight: 'bold',
                 }}
               >
+                {pub.year}
+              </div>
+              <div>
                 <div
-                  className="publication-year"
+                  className="publication-title"
                   style={{
-                    fontFamily: 'Space Mono, monospace',
-                    fontSize: '14px',
-                    color: 'var(--blue)',
-                    fontWeight: 'bold',
-                    minWidth: '3rem',
+                    fontFamily: 'Syne, sans-serif',
+                    fontSize: '1.25rem',
+                    fontWeight: '700',
+                    color: '#0a2540',
+                    marginBottom: '0.5rem',
                   }}
                 >
-                  {pub.year}
+                  {pub.title}
                 </div>
-                <div style={{ flex: 1 }}>
-                  <h3
-                    className="publication-title"
-                    style={{
-                      fontFamily: 'Syne, sans-serif',
-                      fontSize: '1.25rem',
-                      fontWeight: '700',
-                      color: '#0a2540',
-                      marginBottom: '0.5rem',
-                      lineHeight: '1.4',
-                    }}
-                  >
-                    {pub.title}
-                  </h3>
-                  <div
-                    className="publication-authors"
-                    style={{ color: 'var(--muted)', marginBottom: '0.25rem' }}
-                  >
-                    {pub.authors}
-                  </div>
-                  <div
-                    className="publication-meta"
-                    style={{
-                      fontStyle: 'italic',
-                      color: 'var(--muted)',
-                      fontSize: '0.95rem',
-                      marginBottom: '1rem',
-                    }}
-                  >
-                    {pub.meta}
-                  </div>
-                  <a
-                    className="publication-link"
-                    href={pub.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      color: 'var(--blue)',
-                      textDecoration: 'none',
-                      fontFamily: 'Space Mono, monospace',
-                      fontSize: '12px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.1em',
-                    }}
-                  >
-                    {pub.linkText}
-                  </a>
+                <div
+                  className="publication-authors"
+                  style={{ color: 'var(--muted)', marginBottom: '0.25rem' }}
+                >
+                  {pub.authors}
                 </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div
-            style={{
-              textAlign: 'center',
-              padding: '3rem 2rem',
-              color: 'var(--muted)',
-              fontSize: '1.1rem',
-            }}
-          >
-            <p>No publications match your search criteria.</p>
-            <p style={{ fontSize: '0.95rem', marginTop: '0.5rem' }}>
-              Try adjusting your search or filter.
-            </p>
-          </div>
-        )}
+                <div
+                  className="publication-meta"
+                  style={{
+                    fontStyle: 'italic',
+                    color: 'var(--muted)',
+                    fontSize: '0.95rem',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  {pub.meta}
+                </div>
+                <a
+                  className="publication-link"
+                  href={pub.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: 'var(--blue)',
+                    textDecoration: 'none',
+                    fontFamily: 'Space Mono, monospace',
+                    fontSize: '12px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                  }}
+                >
+                  {pub.linkText}
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );

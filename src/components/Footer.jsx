@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
   const location = useLocation();
@@ -9,12 +9,7 @@ const Footer = () => {
     <footer>
       <div className="footer-brand-row">
         <div className="footer-institution-logo footer-logo-left">
-          <a
-            href="https://aero.iisc.ac.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Department of Aerospace Engineering"
-          >
+          <a href="https://aero.iisc.ac.in/" target="_blank" rel="noopener noreferrer">
             <img
               src={`${import.meta.env.BASE_URL}logos/aero-logo.png`}
               alt="Department of Aerospace Engineering, IISc"
@@ -35,12 +30,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-institution-logo footer-logo-right">
-          <a
-            href="https://iisc.ac.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Indian Institute of Science"
-          >
+          <a href="https://iisc.ac.in/" target="_blank" rel="noopener noreferrer">
             <img
               src={`${import.meta.env.BASE_URL}logos/iisc-logo.png`}
               alt="Indian Institute of Science"
@@ -49,191 +39,10 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Navigation & Info Section */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '2rem',
-          padding: '2rem 2.5rem',
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-        }}
-      >
-        {/* Quick Links */}
-        <div>
-          <h4
-            style={{
-              fontSize: '0.85rem',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              color: 'var(--blue)',
-              marginBottom: '1rem',
-              letterSpacing: '0.1em',
-            }}
-          >
-            Navigate
-          </h4>
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <Link
-              to="/research"
-              style={{
-                color: 'var(--hero-muted)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.target.style.color = 'var(--blue)')}
-              onMouseLeave={(e) => (e.target.style.color = 'var(--hero-muted)')}
-            >
-              Research
-            </Link>
-            <Link
-              to="/facilities"
-              style={{
-                color: 'var(--hero-muted)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.target.style.color = 'var(--blue)')}
-              onMouseLeave={(e) => (e.target.style.color = 'var(--hero-muted)')}
-            >
-              Facilities
-            </Link>
-            <Link
-              to="/publications"
-              style={{
-                color: 'var(--hero-muted)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.target.style.color = 'var(--blue)')}
-              onMouseLeave={(e) => (e.target.style.color = 'var(--hero-muted)')}
-            >
-              Publications
-            </Link>
-            <Link
-              to="/opportunities"
-              style={{
-                color: 'var(--hero-muted)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.target.style.color = 'var(--blue)')}
-              onMouseLeave={(e) => (e.target.style.color = 'var(--hero-muted)')}
-            >
-              Opportunities
-            </Link>
-          </nav>
-        </div>
-
-        {/* Contact Info */}
-        <div>
-          <h4
-            style={{
-              fontSize: '0.85rem',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              color: 'var(--blue)',
-              marginBottom: '1rem',
-              letterSpacing: '0.1em',
-            }}
-          >
-            Contact
-          </h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <div style={{ fontSize: '0.9rem', color: 'var(--hero-muted)' }}>
-              <div style={{ color: 'var(--hero-text)', fontWeight: '500' }}>Email</div>
-              <a
-                href="mailto:srisharao@iisc.ac.in"
-                style={{ color: 'var(--blue)', textDecoration: 'none' }}
-              >
-                srisharao@iisc.ac.in
-              </a>
-            </div>
-            <div style={{ fontSize: '0.9rem', color: 'var(--hero-muted)' }}>
-              <div style={{ color: 'var(--hero-text)', fontWeight: '500' }}>Department</div>
-              <a
-                href="https://aero.iisc.ac.in"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: 'var(--blue)', textDecoration: 'none' }}
-              >
-                aero.iisc.ac.in ↗
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Resources */}
-        <div>
-          <h4
-            style={{
-              fontSize: '0.85rem',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              color: 'var(--blue)',
-              marginBottom: '1rem',
-              letterSpacing: '0.1em',
-            }}
-          >
-            Resources
-          </h4>
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <a
-              href="https://iisc.ac.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: 'var(--hero-muted)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.target.style.color = 'var(--blue)')}
-              onMouseLeave={(e) => (e.target.style.color = 'var(--hero-muted)')}
-            >
-              IISc Main Website
-            </a>
-            <Link
-              to="/contact"
-              style={{
-                color: 'var(--hero-muted)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.target.style.color = 'var(--blue)')}
-              onMouseLeave={(e) => (e.target.style.color = 'var(--hero-muted)')}
-            >
-              Contact Us
-            </Link>
-            <a
-              href="/sitemap.xml"
-              style={{
-                color: 'var(--hero-muted)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.target.style.color = 'var(--blue)')}
-              onMouseLeave={(e) => (e.target.style.color = 'var(--hero-muted)')}
-            >
-              Sitemap
-            </a>
-          </nav>
-        </div>
-      </div>
-
-      {/* Bottom Section */}
       <div
         style={{
           marginTop: '10px',
-          paddingTop: '2rem',
-          paddingBottom: '1rem',
+          paddingTop: '8px',
           borderTop: '1px solid rgba(255, 255, 255, 0.08)',
           textAlign: 'center',
         }}
@@ -277,22 +86,13 @@ const Footer = () => {
           style={{
             fontFamily: 'Space Mono, monospace',
             fontSize: '11px',
-            marginTop: '1rem',
-            color: 'var(--muted)',
+            marginTop: '4px',
           }}
         >
           Website Developed by - Raja Janmejay
         </div>
 
-        <div
-          className="footer-copy"
-          style={{
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '0.85rem',
-            color: 'var(--muted)',
-            marginTop: '0.5rem',
-          }}
-        >
+        <div className="footer-copy" style={{ fontFamily: 'Inter, sans-serif' }}>
           © {new Date().getFullYear()} LHSR, IISc Bengaluru. All rights reserved.
         </div>
       </div>

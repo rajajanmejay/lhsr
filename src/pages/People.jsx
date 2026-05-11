@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
-import LoadingSkeleton from '../components/LoadingSkeleton';
-
-const CACHE_KEY = 'lhsr_people_data';
-const CACHE_EXPIRY_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 const People = () => {
   const [peopleData, setPeopleData] = useState({
@@ -20,24 +16,8 @@ const People = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Check if cached data exists and is fresh
-    const cachedData = localStorage.getItem(CACHE_KEY);
-    const cachedTime = localStorage.getItem(CACHE_KEY + '_time');
-
-    if (cachedData && cachedTime && Date.now() - parseInt(cachedTime) < CACHE_EXPIRY_MS) {
-      try {
-        setPeopleData(JSON.parse(cachedData));
-        setLoading(false);
-        return;
-      } catch (e) {
-        console.warn('Cache parse failed, fetching fresh data');
-        localStorage.removeItem(CACHE_KEY);
-        localStorage.removeItem(CACHE_KEY + '_time');
-      }
-    }
-
-    // Fetch and parse CSV
-    const csvUrl = `${import.meta.env.BASE_URL}LHSR_Website_Consolidated.csv`;
+    const cacheBuster = new Date().getTime();
+    const csvUrl = `${import.meta.env.BASE_URL}LHSR_Website_Consolidated.csv?v=${cacheBuster}`;
 
     fetch(csvUrl)
       .then((res) => {
@@ -108,15 +88,6 @@ const People = () => {
         });
 
         setPeopleData(grouped);
-        
-        // Cache the parsed data
-        try {
-          localStorage.setItem(CACHE_KEY, JSON.stringify(grouped));
-          localStorage.setItem(CACHE_KEY + "_time", Date.now().toString());
-        } catch (e) {
-          console.warn("Failed to cache people data:", e);
-        }
-        
         setLoading(false);
       })
       .catch((err) => {
@@ -279,16 +250,8 @@ const People = () => {
       </div>
 
       <div className="page-content">
-        {loading && (
-          <div style={{ padding: "2rem" }}>
-            <LoadingSkeleton count={4} type="card" />
-          </div>
-        )}
-        {error && (
-          <p style={{ color: "red", padding: "2rem" }}>
-            Error: {error}
-          </p>
-        )}
+        {loading && <p>Loading team members...</p>}
+        {error && <p style={{ color: 'red' }}>Error: {error}</p>}
 
         {!loading && !error && (
           <>
