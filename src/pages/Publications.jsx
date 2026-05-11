@@ -1,6 +1,24 @@
 import React from 'react';
 
 const Publications = () => {
+  const scholarProfiles = [
+    {
+      name: 'Gopalan Jagadeesh',
+      role: 'Professor',
+      link: 'https://scholar.google.com/citations?user=eVRuYlgAAAAJ&hl=en',
+    },
+    {
+      name: 'Srisha Rao M V',
+      role: 'Associate Professor',
+      link: 'https://scholar.google.com/citations?hl=en&user=eURBmWYAAAAJ',
+    },
+    {
+      name: 'S Saravanan',
+      role: 'Principal Research Scientist',
+      link: 'https://scholar.google.com/citations?user=cDLhMckAAAAJ&hl=en',
+    },
+  ];
+
   const publications = [
     {
       year: '2026',
@@ -140,6 +158,28 @@ const Publications = () => {
         </p>
       </div>
       <div className="page-content" style={{ maxWidth: '900px', padding: '5rem 2.5rem' }}>
+        <section className="scholar-panel" aria-labelledby="scholar-profiles-title">
+          <div className="section-tag" id="scholar-profiles-title">
+            Google Scholar
+          </div>
+          <div className="scholar-grid">
+            {scholarProfiles.map((profile) => (
+              <div className="scholar-card" key={profile.name}>
+                <div className="scholar-card-name">{profile.name}</div>
+                <div className="scholar-card-role">{profile.role}</div>
+                <a
+                  className="scholar-link"
+                  href={profile.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Scholar ↗
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           {publications.map((pub, idx) => (
             <article
