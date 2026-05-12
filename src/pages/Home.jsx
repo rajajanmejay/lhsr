@@ -143,8 +143,8 @@ const Home = () => {
           <h2 className="section-title">Decades of Hypersonic Excellence</h2>
 
           <div className="about-images-row">
-            <img src={`${import.meta.env.BASE_URL}images/Home_Lab_1.jpg`} alt="" />
-            <img src={`${import.meta.env.BASE_URL}images/Home_Lab_2.jpg`} alt="" />
+            <img src={`${import.meta.env.BASE_URL}images/Home_Lab_1.jpg`} alt="LHSR laboratory overview" loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}images/Home_Lab_2.jpg`} alt="LHSR shock tunnel facility" loading="lazy" />
           </div>
 
           <div className="about-text">
@@ -182,7 +182,7 @@ const Home = () => {
               onClick={() => openModal(area.title, area.desc, [area.img])}
             >
               <div className="research-card-image">
-                <img src={area.img} alt={area.title} />
+                <img src={area.img} alt={area.title} loading="lazy" />
               </div>
               <div className="research-card-num">{area.num}</div>
               <h3 className="research-card-title">{area.title}</h3>

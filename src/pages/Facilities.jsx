@@ -196,7 +196,7 @@ const Facilities = () => {
               )}
             </div>
             <div className="facility-image">
-              <img src={fac.img} alt={fac.name} />
+              <img src={fac.img} alt={fac.name} loading="lazy" />
             </div>
           </div>
         ))}

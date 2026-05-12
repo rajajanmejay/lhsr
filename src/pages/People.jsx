@@ -105,6 +105,7 @@ const People = () => {
           <img
             src={`${import.meta.env.BASE_URL}images/${person.imgId}.jpg`}
             alt={person.Name}
+            loading="lazy"
             onError={(e) => {
               if (!e.target.dataset.retried) {
                 e.target.dataset.retried = true;
@@ -130,18 +131,11 @@ const People = () => {
             <div className="faculty-role">{person.Role || ''}</div>
             <p className="faculty-research">{person.Research_Field || ''}</p>
             {person.Hobbies && (
-              <p className="faculty-research" style={{ marginTop: '8px', fontStyle: 'italic' }}>
-                <strong>Hobbies:</strong> {person.Hobbies}
+              <p className="faculty-research faculty-hobbies">
+                <em><strong>Hobbies:</strong> {person.Hobbies}</em>
               </p>
             )}
-            <div
-              style={{
-                display: 'flex',
-                gap: '8px',
-                flexWrap: 'wrap',
-                marginTop: '12px',
-              }}
-            >
+            <div className="faculty-card-social-row">
               {person.linkedInProfile && (
                 <a
                   className="people-card-linkedin"
@@ -187,6 +181,7 @@ const People = () => {
           <img
             src={`${import.meta.env.BASE_URL}images/${person.imgId}.jpg`}
             alt={person.Name}
+            loading="lazy"
             onError={(e) => {
               if (!e.target.dataset.retried) {
                 e.target.dataset.retried = true;
@@ -215,8 +210,7 @@ const People = () => {
             )}
             {person.Hobbies && (
               <div
-                className="people-card-research"
-                style={{ fontSize: '0.8rem', marginTop: '4px', opacity: 0.9 }}
+                className="people-card-research people-card-hobbies"
               >
                 <em>Hobbies: {person.Hobbies}</em>
               </div>
@@ -227,7 +221,6 @@ const People = () => {
                 href={person.linkedInProfile}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ marginTop: 'auto' }}
               >
                 LinkedIn ↗
               </a>

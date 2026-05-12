@@ -67,11 +67,10 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 2.5rem;
-  height: 76px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 2px 16px rgba(0, 119, 204, 0.08);
+  height: 64px;
+  background: #0b1c2e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
 }
 
 .nav-logo {
@@ -162,7 +161,7 @@ nav {
 .nav-hamburger span {
   width: 24px;
   height: 1.5px;
-  background: #0a2540;
+  background: #ffffff;
   transition: all 0.3s;
 }
 
@@ -755,6 +754,27 @@ nav {
 .people-card-linkedin:hover {
   background: rgba(125, 211, 252, 0.15);
   border-color: #7dd3fc;
+}
+
+.people-card-hobbies,
+.faculty-hobbies {
+  font-size: 0.8rem;
+  margin-top: 6px;
+  opacity: 0.9;
+}
+
+.people-card-social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.faculty-card-social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 /* placeholder letter when no image */
@@ -1653,19 +1673,19 @@ footer {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 76px;
+    top: 64px;
     left: 0;
     right: 0;
-    background: #ffffff;
-    padding: 2rem;
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 8px 24px rgba(0, 119, 204, 0.1);
-    gap: 1rem;
+    background: #0b1c2e;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    gap: 0.5rem;
     z-index: 999;
   }
 
   .nav-links.open a {
-    color: #0a2540;
+    color: #ffffff !important;
   }
 
   .nav-hamburger {
@@ -1880,7 +1900,7 @@ nav {
 
 .nav-hamburger span {
   height: 2px;
-  background: #14181d;
+  background: #ffffff;
 }
 
 .hero-bg-orb {
@@ -2586,11 +2606,11 @@ footer {
   }
 
   .nav-links {
-    top: 72px;
+    top: 64px;
     padding: 14px;
-    background: rgba(255, 255, 255, 0.98);
-    border-bottom: 1px solid rgba(20, 24, 29, 0.12);
-    box-shadow: 0 18px 40px rgba(16, 24, 32, 0.12);
+    background: #0b1c2e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
   }
 
   .nav-links.open {
@@ -3007,6 +3027,66 @@ p,
 
 .publication-item:last-child {
   border-bottom: 0;
+}
+
+/* ── PUBLICATION CONTROLS ── */
+.pub-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.pub-search {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #0a2540;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.pub-search:focus {
+  border-color: var(--blue);
+}
+
+.pub-year-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pub-year-btn {
+  padding: 4px 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: transparent;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pub-year-btn:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.pub-year-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+.pub-empty {
+  color: var(--muted);
+  font-style: italic;
+  padding: 2rem 0;
 }
 
 .publication-year {
@@ -3849,66 +3929,33 @@ footer {
   }
 }
 
-/* ── TWO-ROW NAVBAR LAYOUT & FIXES ── */
-nav {
-  height: auto !important;
-  padding: 0 !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-}
-
-/* This fixes the overlapping airplane! Allows the invisible box to match the plane's width */
+/* ── SINGLE-ROW NAVBAR CONTENT SPACING ── */
 .responsive-logo .nav-logo-mark {
-  width: auto !important;
-  max-width: none !important;
+  width: auto;
+  max-width: none;
 }
 
-/* Push page content down slightly to account for the taller 2-row navbar */
 .hero {
-  padding-top: 180px !important;
+  padding-top: 140px;
 }
 
 .page-header {
-  padding-top: 170px !important;
+  padding-top: 120px;
 }
 
 .about-section {
-  padding-top: 130px !important;
+  padding-top: 80px;
 }
 
-/* Mobile overrides for the new rows */
 @media (max-width: 900px) {
-  .nav-top-row {
-    padding: 15px 20px !important;
-  }
-
-  .nav-institution-logos {
-    display: none !important;
-  }
-
-  /* FIX 1: Make the bottom row invisible without using display:none, 
-         so the menu inside it can still pop out! */
-  .nav-bottom-row {
-    height: 0 !important;
-    padding: 0 !important;
-    background: transparent !important;
-    overflow: visible !important;
-    border: none !important;
-  }
-
-  .nav-links.open {
-    top: 66px !important;
-  }
-
-  /* FIX 2: Stop the Hero text from squishing into a 320px box */
   .hero > * {
-    max-width: 100% !important;
+    max-width: 100%;
   }
 
   .hero-title {
-    font-size: 2.4rem !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
+    font-size: 2.4rem;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 }
 

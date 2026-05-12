@@ -122,7 +122,7 @@ const Research = () => {
               </div>
               <div className="research-area-image">
                 {area.images.map((img, imgIndex) => (
-                  <img key={imgIndex} src={img} alt={area.title} />
+                  <img key={imgIndex} src={img} alt={area.title} loading="lazy" />
                 ))}
               </div>
             </div>
