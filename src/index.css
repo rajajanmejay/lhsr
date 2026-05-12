@@ -64,13 +64,28 @@ nav {
   right: 0;
   z-index: 1000;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2.5rem;
-  height: 64px;
+  flex-direction: column;
+  align-items: stretch;
+  height: auto;
   background: #0b1c2e;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+}
+
+.nav-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-bottom-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 0;
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .nav-logo {
@@ -1673,7 +1688,7 @@ footer {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 64px;
+    top: 66px;
     left: 0;
     right: 0;
     background: #0b1c2e;
@@ -2606,7 +2621,7 @@ footer {
   }
 
   .nav-links {
-    top: 64px;
+    top: 66px;
     padding: 14px;
     background: #0b1c2e;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -3929,25 +3944,45 @@ footer {
   }
 }
 
-/* ── SINGLE-ROW NAVBAR CONTENT SPACING ── */
+/* ── TWO-ROW NAVBAR CONTENT SPACING ── */
 .responsive-logo .nav-logo-mark {
   width: auto;
   max-width: none;
 }
 
 .hero {
-  padding-top: 140px;
+  padding-top: 180px;
 }
 
 .page-header {
-  padding-top: 120px;
+  padding-top: 170px;
 }
 
 .about-section {
-  padding-top: 80px;
+  padding-top: 130px;
 }
 
 @media (max-width: 900px) {
+  .nav-top-row {
+    padding: 15px 20px;
+  }
+
+  .nav-institution-logos {
+    display: none;
+  }
+
+  .nav-bottom-row {
+    height: 0;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+    border: none;
+  }
+
+  .nav-links.open {
+    top: 66px;
+  }
+
   .hero > * {
     max-width: 100%;
   }
