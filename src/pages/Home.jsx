@@ -23,55 +23,55 @@ const Home = () => {
       num: "01 //",
       title: "Hypersonic Aerodynamics",
       desc: "Experimental and computational investigations of hypersonic flows, including shock–boundary layer interactions, aerodynamic heating, compressible boundary layer transition and high-speed inlet design.",
-      img: `${import.meta.env.BASE_URL}images/Home_HAD.jpg`,
+      img: `${import.meta.env.BASE_URL}images/home/Home_HAD.jpg`,
     },
     {
       num: "02 //",
       title: "Hypersonic Aeroelasticity",
       desc: "Fluid–structure interactions in high-speed flows, including panel flutter, shock-induced deformation, and aero-thermo-elastic coupling.",
-      img: `${import.meta.env.BASE_URL}images/Home_HAE.jpg`,
+      img: `${import.meta.env.BASE_URL}images/home/Home_HAE.jpg`,
     },
     {
       num: "03 //",
       title: "High-Enthalpy Flows",
       desc: "Real-gas effects, thermal non-equilibrium, dissociation, ionization, and radiation in hypersonic and re-entry environments.",
-      img: `${import.meta.env.BASE_URL}images/Home_HEF.jpg`,
+      img: `${import.meta.env.BASE_URL}images/home/Home_HEF.jpg`,
     },
     {
       num: "04 //",
       title: "Shockwave Physics",
       desc: "Fundamental studies of shock wave generation, propagation, reflection, and interaction with boundary layers, structures, and materials.",
-      img: `${import.meta.env.BASE_URL}images/Home_SWP.gif`,
+      img: `${import.meta.env.BASE_URL}images/home/Home_SWP.gif`,
     },
     {
       num: "05 //",
       title: "High Temperature Chemical Kinetics",
       desc: "High-temperature reaction kinetics using shock tubes, including ignition delay measurements, spectroscopy, and non-equilibrium chemistry.",
-      img: `${import.meta.env.BASE_URL}images/Home_HTC.jpg`,
+      img: `${import.meta.env.BASE_URL}images/home/Home_HTC.jpg`,
     },
     {
       num: "06 //",
       title: "Biological Engineering",
       desc: "Shock-wave-based biomedical and bioengineering applications, including cell manipulation, medical therapies, and biological flow studies.",
-      img: `${import.meta.env.BASE_URL}images/Home_BLE.jpg`,
+      img: `${import.meta.env.BASE_URL}images/home/Home_BLE.jpg`,
     },
     {
       num: "07 //",
       title: "Materials",
       desc: "Behavior of materials under extreme thermal and shock loading, including thermal protection systems and high-temperature material characterization.",
-      img: `${import.meta.env.BASE_URL}images/Home_MAT.jpg`,
+      img: `${import.meta.env.BASE_URL}images/home/Home_MAT.jpg`,
     },
     {
       num: "08 //",
       title: "Blast-wave Physics",
       desc: "The facilities comprise systems for near- and far-field Friedlander wave simulation, including conical shock tubes and a differential plate pulse simulator. These enable controlled blast loading on test specimens. Integrated high-speed 3D Digital Image Correlation systems capture full-field transient deformations, supporting accurate analysis of structural response under realistic blast conditions.",
-      img: `${import.meta.env.BASE_URL}images/Home_BWP.jpg`,
+      img: `${import.meta.env.BASE_URL}images/home/Home_BWP.jpg`,
     },
     {
       num: "09 //",
       title: "Industrial Applications",
       desc: "Applications of shock and high-speed flow physics in aerospace, energy systems, defense technologies, and industrial processes.",
-      img: `${import.meta.env.BASE_URL}images/Home_IND.jpg`,
+      img: `${import.meta.env.BASE_URL}images/home/Home_IND.jpg`,
     },
   ];
 
@@ -143,8 +143,8 @@ const Home = () => {
           <h2 className="section-title">Decades of Hypersonic Excellence</h2>
 
           <div className="about-images-row">
-            <img src={`${import.meta.env.BASE_URL}images/Home_Lab_1.jpg`} alt="LHSR laboratory overview" loading="lazy" />
-            <img src={`${import.meta.env.BASE_URL}images/Home_Lab_2.jpg`} alt="LHSR shock tunnel facility" loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}images/home/Home_Lab_1.jpg`} alt="LHSR laboratory overview" loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}images/home/Home_Lab_2.jpg`} alt="LHSR shock tunnel facility" loading="lazy" />
           </div>
 
           <div className="about-text">

@@ -103,13 +103,13 @@ const People = () => {
       <div key={person.imgId || person.Name} className="faculty-card">
         <div className="faculty-photo-wrap">
           <img
-            src={`${import.meta.env.BASE_URL}images/${person.imgId}.jpg`}
+            src={`${import.meta.env.BASE_URL}images/people/${person.imgId}.jpg`}
             alt={person.Name}
             loading="lazy"
             onError={(e) => {
               if (!e.target.dataset.retried) {
                 e.target.dataset.retried = true;
-                e.target.src = `${import.meta.env.BASE_URL}images/${person.imgId}.jpeg`;
+                e.target.src = `${import.meta.env.BASE_URL}images/people/${person.imgId}.jpeg`;
               } else {
                 e.target.parentNode.classList.add('no-image');
                 e.target.style.display = 'none';
@@ -179,13 +179,13 @@ const People = () => {
       <div key={person.imgId || person.Name} className="people-card">
         <div className="people-card-photo-wrap">
           <img
-            src={`${import.meta.env.BASE_URL}images/${person.imgId}.jpg`}
+            src={`${import.meta.env.BASE_URL}images/people/${person.imgId}.jpg`}
             alt={person.Name}
             loading="lazy"
             onError={(e) => {
               if (!e.target.dataset.retried) {
                 e.target.dataset.retried = true;
-                e.target.src = `${import.meta.env.BASE_URL}images/${person.imgId}.jpeg`;
+                e.target.src = `${import.meta.env.BASE_URL}images/people/${person.imgId}.jpeg`;
               } else {
                 e.target.parentNode.classList.add('no-image');
                 e.target.style.display = 'none';

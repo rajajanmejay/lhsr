@@ -23,6 +23,16 @@
   padding: 0;
 }
 
+/* Only show focus ring for keyboard users, not mouse clicks */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -543,7 +553,7 @@ nav {
 #page-publications .page-header {
   background:
     linear-gradient(rgba(245, 247, 249, 0.72), rgba(245, 247, 249, 0.72)),
-    url("/images/Home_Lab_1.jpg") center/cover no-repeat;
+    url("/lhsr/images/home/Home_Lab_1.jpg") center/cover no-repeat;
   background-blend-mode: lighten;
 }
 
@@ -1511,6 +1521,50 @@ nav {
   border: 1px solid var(--border);
 }
 
+/* ── PAGE FADE TRANSITION ── */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-fade {
+  animation: pageFadeIn 0.2s ease both;
+}
+
+/* ── SCROLL TO TOP ── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 119, 204, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 900;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+  background: var(--blue2);
+}
+
 /* ── FOOTER ── */
 footer {
   border-top: 2px solid var(--border);
@@ -1849,11 +1903,11 @@ body::before {
 }
 
 nav {
-  height: 78px;
-  padding: 0 32px;
-  background: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid rgba(20, 24, 29, 0.12);
-  box-shadow: 0 12px 36px rgba(16, 24, 32, 0.08);
+  height: auto;
+  padding: 0;
+  background: #0b1c2e;
+  border-bottom: none;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
 }
 
 .nav-logo {
@@ -1935,7 +1989,7 @@ nav {
       rgba(12, 15, 18, 0.28) 100%
     ),
     linear-gradient(0deg, rgba(0, 143, 168, 0.12), rgba(0, 143, 168, 0.12)),
-    url("/images/Home_Lab_2.jpg") center / cover no-repeat;
+    url("/lhsr/images/home/Home_Lab_2.jpg") center / cover no-repeat;
   color: #f8fbfc;
 }
 
@@ -2314,7 +2368,7 @@ nav {
       rgba(255, 255, 255, 0.94),
       rgba(255, 255, 255, 0.76)
     ),
-    url("/images/Home_Lab_1.jpg") center / cover no-repeat;
+    url("/lhsr/images/home/Home_Lab_1.jpg") center / cover no-repeat;
 }
 
 .page-header h1 {
@@ -2609,7 +2663,7 @@ footer {
 
 @media (max-width: 900px) {
   nav {
-    height: 72px;
+    height: auto;
   }
 
   .nav-logo {
@@ -3098,10 +3152,105 @@ p,
   color: #fff;
 }
 
+.pub-count {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.pub-count strong {
+  color: var(--blue);
+}
+
 .pub-empty {
   color: var(--muted);
   font-style: italic;
   padding: 2rem 0;
+}
+
+/* ── PUBLICATIONS TIMELINE ── */
+.pub-timeline {
+  position: relative;
+}
+
+.pub-timeline::before {
+  content: '';
+  position: absolute;
+  left: 52px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--blue), rgba(0, 119, 204, 0.1));
+}
+
+.pub-timeline-year-group {
+  margin-bottom: 2.5rem;
+}
+
+.pub-timeline-year-marker {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pub-timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--blue);
+  flex-shrink: 0;
+  margin-left: 46px;
+}
+
+.pub-timeline-year-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 0.15em;
+  background: #f0f7ff;
+  padding: 2px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 119, 204, 0.2);
+}
+
+.pub-timeline-items {
+  padding-left: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pub-timeline-items .publication-item {
+  display: block;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 119, 204, 0.1);
+}
+
+.pub-timeline-items .publication-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .pub-timeline::before {
+    left: 6px;
+  }
+
+  .pub-timeline-dot {
+    margin-left: 0;
+  }
+
+  .pub-timeline-items {
+    padding-left: 24px;
+  }
 }
 
 .publication-year {
@@ -3265,9 +3414,9 @@ body::before {
 }
 
 nav {
-  background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid rgba(0, 119, 204, 0.18);
-  box-shadow: 0 8px 28px rgba(0, 80, 150, 0.08);
+  background: #0b1c2e;
+  border-bottom: none;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
 }
 
 .nav-logo-mark {
@@ -3304,7 +3453,7 @@ nav {
       rgba(10, 37, 64, 0.34) 100%
     ),
     linear-gradient(0deg, rgba(0, 119, 204, 0.18), rgba(0, 119, 204, 0.18)),
-    url("/images/Home_Lab_2.jpg") center / cover no-repeat;
+    url("/lhsr/images/home/Home_Lab_2.jpg") center / cover no-repeat;
   color: var(--hero-text);
 }
 
@@ -3466,7 +3615,7 @@ nav {
       rgba(240, 247, 255, 0.97),
       rgba(255, 255, 255, 0.82)
     ),
-    url("/images/Home_Lab_1.jpg") center / cover no-repeat;
+    url("/lhsr/images/home/Home_Lab_1.jpg") center / cover no-repeat;
   border-bottom-color: rgba(0, 119, 204, 0.16);
 }
 
@@ -3571,6 +3720,66 @@ footer {
 .scholar-card-role {
   font-size: 0.9rem;
   line-height: 1.58;
+}
+
+/* ── FOOTER BOTTOM ROW ── */
+.footer-bottom {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.footer-credits {
+  margin-bottom: 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  text-align: center;
+}
+
+.footer-credits-label {
+  color: var(--muted);
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.footer-credits-names {
+  line-height: 1.5;
+  color: var(--hero-text, #cbd5e1);
+}
+
+/* ── CONTACT PAGE SPECIFIC ── */
+.contact-form-title {
+  margin-bottom: 2.5rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.contact-faculty-link {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.contact-faculty-link:last-child {
+  margin-bottom: 0;
+}
+
+.contact-directions {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.contact-mailto-note {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.contact-submit-btn {
+  width: 100%;
 }
 
 .scholar-link {

@@ -31,7 +31,7 @@ const Facilities = () => {
         { key: "Test Section", val: "300 × 300 × 450 mm" },
       ],
       machBadge: "Mach 4 — 13",
-      img: `${import.meta.env.BASE_URL}images/Facility_HST1.jpg`,
+      img: `${import.meta.env.BASE_URL}images/facilities/Facility_HST1.jpg`,
     },
     {
       tag: "Hypersonic Shock Tunnel • HST-2",
@@ -47,7 +47,7 @@ const Facilities = () => {
         { key: "Reynolds No. Range", val: "1 – 2 million/m" },
       ],
       machBadge: "Mach 5.75 — 12",
-      img: `${import.meta.env.BASE_URL}images/Facility_HST2.jpg`,
+      img: `${import.meta.env.BASE_URL}images/facilities/Facility_HST2.jpg`,
     },
     {
       tag: "Hypersonic Shock Tunnel • HST-3",
@@ -64,7 +64,7 @@ const Facilities = () => {
         { key: "Reynolds No. Range", val: "1 – 2 million/m" },
       ],
       machBadge: "Mach 6 — 12",
-      img: `${import.meta.env.BASE_URL}images/Facility_HST3.jpg`,
+      img: `${import.meta.env.BASE_URL}images/facilities/Facility_HST3.jpg`,
     },
     {
       tag: "Hypersonic Shock Tunnel • HST-4",
@@ -80,7 +80,7 @@ const Facilities = () => {
         { key: "Reynolds No. Range", val: "1 – 2 million/m" },
       ],
       machBadge: "Mach 6 — 15",
-      img: `${import.meta.env.BASE_URL}images/Facility_HST4.jpg`,
+      img: `${import.meta.env.BASE_URL}images/facilities/Facility_HST4.jpg`,
     },
     {
       tag: "Hypersonic Shock Tunnel • HST-5",
@@ -95,7 +95,7 @@ const Facilities = () => {
         { key: "Reynolds No. Range", val: "1 – 2 million/m" },
       ],
       machBadge: "Mach 6 — 13",
-      img: `${import.meta.env.BASE_URL}images/Facility_HST5.jpg`,
+      img: `${import.meta.env.BASE_URL}images/facilities/Facility_HST5.jpg`,
       note: "4 circumferential spark plugs 2 cm upstream of diaphragm station for combustion driving mode.",
     },
     {
@@ -109,7 +109,7 @@ const Facilities = () => {
         { key: "External Diameter", val: "100 mm" },
         { key: "Test Section", val: "0.4 m" },
       ],
-      img: `${import.meta.env.BASE_URL}images/Facility_CST1.jpg`,
+      img: `${import.meta.env.BASE_URL}images/facilities/Facility_CST1.jpg`,
     },
     {
       tag: "Chemical Shock Tube • CST-3",
@@ -122,7 +122,7 @@ const Facilities = () => {
         { key: "External Diameter", val: "100 mm" },
         { key: "Test Section", val: "0.5 m" },
       ],
-      img: `${import.meta.env.BASE_URL}images/Facility_CST3.jpg`,
+      img: `${import.meta.env.BASE_URL}images/facilities/Facility_CST3.jpg`,
     },
     {
       tag: "Vertical Shock Tube • VST",
@@ -137,7 +137,7 @@ const Facilities = () => {
         { key: "Test Section", val: "870 × 150 × 500 mm" },
         { key: "Decay Time", val: "1.6 – 20 ms" },
       ],
-      img: `${import.meta.env.BASE_URL}images/Facility_VST1.jpg`,
+      img: `${import.meta.env.BASE_URL}images/facilities/Facility_VST1.jpg`,
     },
   ];
 

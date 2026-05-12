@@ -50,15 +50,13 @@ const Contact = () => {
                 <div className="faculty-links">
                   <a
                     href="mailto:srisharao@iisc.ac.in"
-                    className="faculty-link"
-                    style={{ display: 'block', marginBottom: '8px' }}
+                    className="faculty-link contact-faculty-link"
                   >
                     Srisha Rao M V <span className="external">↗</span>
                   </a>
                   <a
                     href="mailto:jaggie@iisc.ac.in"
-                    className="faculty-link"
-                    style={{ display: 'block' }}
+                    className="faculty-link contact-faculty-link"
                   >
                     Gopalan Jagadeesh <span className="external">↗</span>
                   </a>
@@ -75,10 +73,7 @@ const Contact = () => {
             </div>
             <div className="contact-item">
               <div className="contact-item-label">How to reach us</div>
-              <div
-                className="contact-item-val"
-                style={{ color: 'var(--muted)', fontSize: '1.05rem' }}
-              >
+              <div className="contact-item-val contact-directions">
                 IISc is located in central Bengaluru. The Department of Aerospace Engineering is in
                 the main campus. Visitors should contact us in advance to arrange campus access.
               </div>
@@ -86,18 +81,7 @@ const Contact = () => {
           </div>
 
           <div className="contact-form-wrap">
-            <div
-              className="req-title"
-              style={{
-                marginBottom: '2.5rem',
-                fontFamily: 'Syne, sans-serif',
-                fontSize: '1.6rem',
-                fontWeight: '700',
-                color: '#0a2540',
-              }}
-            >
-              Send a Message
-            </div>
+            <div className="contact-form-title">Send a Message</div>
             <div className="form-group">
               <label className="form-label">Your Name</label>
               <input
@@ -141,8 +125,11 @@ const Contact = () => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <button className="btn-primary" style={{ width: '100%' }} onClick={sendContactMail}>
-              Send Message
+            <p className="contact-mailto-note">
+              Clicking below will open your email client with this message pre-filled.
+            </p>
+            <button className="btn-primary contact-submit-btn" onClick={sendContactMail}>
+              Open Email Composer
             </button>
           </div>
         </div>

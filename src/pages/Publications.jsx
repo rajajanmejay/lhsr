@@ -152,6 +152,15 @@ const Publications = () => {
     });
   }, [yearFilter, searchQuery]);
 
+  const groupedByYear = useMemo(() => {
+    const groups = {};
+    filtered.forEach((pub) => {
+      if (!groups[pub.year]) groups[pub.year] = [];
+      groups[pub.year].push(pub);
+    });
+    return Object.entries(groups).sort(([a], [b]) => b - a);
+  }, [filtered]);
+
   return (
     <div className="page active" id="page-publications">
       <div className="page-header">
@@ -207,28 +216,43 @@ const Publications = () => {
           </div>
         </div>
 
+        {filtered.length > 0 && (
+          <p className="pub-count">
+            Showing <strong>{filtered.length}</strong> of <strong>{publications.length}</strong> publications
+          </p>
+        )}
+
         {filtered.length === 0 && (
           <p className="pub-empty">No publications match your search.</p>
         )}
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          {filtered.map((pub, idx) => (
-            <article key={idx} className="publication-item">
-              <div className="publication-year">{pub.year}</div>
-              <div>
-                <div className="publication-title">{pub.title}</div>
-                <div className="publication-authors">{pub.authors}</div>
-                <div className="publication-meta">{pub.meta}</div>
-                <a
-                  className="publication-link"
-                  href={pub.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {pub.linkText}
-                </a>
+        <div className="pub-timeline">
+          {groupedByYear.map(([year, pubs]) => (
+            <div key={year} className="pub-timeline-year-group">
+              <div className="pub-timeline-year-marker">
+                <div className="pub-timeline-dot" />
+                <span className="pub-timeline-year-label">{year}</span>
               </div>
-            </article>
+              <div className="pub-timeline-items">
+                {pubs.map((pub, idx) => (
+                  <article key={idx} className="publication-item">
+                    <div>
+                      <div className="publication-title">{pub.title}</div>
+                      <div className="publication-authors">{pub.authors}</div>
+                      <div className="publication-meta">{pub.meta}</div>
+                      <a
+                        className="publication-link"
+                        href={pub.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {pub.linkText}
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

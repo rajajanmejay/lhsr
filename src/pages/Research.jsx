@@ -30,7 +30,7 @@ const Research = () => {
         "Hypersonic Cruise",
         "Air-breathing Propulsion",
       ],
-      images: [`${import.meta.env.BASE_URL}images/RA_HAP1.jpg`, `${import.meta.env.BASE_URL}images/RA_HAP2.jpg`],
+      images: [`${import.meta.env.BASE_URL}images/research/RA_HAP1.jpg`, `${import.meta.env.BASE_URL}images/research/RA_HAP2.jpg`],
     },
     {
       icon: "💥",
@@ -42,7 +42,7 @@ const Research = () => {
         "Shock Focusing",
         "Condensed Matter",
       ],
-      images: [`${import.meta.env.BASE_URL}images/RA_SWP1.jpg`, `${import.meta.env.BASE_URL}images/RA_SWP2.jpg`],
+      images: [`${import.meta.env.BASE_URL}images/research/RA_SWP1.jpg`, `${import.meta.env.BASE_URL}images/research/RA_SWP2.jpg`],
     },
     {
       icon: "🔬",
@@ -54,7 +54,7 @@ const Research = () => {
         "Supersonic Combustion",
         "Flow Reactor",
       ],
-      images: [`${import.meta.env.BASE_URL}images/RA_CKC1.jpg`, `${import.meta.env.BASE_URL}images/RA_CKC2.jpg`],
+      images: [`${import.meta.env.BASE_URL}images/research/RA_CKC1.jpg`, `${import.meta.env.BASE_URL}images/research/RA_CKC2.jpg`],
     },
     {
       icon: "🌊",
@@ -66,14 +66,14 @@ const Research = () => {
         "LES",
         "Mixing Enhancement",
       ],
-      images: [`${import.meta.env.BASE_URL}images/RA_CFM1.jpg`, `${import.meta.env.BASE_URL}images/RA_CFM2.jpg`],
+      images: [`${import.meta.env.BASE_URL}images/research/RA_CFM1.jpg`, `${import.meta.env.BASE_URL}images/research/RA_CFM2.jpg`],
     },
     {
       icon: "🦅",
       title: "Bio-inspired Research",
       desc: "At LHSR Laboratory, we pioneer cutting-edge bio-inspired shock wave technologies for transformative healthcare solutions. Our innovations enable needle-free vaccine delivery, enhanced fertility treatments in cattle, and precise drug administration. With high-efficiency cellular transformation methods and cost-effective designs, we are redefining biomedical engineering through safe, painless, and impactful micro-shock wave applications.",
       tags: ["Drag Reduction", "Flow Control", "Riblets", "Biomimetics"],
-      images: [`${import.meta.env.BASE_URL}images/RA_BIA1.jpg`, `${import.meta.env.BASE_URL}images/RA_BIA2.jpg`],
+      images: [`${import.meta.env.BASE_URL}images/research/RA_BIA1.jpg`, `${import.meta.env.BASE_URL}images/research/RA_BIA2.jpg`],
     },
     {
       icon: "🔩",
@@ -85,7 +85,7 @@ const Research = () => {
         "Shock Loading",
         "High Strain Rate",
       ],
-      images: [`${import.meta.env.BASE_URL}images/RA_MEC1.jpg`, `${import.meta.env.BASE_URL}images/RA_MEC2.jpg`],
+      images: [`${import.meta.env.BASE_URL}images/research/RA_MEC1.jpg`, `${import.meta.env.BASE_URL}images/research/RA_MEC2.jpg`],
     },
   ];
 

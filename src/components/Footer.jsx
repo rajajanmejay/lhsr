@@ -22,7 +22,6 @@ const Footer = () => {
             <div className="footer-brand-name">
               Laboratory for Hypersonic and Shock wave Research
             </div>
-
             <div className="footer-brand-sub">
               Department of Aerospace Engineering, IISc Bengaluru
             </div>
@@ -39,39 +38,11 @@ const Footer = () => {
         </div>
       </div>
 
-      <div
-        style={{
-          marginTop: '10px',
-          paddingTop: '8px',
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-          textAlign: 'center',
-        }}
-      >
+      <div className="footer-bottom">
         {isContactPage && (
-          <div
-            style={{
-              marginBottom: '16px',
-              fontFamily: 'Space Mono, monospace',
-              fontSize: '11px',
-              textAlign: 'center',
-            }}
-          >
-            <div
-              style={{
-                color: 'var(--muted)',
-                marginBottom: '4px',
-                fontWeight: 'bold',
-              }}
-            >
-              Concept & Direction
-            </div>
-
-            <div
-              style={{
-                lineHeight: '1.5',
-                color: 'var(--hero-text, #cbd5e1)',
-              }}
-            >
+          <div className="footer-credits">
+            <div className="footer-credits-label">Concept &amp; Direction</div>
+            <div className="footer-credits-names">
               Prof Srisha Rao M V
               <br />
               Raja Janmejay
@@ -81,19 +52,12 @@ const Footer = () => {
           </div>
         )}
 
-        <div
-          className="footer-dev"
-          style={{
-            fontFamily: 'Space Mono, monospace',
-            fontSize: '11px',
-            marginTop: '4px',
-          }}
-        >
+        <div className="footer-dev">
           Website Developed by - Raja Janmejay
         </div>
 
-        <div className="footer-copy" style={{ fontFamily: 'Inter, sans-serif' }}>
-          © {new Date().getFullYear()} LHSR, IISc Bengaluru. All rights reserved.
+        <div className="footer-copy">
+          &copy; {new Date().getFullYear()} LHSR, IISc Bengaluru. All rights reserved.
         </div>
       </div>
     </footer>

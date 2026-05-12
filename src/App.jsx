@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 // Pages
 import Home from './pages/Home';
@@ -13,11 +14,11 @@ import Gallery from './pages/Gallery';
 import Opportunities from './pages/Opportunities';
 import Contact from './pages/Contact';
 
-function App() {
+function AnimatedRoutes() {
+  const location = useLocation();
   return (
-    <>
-      <Navbar />
-      <Routes>
+    <div key={location.pathname} className="page-fade">
+      <Routes location={location}>
         <Route path="/" element={<Home />} />
         <Route path="/research" element={<Research />} />
         <Route path="/facilities" element={<Facilities />} />
@@ -27,7 +28,17 @@ function App() {
         <Route path="/opportunities" element={<Opportunities />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Navbar />
+      <AnimatedRoutes />
       <Footer />
+      <ScrollToTop />
     </>
   );
 }
