@@ -59,7 +59,7 @@ const allItems = globItems;
 const Gallery = () => {
   const [filter, setFilter] = useState('all');
   const [lightboxState, setLightboxState] = useState({ isOpen: false, currentIndex: 0 });
-  const [galleryRef, galleryVisible] = useScrollReveal();
+  const [galleryRef, galleryVisible] = useScrollReveal({ threshold: 0.01 });
 
   const categories = useMemo(() => {
     const seen = new Set();

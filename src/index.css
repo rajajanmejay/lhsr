@@ -4292,16 +4292,16 @@ footer {
 }
 
 @media (max-width: 900px) {
-  /* 2. Force the text links in the white mobile dropdown to be dark again */
+  /* 2. Force the text links in the dark mobile dropdown to be light again */
   .nav-links.open a {
-    color: #0a2540 !important;
+    color: #ffffff !important;
   }
 
-  /* 3. Give the mobile links a nice blue highlight when tapped */
+  /* 3. Give the mobile links a nice cyan highlight when tapped */
   .nav-links.open a:hover,
   .nav-links.open a.active {
-    color: #008fa8 !important;
-    background: rgba(0, 143, 168, 0.08) !important;
+    color: #8cecf7 !important;
+    background: rgba(140, 236, 247, 0.1) !important;
     border-color: transparent !important;
   }
 }
