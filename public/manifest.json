@@ -1,0 +1,20 @@
+{
+  "short_name": "LHSR",
+  "name": "Laboratory for Hypersonic and Shock wave Research",
+  "icons": [
+    {
+      "src": "/lhsr/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/lhsr/logos/lhsr-logo-white.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/lhsr/",
+  "display": "standalone",
+  "theme_color": "#0b1c2e",
+  "background_color": "#f5f7f9"
+}

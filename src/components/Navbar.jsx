@@ -11,15 +11,17 @@ const Navbar = () => {
   return (
     <nav>
       <div className="nav-top-row">
-        <Link className="nav-logo responsive-logo" to="/" onClick={closeMenu}>
-          <div className="nav-logo-mark">
+        <div className="nav-logo-side">
+          <Link to="/" className="nav-logo-link" onClick={closeMenu}>
             <img src={`${import.meta.env.BASE_URL}logos/lhsr-logo-white.png`} alt="LHSR" />
-          </div>
-          <div className="nav-text-container">
-            <div className="nav-logo-text">Laboratory for Hypersonic and Shock wave Research</div>
-            <div className="nav-logo-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
-          </div>
-        </Link>
+          </Link>
+        </div>
+        
+        <div className="nav-brand-right">
+          <div className="nav-logo-text">Laboratory for Hypersonic and Shock wave Research</div>
+          <div className="nav-logo-sub">Department of Aerospace Engineering, IISc Bengaluru</div>
+        </div>
+
         <button className="nav-hamburger" aria-label="Menu" onClick={toggleMenu}>
           <span></span>
           <span></span>

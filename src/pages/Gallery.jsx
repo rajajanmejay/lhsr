@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
-import ResearchModal from '../components/ResearchModal';
+import React, { useState, useMemo, useEffect } from 'react';
+import Lightbox from '../components/Lightbox';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // HOW TO ADD IMAGES
@@ -25,7 +26,10 @@ const rawModules = import.meta.glob(
 );
 
 function toSlug(str) {
-  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 function fileToCaption(filename) {
@@ -54,24 +58,36 @@ const allItems = globItems;
 
 const Gallery = () => {
   const [filter, setFilter] = useState('all');
-  const [modalState, setModalState] = useState({ isOpen: false, title: '', text: '', images: [] });
+  const [lightboxState, setLightboxState] = useState({ isOpen: false, currentIndex: 0 });
+  const [galleryRef, galleryVisible] = useScrollReveal();
 
   const categories = useMemo(() => {
     const seen = new Set();
     const result = [];
     allItems.forEach(({ category, cat }) => {
-      if (!seen.has(cat)) { seen.add(cat); result.push({ label: category, slug: cat }); }
+      if (!seen.has(cat)) {
+        seen.add(cat);
+        result.push({ label: category, slug: cat });
+      }
     });
     return result.sort((a, b) => a.label.localeCompare(b.label));
   }, []);
 
   const filteredItems = useMemo(
-    () => filter === 'all' ? allItems : allItems.filter((g) => g.cat === filter),
+    () => (filter === 'all' ? allItems : allItems.filter((g) => g.cat === filter)),
     [filter]
   );
 
-  const openModal  = (label, img) => setModalState({ isOpen: true, title: label, text: '', images: [img] });
-  const closeModal = () => setModalState((s) => ({ ...s, isOpen: false }));
+  const openLightbox = (index) => {
+    setLightboxState({ isOpen: true, currentIndex: index });
+  };
+
+  const closeLightbox = () => setLightboxState((s) => ({ ...s, isOpen: false }));
+
+  // Keyboard navigation handled by Lightbox component
+  useEffect(() => {
+    // Lightbox handles all keyboard events
+  }, [lightboxState.isOpen]);
 
   return (
     <div className="page active" id="page-gallery">
@@ -99,9 +115,12 @@ const Gallery = () => {
           ))}
         </div>
 
-        <div className="gallery-grid">
+        <div
+          className={`gallery-grid reveal ${galleryVisible ? 'visible' : ''} reveal-stagger`}
+          ref={galleryRef}
+        >
           {filteredItems.map((g, idx) => (
-            <div key={idx} className="gallery-item" onClick={() => openModal(g.label, g.src)}>
+            <div key={idx} className="gallery-item" onClick={() => openLightbox(idx)}>
               <img
                 src={g.src}
                 alt={g.label}
@@ -112,6 +131,7 @@ const Gallery = () => {
                 }}
               />
               <div className="gallery-item-overlay">
+                <span className="gallery-item-badge">{g.category}</span>
                 <span className="gallery-item-label">{g.label}</span>
               </div>
             </div>
@@ -119,12 +139,11 @@ const Gallery = () => {
         </div>
       </div>
 
-      <ResearchModal
-        isOpen={modalState.isOpen}
-        onClose={closeModal}
-        title={modalState.title}
-        text={modalState.text}
-        images={modalState.images}
+      <Lightbox
+        isOpen={lightboxState.isOpen}
+        onClose={closeLightbox}
+        items={filteredItems}
+        initialIndex={lightboxState.currentIndex}
       />
     </div>
   );

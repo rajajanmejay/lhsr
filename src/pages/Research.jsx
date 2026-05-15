@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ResearchModal from "../components/ResearchModal";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const Research = () => {
   const [modalState, setModalState] = useState({
@@ -8,6 +9,9 @@ const Research = () => {
     text: "",
     images: [],
   });
+
+  const [headerRef, headerVis] = useScrollReveal();
+  const [listRef, listVis] = useScrollReveal();
 
   const openModal = (title, text, images) => {
     setModalState({ isOpen: true, title, text, images });
@@ -91,7 +95,7 @@ const Research = () => {
 
   return (
     <div className="page active" id="page-research">
-      <div className="page-header">
+      <div className={`page-header reveal ${headerVis ? 'visible' : ''}`} ref={headerRef}>
         <div className="page-header-meta">Research</div>
         <h1>What We Study</h1>
         <p>
@@ -99,8 +103,8 @@ const Research = () => {
           aerodynamics, shock physics, and aerospace engineering.
         </p>
       </div>
-      <div className="page-content">
-        <div className="research-areas">
+      <div className={`page-content reveal ${listVis ? 'visible' : ''}`} ref={listRef}>
+        <div className="research-areas reveal-stagger">
           {researchAreas.map((area, index) => (
             <div
               key={index}

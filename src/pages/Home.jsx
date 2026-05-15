@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ResearchModal from "../components/ResearchModal";
+import DynamicHeroBg from "../components/DynamicHeroBg";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const Home = () => {
   const [modalState, setModalState] = useState({
@@ -9,6 +11,9 @@ const Home = () => {
     text: "",
     images: [],
   });
+
+  const [aboutRef, aboutVisible] = useScrollReveal();
+  const [researchRef, researchVisible] = useScrollReveal();
 
   const openModal = (title, text, images) => {
     setModalState({ isOpen: true, title, text, images });
@@ -78,66 +83,62 @@ const Home = () => {
   return (
     <div className="page active" id="page-home">
       <section className="hero">
-        <div className="hero-bg-orb orb1"></div>
-        <div className="hero-bg-orb orb2"></div>
+        <DynamicHeroBg />
+        
+        <div className="hero-content">
+          <h1 className="hero-title">
+            <span className="line1">Laboratory for</span>
+            <span className="line2">
+              Hypersonic &<br />
+              Shock wave
+              <br />
+              Research
+            </span>
+            <span className="line3">IISc Bengaluru</span>
+          </h1>
 
-        <h1 className="hero-title">
-          <span className="line1">Laboratory for</span>
-          <span className="line2">
-            Hypersonic &<br />
-            Shock wave
-            <br />
-            Research
-          </span>
-          <span className="line3">IISc Bengaluru</span>
-        </h1>
+          <p className="hero-desc">
+            Pushing the boundaries of high-speed flight science. LHSR operates
+            India's most comprehensive suite of hypersonic shock tunnels,
+            advancing aerospace research from Mach 4 to Mach 12 and specific
+            enthalpy from 0.3 MJ/kg to 10 MJ/kg.
+          </p>
 
-        <p className="hero-desc">
-          Pushing the boundaries of high-speed flight science. LHSR operates
-          India's most comprehensive suite of hypersonic shock tunnels,
-          advancing aerospace research from Mach 4 to Mach 12 and specific
-          enthalpy from 0.3 MJ/kg to 10 MJ/kg.
-        </p>
+          <div className="hero-cta">
+            <Link to="/facilities" className="btn-primary">
+              Explore Facilities
+            </Link>
+            <Link to="/research" className="btn-outline">
+              Our Research
+            </Link>
+          </div>
 
-        <div className="hero-cta">
-          <Link to="/facilities" className="btn-primary">
-            Explore Facilities
-          </Link>
-          <Link to="/research" className="btn-outline">
-            Our Research
-          </Link>
-        </div>
-
-        <div className="hero-stats">
-          <div className="stat-item">
-            <div className="stat-num">5+</div>
-            <div className="stat-label">Shock Tunnels</div>
+          <div className="hero-stats">
+            <div className="stat-item">
+              <div className="stat-num">5+</div>
+              <div className="stat-label">Shock Tunnels</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-num">M12</div>
+              <div className="stat-label">Max Mach Number</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-num">10</div>
+              <div className="stat-label">MJ/kg Peak Enthalpy</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-num">30+</div>
+              <div className="stat-label">Lab Members</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-num">1971</div>
+              <div className="stat-label">India's First HST</div>
+            </div>
           </div>
-          <div className="stat-item">
-            <div className="stat-num">M12</div>
-            <div className="stat-label">Max Mach Number</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-num">10</div>
-            <div className="stat-label">MJ/kg Peak Enthalpy</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-num">30+</div>
-            <div className="stat-label">Lab Members</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-num">1971</div>
-            <div className="stat-label">India's First HST</div>
-          </div>
-        </div>
-
-        <div className="scroll-indicator">
-          <div className="scroll-line"></div>
-          <span>Scroll</span>
         </div>
       </section>
 
-      <section className="about-section">
+      <section className={`about-section reveal ${aboutVisible ? "visible" : ""}`} ref={aboutRef}>
         <div className="about-inner">
           <div className="section-tag">About the Lab</div>
           <h2 className="section-title">Decades of Hypersonic Excellence</h2>
@@ -171,10 +172,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="research-preview">
+      <section className={`research-preview reveal ${researchVisible ? "visible" : ""}`} ref={researchRef}>
         <div className="section-tag">Research Focus</div>
         <h2 className="section-title">Core Research Areas</h2>
-        <div className="research-grid">
+        <div className="research-grid reveal-stagger">
           {researchAreas.map((area, index) => (
             <div
               key={index}

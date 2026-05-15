@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 const People = () => {
   const [peopleData, setPeopleData] = useState({
@@ -14,6 +15,15 @@ const People = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Animation refs
+  const [fRef, fVis] = useScrollReveal();
+  const [afRef, afVis] = useScrollReveal();
+  const [phdRef, phdVis] = useScrollReveal();
+  const [mtRef, mtVis] = useScrollReveal();
+  const [resRef, resVis] = useScrollReveal();
+  const [stRef, stVis] = useScrollReveal();
+  const [alRef, alVis] = useScrollReveal();
 
   useEffect(() => {
     const cacheBuster = new Date().getTime();
@@ -249,86 +259,86 @@ const People = () => {
         {!loading && !error && (
           <>
             {peopleData.faculty.length > 0 && (
-              <section className="people-section">
+              <section className={`people-section reveal ${fVis ? 'visible' : ''}`} ref={fRef}>
                 <div className="people-section-header">
                   <h2 className="people-section-title">Core Faculty</h2>
                   <span className="people-count">
                     {String(peopleData.faculty.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="faculty-grid">{peopleData.faculty.map(renderFacultyCard)}</div>
+                <div className="faculty-grid reveal-stagger">{peopleData.faculty.map(renderFacultyCard)}</div>
               </section>
             )}
 
             {peopleData.assocFaculty.length > 0 && (
-              <section className="people-section">
+              <section className={`people-section reveal ${afVis ? 'visible' : ''}`} ref={afRef}>
                 <div className="people-section-header">
                   <h2 className="people-section-title">Associated & Adjunct Faculty</h2>
                   <span className="people-count">
                     {String(peopleData.assocFaculty.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="faculty-grid">{peopleData.assocFaculty.map(renderFacultyCard)}</div>
+                <div className="faculty-grid reveal-stagger">{peopleData.assocFaculty.map(renderFacultyCard)}</div>
               </section>
             )}
 
             {peopleData.phd.length > 0 && (
-              <section className="people-section">
+              <section className={`people-section reveal ${phdVis ? 'visible' : ''}`} ref={phdRef}>
                 <div className="people-section-header">
                   <h2 className="people-section-title">Ph.D. Scholars</h2>
                   <span className="people-count">
                     {String(peopleData.phd.length).padStart(2, '0')} students
                   </span>
                 </div>
-                <div className="people-grid">{peopleData.phd.map(renderPeopleCard)}</div>
+                <div className="people-grid reveal-stagger">{peopleData.phd.map(renderPeopleCard)}</div>
               </section>
             )}
 
             {peopleData.mtech.length > 0 && (
-              <section className="people-section">
+              <section className={`people-section reveal ${mtVis ? 'visible' : ''}`} ref={mtRef}>
                 <div className="people-section-header">
                   <h2 className="people-section-title">M.Tech. (Research) Scholars</h2>
                   <span className="people-count">
                     {String(peopleData.mtech.length).padStart(2, '0')} students
                   </span>
                 </div>
-                <div className="people-grid">{peopleData.mtech.map(renderPeopleCard)}</div>
+                <div className="people-grid reveal-stagger">{peopleData.mtech.map(renderPeopleCard)}</div>
               </section>
             )}
 
             {peopleData.research.length > 0 && (
-              <section className="people-section">
+              <section className={`people-section reveal ${resVis ? 'visible' : ''}`} ref={resRef}>
                 <div className="people-section-header">
                   <h2 className="people-section-title">Research Fellows & Assistants</h2>
                   <span className="people-count">
                     {String(peopleData.research.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="people-grid">{peopleData.research.map(renderPeopleCard)}</div>
+                <div className="people-grid reveal-stagger">{peopleData.research.map(renderPeopleCard)}</div>
               </section>
             )}
 
             {peopleData.staff.length > 0 && (
-              <section className="people-section">
+              <section className={`people-section reveal ${stVis ? 'visible' : ''}`} ref={stRef}>
                 <div className="people-section-header">
                   <h2 className="people-section-title">Technical & Project Staff</h2>
                   <span className="people-count">
                     {String(peopleData.staff.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="people-grid">{peopleData.staff.map(renderPeopleCard)}</div>
+                <div className="people-grid reveal-stagger">{peopleData.staff.map(renderPeopleCard)}</div>
               </section>
             )}
 
             {peopleData.alumni.length > 0 && (
-              <section className="people-section">
+              <section className={`people-section reveal ${alVis ? 'visible' : ''}`} ref={alRef}>
                 <div className="people-section-header">
                   <h2 className="people-section-title">Alumni</h2>
                   <span className="people-count">
                     {String(peopleData.alumni.length).padStart(2, '0')} members
                   </span>
                 </div>
-                <div className="people-grid">{peopleData.alumni.map(renderPeopleCard)}</div>
+                <div className="people-grid reveal-stagger">{peopleData.alumni.map(renderPeopleCard)}</div>
               </section>
             )}
           </>

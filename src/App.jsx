@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import ScrollProgress from './components/ScrollProgress';
 
 // Pages
 import Home from './pages/Home';
@@ -35,8 +36,11 @@ function AnimatedRoutes() {
 function App() {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
-      <AnimatedRoutes />
+      <main>
+        <AnimatedRoutes />
+      </main>
       <Footer />
       <ScrollToTop />
     </>

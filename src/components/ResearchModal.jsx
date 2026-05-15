@@ -1,9 +1,10 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 
 const ResearchModal = ({ isOpen, onClose, title, text, images }) => {
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="research-modal" style={{ display: 'block' }} onClick={onClose}>
       <div className="research-modal-content" onClick={(e) => e.stopPropagation()}>
         <span className="research-modal-close" onClick={onClose}>
@@ -47,8 +48,10 @@ const ResearchModal = ({ isOpen, onClose, title, text, images }) => {
           {text}
         </p>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
 export default ResearchModal;
+

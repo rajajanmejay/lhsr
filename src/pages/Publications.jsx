@@ -1,8 +1,12 @@
 import React, { useState, useMemo } from 'react';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 const Publications = () => {
   const [yearFilter, setYearFilter] = useState('All');
+  const [typeFilter, setTypeFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [headerRef, headerVisible] = useScrollReveal();
+  const [listRef, listVisible] = useScrollReveal();
 
   const scholarProfiles = [
     {
@@ -30,6 +34,7 @@ const Publications = () => {
       meta: 'Journal of Fluid Mechanics, 2026',
       link: 'https://arxiv.org/abs/2601.08795',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2026',
@@ -38,6 +43,7 @@ const Publications = () => {
       meta: 'Physics of Fluids, 2026',
       link: 'https://arxiv.org/abs/2603.08746',
       linkText: 'View Paper ↗',
+      type: 'Journal',
     },
     {
       year: '2025',
@@ -46,6 +52,7 @@ const Publications = () => {
       meta: 'Physics of Fluids, Vol. 37, Issue 7, 074108, 2025',
       link: 'https://pubs.aip.org/aip/pof/article/37/7/074108/3354898',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2024',
@@ -54,6 +61,7 @@ const Publications = () => {
       meta: 'Physics of Fluids, Vol. 36, Issue 12, 123621, 2024',
       link: 'https://pubs.aip.org/aip/pof/article/36/12/123621/3325721/Dynamics-of-wingtip-vortex-in-natural-samaras',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2024',
@@ -62,6 +70,7 @@ const Publications = () => {
       meta: 'International Journal of Refrigeration, 2024',
       link: 'https://www.sciencedirect.com/science/article/abs/pii/S0896844624003280',
       linkText: 'View publication ↗',
+      type: 'Journal',
     },
     {
       year: '2023',
@@ -70,6 +79,7 @@ const Publications = () => {
       meta: 'Physics of Fluids, 2023',
       link: 'https://doi.org/10.1063/5.0137051',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2022',
@@ -78,6 +88,7 @@ const Publications = () => {
       meta: 'Journal of Fluid Mechanics, 2022',
       link: 'https://doi.org/10.1017/jfm.2022.619',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2022',
@@ -86,6 +97,7 @@ const Publications = () => {
       meta: 'Applied Thermal Engineering, 2022',
       link: 'https://doi.org/10.1016/j.applthermaleng.2021.117615',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2021',
@@ -94,6 +106,7 @@ const Publications = () => {
       meta: 'Journal of Fluid Mechanics, 2021',
       link: 'https://doi.org/10.1017/jfm.2021.230',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2021',
@@ -102,6 +115,7 @@ const Publications = () => {
       meta: 'Aerospace Science and Technology, 2021',
       link: 'https://doi.org/10.1016/j.ast.2021.106789',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2021',
@@ -110,6 +124,7 @@ const Publications = () => {
       meta: 'Acta Astronautica, 2021',
       link: 'https://doi.org/10.1016/j.actaastro.2020.09.021',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2021',
@@ -118,6 +133,7 @@ const Publications = () => {
       meta: 'Experimental Thermal and Fluid Science, 2021',
       link: 'https://cir.nii.ac.jp/crid/1360588384083606528',
       linkText: 'View record ↗',
+      type: 'Journal',
     },
     {
       year: '2020',
@@ -126,6 +142,7 @@ const Publications = () => {
       meta: 'Physics of Fluids, 2020',
       link: 'https://doi.org/10.1063/1.5135096',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
     {
       year: '2020',
@@ -134,23 +151,26 @@ const Publications = () => {
       meta: 'Experimental Mechanics, 2020',
       link: 'https://doi.org/10.1007/s11340-020-00576-7',
       linkText: 'DOI ↗',
+      type: 'Journal',
     },
   ];
 
   const years = ['All', ...Array.from(new Set(publications.map((p) => p.year))).sort((a, b) => b - a)];
+  const types = ['All', 'Journal', 'Conference'];
 
   const filtered = useMemo(() => {
     const q = searchQuery.toLowerCase();
     return publications.filter((pub) => {
       const matchesYear = yearFilter === 'All' || pub.year === yearFilter;
+      const matchesType = typeFilter === 'All' || pub.type === typeFilter;
       const matchesSearch =
         !q ||
         pub.title.toLowerCase().includes(q) ||
         pub.authors.toLowerCase().includes(q) ||
         pub.meta.toLowerCase().includes(q);
-      return matchesYear && matchesSearch;
+      return matchesYear && matchesType && matchesSearch;
     });
-  }, [yearFilter, searchQuery]);
+  }, [yearFilter, typeFilter, searchQuery]);
 
   const groupedByYear = useMemo(() => {
     const groups = {};
@@ -163,7 +183,7 @@ const Publications = () => {
 
   return (
     <div className="page active" id="page-publications">
-      <div className="page-header">
+      <div className={`page-header reveal ${headerVisible ? 'visible' : ''}`} ref={headerRef}>
         <div className="page-header-meta">Publications</div>
         <h1>Selected Works</h1>
         <p>
@@ -171,7 +191,7 @@ const Publications = () => {
           chemical kinetics, and applied shock wave research.
         </p>
       </div>
-      <div className="page-content" style={{ maxWidth: '900px', padding: '5rem 2.5rem' }}>
+      <div className="page-content pub-page-content">
         <section className="scholar-panel" aria-labelledby="scholar-profiles-title">
           <div className="section-tag" id="scholar-profiles-title">
             Google Scholar
@@ -203,16 +223,37 @@ const Publications = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             aria-label="Search publications"
           />
-          <div className="pub-year-filters" role="group" aria-label="Filter by year">
-            {years.map((y) => (
-              <button
-                key={y}
-                className={`pub-year-btn${yearFilter === y ? ' active' : ''}`}
-                onClick={() => setYearFilter(y)}
-              >
-                {y}
-              </button>
-            ))}
+          
+          <div className="pub-filters-row">
+            <div className="pub-filter-group">
+              <span className="pub-filter-label">Year:</span>
+              <div className="pub-year-filters">
+                {years.map((y) => (
+                  <button
+                    key={y}
+                    className={`pub-year-btn${yearFilter === y ? ' active' : ''}`}
+                    onClick={() => setYearFilter(y)}
+                  >
+                    {y}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="pub-filter-group">
+              <span className="pub-filter-label">Type:</span>
+              <div className="pub-year-filters">
+                {types.map((t) => (
+                  <button
+                    key={t}
+                    className={`pub-year-btn${typeFilter === t ? ' active' : ''}`}
+                    onClick={() => setTypeFilter(t)}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -226,7 +267,10 @@ const Publications = () => {
           <p className="pub-empty">No publications match your search.</p>
         )}
 
-        <div className="pub-timeline">
+        <div 
+          className={`pub-timeline reveal ${listVisible ? 'visible' : ''}`} 
+          ref={listRef}
+        >
           {groupedByYear.map(([year, pubs]) => (
             <div key={year} className="pub-timeline-year-group">
               <div className="pub-timeline-year-marker">
@@ -239,7 +283,10 @@ const Publications = () => {
                     <div>
                       <div className="publication-title">{pub.title}</div>
                       <div className="publication-authors">{pub.authors}</div>
-                      <div className="publication-meta">{pub.meta}</div>
+                      <div className="publication-meta">
+                        <span className={`pub-type-badge pub-type-badge--${pub.type.toLowerCase()}`}>{pub.type}</span>
+                        {pub.meta}
+                      </div>
                       <a
                         className="publication-link"
                         href={pub.link}

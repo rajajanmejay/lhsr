@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ResearchModal from "../components/ResearchModal";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const Facilities = () => {
   const [modalState, setModalState] = useState({
@@ -8,6 +9,8 @@ const Facilities = () => {
     text: "",
     images: [],
   });
+
+  const [contentRef, contentVisible] = useScrollReveal();
 
   const openModal = (title, text, images) => {
     setModalState({ isOpen: true, title, text, images });
@@ -156,50 +159,52 @@ const Facilities = () => {
           facility in India.
         </p>
       </div>
-      <div className="page-content">
-        {facilities.map((fac, idx) => (
-          <div
-            key={idx}
-            className="facility-item"
-            style={{ cursor: "pointer" }}
-            onClick={() => openModal(fac.name, fac.subtitle, [fac.img])}
-          >
-            <div className="facility-info">
-              <div className="facility-tag">{fac.tag}</div>
-              <div className="facility-name">{fac.name}</div>
-              {fac.subtitle && (
-                <div className="facility-subtitle">{fac.subtitle}</div>
-              )}
+      <div className={`page-content reveal ${contentVisible ? 'visible' : ''}`} ref={contentRef}>
+        <div className="reveal-stagger">
+          {facilities.map((fac, idx) => (
+            <div
+              key={idx}
+              className="facility-item"
+              style={{ cursor: "pointer" }}
+              onClick={() => openModal(fac.name, fac.subtitle, [fac.img])}
+            >
+              <div className="facility-info">
+                <div className="facility-tag">{fac.tag}</div>
+                <div className="facility-name">{fac.name}</div>
+                {fac.subtitle && (
+                  <div className="facility-subtitle">{fac.subtitle}</div>
+                )}
 
-              <div className="facility-specs">
-                {fac.specs.map((spec, sidx) => (
-                  <div key={sidx} className="spec-row">
-                    <span className="spec-key">{spec.key}</span>
-                    <span className="spec-val">{spec.val}</span>
-                  </div>
-                ))}
+                <div className="facility-specs">
+                  {fac.specs.map((spec, sidx) => (
+                    <div key={sidx} className="spec-row">
+                      <span className="spec-key">{spec.key}</span>
+                      <span className="spec-val">{spec.val}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {fac.machBadge && (
+                  <div className="mach-badge">{fac.machBadge}</div>
+                )}
+                {fac.note && (
+                  <p
+                    style={{
+                      fontSize: "0.95rem",
+                      color: "var(--muted)",
+                      marginTop: "1.5rem",
+                    }}
+                  >
+                    {fac.note}
+                  </p>
+                )}
               </div>
-
-              {fac.machBadge && (
-                <div className="mach-badge">{fac.machBadge}</div>
-              )}
-              {fac.note && (
-                <p
-                  style={{
-                    fontSize: "0.95rem",
-                    color: "var(--muted)",
-                    marginTop: "1.5rem",
-                  }}
-                >
-                  {fac.note}
-                </p>
-              )}
+              <div className="facility-image">
+                <img src={fac.img} alt={fac.name} loading="lazy" />
+              </div>
             </div>
-            <div className="facility-image">
-              <img src={fac.img} alt={fac.name} loading="lazy" />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       <ResearchModal
