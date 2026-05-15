@@ -1465,7 +1465,7 @@ nav {
   font-size: 1.15rem;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   line-height: 1.2;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -4041,25 +4041,27 @@ footer {
 
 .lightbox-caption-event {
   display: inline-block;
-  margin-bottom: 8px;
-  padding: 6px 14px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  color: #a5d8ff;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  margin-top: 8px;
+  padding: 4px 12px;
+  background: var(--blue);
+  color: #ffffff;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  width: fit-content;
 }
 
+
 .lightbox-caption-text {
-  margin-top: 6px;
   color: #ffffff;
   font-family: 'Syne', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 700;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
 }
 
 

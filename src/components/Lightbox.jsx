@@ -72,8 +72,8 @@ const Lightbox = ({ isOpen, onClose, items = [], initialIndex = 0 }) => {
             className="lightbox-image"
           />
           <div className="lightbox-inner-caption">
-            <div className="lightbox-caption-event">{currentItem.category}</div>
             <div className="lightbox-caption-text">{currentItem.label}</div>
+            <div className="lightbox-caption-event">{currentItem.category}</div>
           </div>
         </div>
 

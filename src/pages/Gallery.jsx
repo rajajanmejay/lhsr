@@ -131,8 +131,8 @@ const Gallery = () => {
                 }}
               />
               <div className="gallery-item-overlay">
-                <span className="gallery-item-badge">{g.category}</span>
                 <span className="gallery-item-label">{g.label}</span>
+                <span className="gallery-item-badge">{g.category}</span>
               </div>
             </div>
           ))}
