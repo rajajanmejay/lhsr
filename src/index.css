@@ -1484,7 +1484,6 @@ nav {
   width: fit-content;
 }
 
-
 /* ── CONTACT PAGE ── */
 .contact-grid {
   display: grid;
@@ -1887,7 +1886,6 @@ footer {
     gap: 16px;
   }
 
-
   .opp-grid {
     grid-template-columns: 1fr;
   }
@@ -1936,7 +1934,6 @@ footer {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-
 }
 
 /* btn-outline used on light bg (about section) */
@@ -2610,7 +2607,6 @@ nav {
 }
 
 /* Consistently themed gallery styles removed from here to use unified definitions above */
-
 
 .gallery-item-label,
 .footer-copy,
@@ -3354,7 +3350,6 @@ p,
 
 /* Consolidated gallery item aspect ratio handled in main section */
 
-
 .credits-box {
   margin-top: 24px;
   padding: 24px;
@@ -3889,7 +3884,6 @@ footer {
   -webkit-backdrop-filter: blur(10px);
 }
 
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -3942,8 +3936,6 @@ footer {
   pointer-events: none;
   z-index: 5;
 }
-
-
 
 @keyframes zoomIn {
   from {
@@ -4054,7 +4046,6 @@ footer {
   width: fit-content;
 }
 
-
 .lightbox-caption-text {
   color: #ffffff;
   font-family: 'Syne', sans-serif;
@@ -4063,7 +4054,6 @@ footer {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   line-height: 1.2;
 }
-
 
 .lightbox-info {
   position: fixed;
