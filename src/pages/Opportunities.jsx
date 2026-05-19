@@ -90,11 +90,6 @@ const Opportunities = () => {
               <div className="opp-content">
                 <div className="opp-title">Industry Collaboration</div>
                 <div className="opp-desc">
-                  LHSR engages with Research Labs - ISRO, DRDO, NAL and industry
-                  partners to provide knowledge and technology solutions in
-                  research areas of hypersonic aerothermodynamics, shock waves
-                  and their applications, chemical kinetics, materials etc.
-                  <br />
                   <br />
                   Laboratory facilities are available for sponsored research and
                   testing under IISc's industry interaction agencies such as
